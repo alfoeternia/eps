@@ -1,0 +1,32 @@
+admin:
+    pattern:  /admin
+    defaults: { _controller: EpsAdminBundle:Default:index }
+
+
+admin_album:
+    pattern: /admin/albums
+    defaults: { _controller: EpsAdminBundle:Album:index }
+
+admin_album_paginated:
+    pattern: /admin/albums/page/{page}
+    defaults: { _controller: EpsAdminBundle:Album:index }
+
+admin_album_create:
+    pattern: /admin/albums/create
+    defaults: { _controller: EpsAdminBundle:Album:index }
+
+admin_static:
+    pattern:  /admin/static
+    defaults: { _controller: EpsAdminBundle:Static:index }
+
+admin_static_create:
+    pattern:  /admin/static/create
+    defaults: { _controller: EpsAdminBundle:Static:create }
+
+admin_static_delete:
+    pattern:  /admin/static/delete/{id}
+    defaults: { _controller: EpsAdminBundle:Static:delete }
+
+admin_static_edit:
+    pattern:  /admin/static/edit/{id}
+    defaults: { _controller: EpsAdminBundle:Static:edit }

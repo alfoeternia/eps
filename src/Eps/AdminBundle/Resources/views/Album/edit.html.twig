@@ -1,0 +1,43 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Edition d'une page Statique</h2>
+
+	<form class="form-horizontal" method="post" action="{{ path('admin_static_edit', {'id': id}) }}">
+		<div class="control-group">
+			<label class="control-label" for="inputTitle">Titre</label>
+			<div class="controls">
+				<input type="text" id="inputTitle" value="{{ page.title }}" name="title">
+			</div>
+		</div>
+		<div class="control-group">
+			<textarea name="content" style="width: 98%;" id="redactor_content">{{ page.content }}</textarea>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="btn">Sauvegarder</button>
+			</div>
+		</div>
+	</form>
+	
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/redactor.css') }}" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/redactor.js') }}"></script>
+	<script type="text/javascript">
+	$(document).ready(
+		function()
+		{
+			$('#redactor_content').redactor();
+		}
+		);
+	</script>
+{% endblock %}

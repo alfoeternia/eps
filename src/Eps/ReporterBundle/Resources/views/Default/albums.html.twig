@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Albums de <em><strong>{{ app.user.pseudo }}</strong> ({{ app.user.firstname }} {{ app.user.lastname }})</em></h2>
+
+	{% if albums|length > 0 %}
+
+	<table class="table table-striped table-condensed">
+		<tr>
+			<th>#</th>
+			<th>Miniature</th>
+			<th>Titre</th>
+		</tr>
+	{% for album in pagerfanta.currentPageResults %}
+
+ 		<tr>
+ 			<td>{{ album.id }}</td>
+ 			<td>
+ 				<div class="album-box-thumb-admin">
+				<img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ album.thumb) }}" class="img-polaroid" alt="" />
+				</div>
+			</td>
+ 			<td>
+ 				<h5 style="margin: 1px;"><a href="{{ path('album_view', {'id': album.id}) }}">{{ album.name }}</a></h5>
+	 			<p style="float:left; width: 180px;"><i class="icon-user"></i>
+				Auteur{% if album.reporters|length > 1%}s{% endif%} : 
+				{% for reporter in album.reporters %}
+					<strong>{{ reporter.pseudo }}</strong>
+					{% if not loop.last %},{% endif %}
+				{% endfor %}
+				</p>
+
+				<p style="float:left;width: 200px;"><i class="icon-tag" style=""></i>
+				Catégorie : <strong>{{ album.category.title }}</strong>
+				</p>
+				
+				<p style="float:left;margin-right: 20px;">
+					<i class="icon-eye-open"></i>
+					<strong>{{ album.getVisitCount }}</strong>
+					vue{% if album.getVisitCount|length > 1%}s{% endif%}
+				</p>
+			</td>
+ 		</tr>
+ 	{% endfor %}
+    </table>
+
+    {{ pagerfanta(pagerfanta, 'twitter_bootstrap', {'routeName': 'admin_album_paginated'}) }}
+
+    {% else %}
+    <div class="alert alert-info">
+    	Il n'y a aucun album disponible.
+    </div>
+    {% endif %}
+	
+{% endblock %}

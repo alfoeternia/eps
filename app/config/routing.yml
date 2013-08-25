@@ -1,0 +1,27 @@
+EpsMajBundle:
+    resource: "@EpsMajBundle/Resources/config/routing.yml"
+    prefix:   /
+
+EpsReporterBundle:
+    resource: "@EpsReporterBundle/Resources/config/routing.yml"
+    prefix:   /
+
+EpsStaticPagesBundle:
+    resource: "@EpsStaticPagesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+EpsAdminBundle:
+    resource: "@EpsAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+EpsUserBundle:
+    resource: "@EpsUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+EpsPhotoBundle:
+    resource: "@EpsPhotoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+EpsHomepageBundle:
+    resource: "@EpsHomepageBundle/Resources/config/routing.yml"
+    prefix:   /

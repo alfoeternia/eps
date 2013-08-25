@@ -1,0 +1,69 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>{{ album.name }}</h2>
+
+	<div class="album-desc">
+		<div class="album-box-thumb">
+			<img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ album.thumb) }}" class="img-polaroid" alt="" />
+		</div>
+		<div class="album-box-text" style="margin-top: 3px;">
+				<p>
+					<i class="icon-user"></i>
+					Auteur{% if album.reporters|length > 1%}s{% endif%} : 
+					{% for reporter in album.reporters %}
+						<strong>{{ reporter.pseudo }}</strong>
+						{% if not loop.last %},{% endif %}
+					{% endfor %}
+				</p>
+
+				<p>
+					<i class="icon-tag" style=""></i>
+					Catégorie : <strong>{{ album.category.title }}</strong>
+				</p>
+				
+				<p style="float:left;margin-right: 20px;">
+					<i class="icon-eye-open"></i>
+					<strong>{{ album.getVisitCount }}</strong>
+					vue{% if album.getVisitCount|length > 1%}s{% endif%}
+				</p>
+				
+				<!--<div class="btn-group">
+					<a href="#" class="btn btn-small"><i class="icon-play-circle"></i> Visualiser</a>
+					<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#"><i class="icon-download"></i> Télécharger</a></li>
+						<li><a href="#"><i class="icon-envelope"></i> Envoyer à un ami</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="icon-folder-open"></i> Rendre public</a></li>
+						<li><a href="#"><i class="icon-pencil"></i> Editer d'album</a></li>
+						<li><a href="#"><i class="icon-trash"></i> Supprimer</a></li>
+					</ul>
+				</div>-->
+				
+				{# {{ album.date|date()|title }} #}
+				<p class="album-box-date">{{ album.date|localizeddate('full', 'none', 'fr_FR')|title }}</p>
+								
+			</div>
+	</div>
+
+	{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('html5lightbox/html5lightbox.js') }}"></script>
+	{% endblock %}
+
+	<div class="html5lightbox">
+		{% for image in images %}
+		<a href="{{ asset('data/' ~ album.date|date('Y') ~ '/' ~ album.id ~ '/' ~ image) }}" 
+		class="html5lightbox" data-group="{{ album.id }}">
+			<img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ image) }}" alt="" class="img-polaroid" 
+				style="max-height : 133px; margin: 10px;"/>
+		</a>
+		{% endfor %}		
+	</div>
+	
+{% endblock %}

@@ -1,0 +1,54 @@
+		<li class="album-box album-box-{% if loop.index is even %}even{% else %}odd{% endif %} {% if album.access == "ROLE_REPORTER" %}album-box-admin{% endif %}">
+
+			<div class="album-box-thumb">
+				<img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ album.thumb) }}" class="img-polaroid" alt="" />
+			</div>
+
+			{% if album.access == 'ROLE_USER' and not is_granted('ROLE_USER') %}
+			<div class="album-locked"></div>
+			{% elseif album.access == 'ROLE_USER' %}
+			<div class="album-unlocked"></div>
+			{% endif %}
+
+			<div class="album-box-text">
+				<h5><a href="{{ path('album_view', {'id': album.id}) }}">{{ album.name }}</a></h5>
+				<p style="float:left; width: 180px;"><i class="icon-user"></i>
+				Auteur{% if album.reporters|length > 1%}s{% endif%} : 
+				{% for reporter in album.reporters %}
+					<strong>{{ reporter.pseudo }}</strong>
+					{% if not loop.last %},{% endif %}
+				{% endfor %}
+				</p>
+
+				<p style="float:left;width: 200px;"><i class="icon-tag" style=""></i>
+				Catégorie : <strong>{{ album.category.title }}</strong>
+				</p>
+				
+				<p style="float:left;margin-right: 20px;">
+					<i class="icon-eye-open"></i>
+					<strong>{{ album.getVisitCount }}</strong>
+					vue{% if album.getVisitCount|length > 1%}s{% endif%}
+				</p>
+				
+				<p><br /></p>
+				<div class="btn-group">
+					<a href="{{ path('album_view', {'id': album.id}) }}" class="btn btn-small"><i class="icon-play-circle"></i> Visualiser</a>
+					<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-download"></i> Télécharger</a></li>
+						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-envelope"></i> Envoyer à un ami</a></li>
+						<!--<li class="divider"></li>
+						<li><a href="#"><i class="icon-folder-open"></i> Rendre public</a></li>
+						<li><a href="#"><i class="icon-pencil"></i> Editer d'album</a></li>
+						<li><a href="#"><i class="icon-trash"></i> Supprimer</a></li>-->
+					</ul>
+				</div>
+				
+				{#  #}
+				<p class="album-box-date">{{ album.date | localizeddate('full', 'none', 'fr_FR') | title }}</p>
+								
+			</div>
+			
+		</li>

@@ -1,0 +1,23 @@
+static:
+    pattern:  /static/{id}
+    defaults: { _controller: EpsStaticPagesBundle:Default:index }
+
+quiesteps:
+    pattern:  /quiesteps
+    defaults: { _controller: EpsStaticPagesBundle:Default:index, id:2 }
+
+services:
+    pattern:  /services
+    defaults: { _controller: EpsStaticPagesBundle:Default:index, id:4 }
+
+materiel:
+    pattern:  /materiel
+    defaults: { _controller: EpsStaticPagesBundle:Default:index, id:5 }
+
+contact:
+    pattern:  /contact
+    defaults: { _controller: EpsStaticPagesBundle:Default:index, id:7 }
+
+join:
+    pattern:  /join
+    defaults: { _controller: EpsStaticPagesBundle:Default:index, id:8 }

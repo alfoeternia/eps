@@ -1,0 +1,43 @@
+	{% if pagerfanta is defined %}
+	{{ pagerfanta(pagerfanta, 'twitter_bootstrap') }}
+	{% endif %}
+
+	{% if albums|length == 0 %}
+	<div class="alert alert-info">
+    	Il n'y a aucun album disponible.
+    </div>
+	{% endif %}
+
+
+	<ul class="album-list">
+		{% if pagerfanta is defined %}
+		{% for album in pagerfanta.currentPageResults %}
+			{% if (album.access != "ROLE_REPORTER") or (is_granted('ROLE_REPORTER')) %}
+			{% include "::album-elem.html.twig" %}
+			{% endif %}
+		{% endfor %}
+		{% else %}
+		{% for album in albums %}
+			{% if (album.access != "ROLE_REPORTER") or (is_granted('ROLE_REPORTER')) %}
+			{% include "::album-elem.html.twig" %}
+			{% endif %}
+		{% endfor %}
+		{% endif %}
+	</ul>
+	{% if pagerfanta is defined %}
+	{{ pagerfanta(pagerfanta, 'twitter_bootstrap') }}
+	{% endif %}
+
+	<div id="notImplemented" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">Fonction indisponible</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>Notre site web est toujours en cours de développement, et cette fonction n'a pas encore été implémentée.<br /><br />
+	    	<em>Merci de votre compréhension.</em></p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+	  </div>
+	</div>

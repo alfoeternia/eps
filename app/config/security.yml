@@ -1,0 +1,66 @@
+security:
+    encoders:
+        Eps\UserBundle\Entity\User:
+            algorithm:        sha512
+            encode_as_base64: true
+            iterations:       3
+
+    role_hierarchy:
+        ROLE_REPORTER:    [ ROLE_USER ]
+        ROLE_MAJ:         [ ROLE_REPORTER, ROLE_USER ]
+        ROLE_BUREAU:      [ ROLE_MAJ, ROLE_REPORTER, ROLE_USER, ROLE_ALLOWED_TO_SWITCH ]
+
+    providers:
+        administrators:
+            entity: { class: EpsUserBundle:User, property: username }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin_area:
+            pattern:    ^/admin
+            http_basic: ~
+
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login_check
+            logout:
+                path:   /logout
+                target: /
+            remember_me:
+                key:      "EPSestPARTOUT0123456789"
+                lifetime: 3600
+                path:     /
+                domain:   ~
+
+    access_control:
+        - { path: ^/admin,      roles: ROLE_BUREAU                  }
+        - { path: ^/maj,        roles: ROLE_MAJ                     }
+        - { path: ^/reporter,   roles: ROLE_REPORTER                }
+        - { path: ^/user,       roles: ROLE_USER                    }
+        - { path: ^/login,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        #login:
+        #    pattern:  ^/demo/secured/login$
+        #    security: false
+
+        #secured_area:
+        #    pattern:    ^/demo/secured/
+        #    form_login:
+        #        check_path: /demo/secured/login_check
+        #        login_path: /demo/secured/login
+        #    logout:
+        #        path:   /demo/secured/logout
+        #        target: /demo/
+            #anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    #access_control:
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

@@ -1,0 +1,21 @@
+albums:
+    pattern:  /albums
+    defaults: { _controller: EpsPhotoBundle:Default:index }
+
+albums_year:
+    pattern:  /albums/year/{year}
+    defaults: { _controller: EpsPhotoBundle:Default:index }
+    requirements:
+        year:  \d{4}
+
+albums_category:
+    pattern:  /albums/category/{cat}
+    defaults: { _controller: EpsPhotoBundle:Default:index }
+
+albums_year_category:
+    pattern:  /albums/year/{year}/category/{cat}
+    defaults: { _controller: EpsPhotoBundle:Default:index }
+
+album_view:
+    pattern:  /view/{id}
+    defaults: { _controller: EpsPhotoBundle:View:index }

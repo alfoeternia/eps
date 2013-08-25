@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>L'équipe EPS</h2>
+
+		<h3>Bureau</h3>
+
+		{% for member in members %}
+			{% if member.rank.id < 5 %}
+			<div class="member-list-item">
+				<img src="{{ asset('img/reporters/' ~ member.username ~ '.jpg') }}" alt="" />
+				<p><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.pseudo }})</em></p>
+				<p><em>{{ member.rank.name }}</em></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+
+		<h3 style="clear: both;">Reporters</h3>
+
+		{% for member in members %}
+			{% if member.rank.id == 5 %}
+			<div class="member-list-item">
+				<img src="{{ asset('img/reporters/' ~ member.username ~ '.jpg') }}" alt="" />
+				<p><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.pseudo }})</em></p>
+				<p><small>{{ member.description }}</small></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+		<h3 style="clear: both;">Anciens reporters</h3>
+
+		{% for member in members %}
+			{% if member.rank.id == 6 %}
+			<div class="member-list-item">
+				<img src="{{ asset('img/reporters/' ~ member.username ~ '.jpg') }}" alt="" />
+				<p><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.pseudo }})</em></p>
+				<p><small>{{ member.description }}</small></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+	
+
+
+	
+
+	<p style="clear: both;"></p>
+
+{% endblock %}

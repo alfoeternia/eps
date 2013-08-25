@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Espace membre</h2>
+
+	<div class="admin-button">
+		<a href="{{ path('user_edit') }}">
+			<img src="{{ asset('img/admin/user-settings.png') }}" alt="" />
+			<p>Editer mes infos</p>
+		</a>
+	</div>
+
+	<p style="clear: both;"></p>
+
+{% endblock %}

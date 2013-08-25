@@ -1,0 +1,46 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Gestion des pages statiques</h2>
+
+	<h3>Création d'une page</h3>
+	<form action="{{ path('admin_static_create') }}" method="post">
+		Titre : <input type="text" name="title" class="input-medium search-query" />
+		<input type="submit" class="btn" />
+	</form>
+
+
+	<h3>Pages disponibles</h3>
+	{% if pages|length > 0 %}
+
+	<table class="table">
+		<tr>
+			<th>#</th>
+			<th>Titre</th>
+			<th>Actions</th>
+		</tr>
+ 	{% for page in pages %}
+ 		<tr>
+ 			<td>{{ page.id }}</td>
+ 			<td>{{ page.title }}</td>
+ 			<td>
+ 				<i class="icon-edit" style=""></i>
+ 				<a href="{{ path('admin_static_edit', {'id': page.id}) }}">Modifier</a>
+
+ 				<i class="icon-trash" style=""></i>
+ 				<a href="{{ path('admin_static_delete', {'id': page.id}) }}">Supprimer</a>
+
+ 			</td>
+ 		</tr>
+ 	{% endfor %}
+    </table>
+
+    {% else %}
+    <div class="alert alert-info">
+    	Il n'y a aucune page disponible.
+    </div>
+    {% endif %}
+	
+{% endblock %}

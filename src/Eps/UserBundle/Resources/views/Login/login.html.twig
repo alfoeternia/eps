@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Authentification</h2>
+
+	{% if error %}
+		<div class="alert alert-error">{{ error.message }}</div>
+	{% endif %}
+
+	<form class="form-horizontal" action="{{ path('login_check') }}" style="margin-left: 250px;" method="post">
+		<div class="control-group">
+			<label class="control-label" for="username">Nom d'utilisateur:</label>
+			<div class="controls">
+				<input type="text" id="username" name="_username" value="{{ last_username }}" />
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="password">Mot de Passe:</label>
+			<div class="controls">
+				<input type="password" id="password" name="_password" />
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="remember_me">Se souvenir de moi</label>
+			<div class="controls">
+				<input type="checkbox" id="remember_me" name="_remember_me" />
+			</div>
+		</div>
+		<blockquote class="pull-right">
+			<p><strong>C'est parti !</strong><br />
+			<button class="btn btn-large btn-info" type="submit">Connexion &gt;</button></p>
+		</blockquote>
+	</form>
+	<p style="clear: right;"> </p>
+{% endblock %}

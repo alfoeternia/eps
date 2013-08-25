@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Inscription</h2>
+
+	<ul class="progress-tracker">
+		<li class="number active">1</li>
+		<li class="text active">Informations</li>
+		
+		<li class="number">2</li>
+		<li class="text">Liaison avec le SSO</li>
+		
+		<li class="number">3</li>
+		<li class="text">Saisie des données personelles</li>
+		
+		<li class="number">4</li>
+		<li class="text">Récapitulatif</li>
+	</ul>
+	
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita relinquet duas, de quibus etiam atque etiam consideret. Sed mehercule pergrata mihi oratio tua. Duo Reges: constructio interrete. Nam illud vehementer repugnat, eundem beatum esse et multis malis oppressum. Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius. Sed quot homines, tot sententiae; Aliud igitur esse censet gaudere, aliud non dolere. Est enim tanti philosophi tamque nobilis audacter sua decreta defendere. <b>De quibus cupio scire quid sentias.</b> <b>Falli igitur possumus.</b> </p>
+
+	<ul>
+		<li>Quid de Pythagora?</li>
+		<li>Duarum enim vitarum nobis erunt instituta capienda.</li>
+		<li>Nec enim, dum metuit, iustus est, et certe, si metuere destiterit, non erit;</li>
+		<li>Bonum integritas corporis: misera debilitas.</li>
+	</ul>
+
+
+	<p>An ea, quae per vinitorem antea consequebatur, per se ipsa curabit? Unum est sine dolore esse, alterum cum voluptate. Ita multo sanguine profuso in laetitia et in victoria est mortuus. Cum ageremus, inquit, vitae beatum et eundem supremum diem, scribebamus haec. Quorum altera prosunt, nocent altera. Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. </p>
+
+	<p>Praeclare enim Plato: Beatum, cui etiam in senectute contigerit, ut sapientiam verasque opiniones assequi possit. Quam ob rem tandem, inquit, non satisfacit? Ex quo, id quod omnes expetunt, beate vivendi ratio inveniri et comparari potest. Hos contra singulos dici est melius. Scientiam pollicentur, quam non erat mirum sapientiae cupido patria esse cariorem. </p>
+
+	<p><br /></p>
+
+	<blockquote class="pull-right">
+		<p><strong>En cliquant sur "Suivant" vous reconnaissez avoir pris connaissance des termes indiqués plus haut.</strong><br />
+		<a href="{{ path('register_sso') }}" class="btn btn-large btn-success" type="button">Suivant &gt;</a></p>
+	</blockquote>
+	
+	<p style="clear: right;"> </p>
+	
+{% endblock %}

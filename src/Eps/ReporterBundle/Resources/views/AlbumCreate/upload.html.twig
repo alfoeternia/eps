@@ -1,0 +1,60 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Ajout d'un album</h2>
+	
+	<ul class="progress-tracker">
+		<li class="number done">1</li>
+		<li class="text done">Informations</li>
+		
+		<li class="number active">2</li>
+		<li class="text active">Upload des photos</li>
+		
+		<li class="number">3</li>
+		<li class="text">Sélection de la miniature</li>
+		
+		<li class="number">4</li>
+		<li class="text">Récapitulatif</li>
+	</ul>
+
+	{% if error is defined and error != null %}
+	<div class="alert alert-error">
+		{{ error|raw }}<br />
+	</div>
+	{% endif %}
+
+	
+	<div class="well" id="fileupload">
+		<p>En attendant une version jQuery, vous devez uploader vos photos par le FTP.</p>
+	</div>
+		{% include "PunkAveFileUploaderBundle:Default:templates.html.twig" %}
+
+		<form class="edit-form" action="{{ path('reporter_album_addphotos', { id: albumId, editId: editId }) }}" method="post" enctype="multipart/form-data">
+			<input type="file" name="img"></input>
+			{# Hydrated by javascript #}
+			<div class="file-uploader"></div>
+
+			<button class="btn btn-primary" type="submit">Save Changes</button> 
+			<a class="btn" href="">Cancel</a>
+
+		</form>
+
+		<script type="text/javascript">
+
+// Enable the file uploader
+
+$(function() {
+	new PunkAveFileUploader({ 
+		'uploadUrl': {{ path('reporter_album_upload', { editId: editId }) | json_encode | raw }},
+		'viewUrl': {{ '/uploads/tmp/attachments/' ~ editId | json_encode | raw }},
+		'el': '.file-uploader',
+		'existingFiles': {{ existingFiles | json_encode | raw }},
+		'delaySubmitWhileUploading': '.edit-form'
+	});
+});
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Albums</h2>
+	<ul class="nav nav-list well" style="width: 230px;float: left;">
+		<li class="nav-header">Catégories</li>
+		{% for category in categories %}
+			{% if currentcat == category.id %}
+			<li class="active">
+				<a href="{{ path('albums_year_category', {year: currentyear, cat: 'all'}) }}">{{ category.title }}</a>
+			</li>
+			{% else %}
+			<li>
+				<a href="{{ path('albums_year_category', {year: currentyear, cat: category.id}) }}">{{ category.title }}</a>
+			</li>
+			{% endif %}
+		{% endfor %}
+
+		
+		<li class="divider"></li>
+		<li class="nav-header">Années</li>
+		{% for year in years %}
+			{% if currentyear == year %}
+			<li class="active">
+				<a href="{{ path('albums_year_category', {year: 'all', cat: currentcat}) }}">{{ year }}</a>
+			</li>
+			{% else %}
+			<li>
+				<a href="{{ path('albums_year_category', {year: year, cat: currentcat}) }}">{{ year }}</a>
+			</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+
+	<div id="content-with-left-menu" style="margin-top: -70px;">
+		{% include "::album-list.html.twig" %}
+	</div>
+
+	<p style="clear: both;"></p>
+	
+{% endblock %}

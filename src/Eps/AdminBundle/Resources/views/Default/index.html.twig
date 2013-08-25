@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Administration</h2>
+
+	<div class="admin-button">
+		<a href="{{ path('reporter_album_new') }}">
+			<img src="{{ asset('img/admin/album-add.png') }}" alt="" />
+			<p>Ajouter un Album</p>
+		</a>
+	</div>
+	
+	<div class="admin-button">
+		<a href="{{ path('admin_album') }}">
+			<img src="{{ asset('img/admin/albums.png') }}" alt="" />
+			<p>Gestion des Albums</p>
+		</a>
+	</div>
+
+	<div class="admin-button">
+		<a href="#">
+			<img src="{{ asset('img/admin/videos.png') }}" alt="" />
+			<p>Gestion des Vidéos</p>
+		</a>
+	</div>
+
+	<div class="admin-button">
+		<a href="https://docs.google.com/spreadsheet/ccc?key=0ApnMwNhJywV8dFdZZXNLakJNQlJ2cmNGNEd6SjZXT0E&amp;usp=sharing">
+			<img src="{{ asset('img/admin/google-drive.png') }}" alt="" />
+			<p>Google Drive</p>
+		</a>
+	</div>
+
+	<div class="admin-button">
+		<a href="{{ path('admin_static') }}">
+			<img src="{{ asset('img/admin/static.png') }}" alt="" />
+			<p>Gestion des pages statiques</p>
+		</a>
+	</div>
+
+	<div class="admin-button">
+		<a href="#">
+			<img src="{{ asset('img/admin/users.png') }}" alt="" />
+			<p>Gestion des Utilisateurs</p>
+		</a>
+	</div>
+
+	<p style="clear: both;"></p>
+
+{% endblock %}

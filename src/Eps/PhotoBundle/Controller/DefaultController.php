@@ -1,0 +1,54 @@
+<?php
+
+namespace Eps\PhotoBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
+
+
+class DefaultController extends Controller
+{
+    
+    public function indexAction($year = 'all', $cat = 'all')
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $albums = $em->getRepository('EpsPhotoBundle:Album')->findAllByYearAndCategoryC($year, $cat);
+        $categories = $em->getRepository('EpsPhotoBundle:Category')->findAll();
+		$years = $em->getRepository('EpsPhotoBundle:Album')->findYears();
+
+        /*$albums = array();
+        foreach($albums_temp as $album)
+        {
+            if(     $album->getAccess() == 'IS_AUTHENTICATED_ANONYMOUSLY')
+                { $albums[] = $album; echo 1; }
+            elseif( $album->getAccess() == 'ROLE_USER' &&
+                    $this->get('security.context')->isGranted('ROLE_USER'))
+                $albums[] = $album;
+            elseif($album->getAccess() == 'ROLE_REPORTER' &&
+                    $this->get('security.context')->isGranted('ROLE_REPORTER'))
+                $albums[] = $album;
+        }*/
+
+        $adapter = new ArrayAdapter($albums);
+        $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(15);
+
+		$page = $this->get('request')->query->get('page',1);
+        try {
+            $pagerfanta->setCurrentPage($page);
+        } catch (OutOfRangeCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
+		
+		return $this->render('EpsPhotoBundle:Default:index.html.twig', 
+							array(	'albums'	 	=> $albums,
+									'pagerfanta' 	=> $pagerfanta,
+									'categories' 	=> $categories,
+									'years'		 	=> $years,
+									'currentyear'	=> $year,
+									'currentcat'	=> $cat,
+								)
+							);
+    }
+}

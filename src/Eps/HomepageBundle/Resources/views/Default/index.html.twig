@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block slider %}
+	{% include "::slider.html.twig" %}
+{% endblock %}
+
+{% block leftmenu %}
+		{% include "::leftmenu.html.twig" %}
+	{% endblock %}
+
+{% block content %}	
+
+	<div id="content-with-left-menu">
+		<h3>Derniers albums</h3>
+
+		{% include "::album-list.html.twig" %}
+		<a href="{{ path('albums') }}" class="btn btn-large btn-block btn-link" type="button">+ Voir plus d'albums</a>
+	</div>
+{% endblock %}

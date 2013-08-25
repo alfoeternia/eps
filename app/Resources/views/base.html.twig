@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}EPS &ndash; EFREI Picture Studio{% endblock %}</title>
+		
+		<script type="text/javascript" src="{{ asset('js/jquery-1.8.3.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+
+		{% block stylesheets %}
+
+        {% stylesheets combine=true
+            '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
+            '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
+            '%kernel.root_dir%/../web/css/style.css'
+            '%kernel.root_dir%/../web/css/nivo-slider.css'
+            '%kernel.root_dir%/../web/css/dot-luv/jquery-ui-1.9.2.custom.css'
+            filter='lessphp,cssrewrite'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}  
+
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'/>
+
+		{% endblock %}
+		
+		<link type="image/x-icon" href="favicon.ico" rel="shortcut icon" />
+	</head>
+	<body>
+		<header class="navbar navbar-fixed-top">
+		{% block header %}
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="{{ path('homepage') }}"><img src="{{ asset('img/logo-small.png') }}" alt="" /> {% block brand %}EFREI Picture Studio{% endblock %}</a>
+
+				<ul class="nav">
+					<li class="active">
+						<a href="{{ path('homepage') }}">Accueil</a>
+					</li>
+
+					<li class="dropdown">
+						<a class="dropdown-toogle" href="{{ path('albums') }}">Photos</a>
+						<ul>
+							<li><a href="{{ path('albums_category', {cat: 1}) }}">PODs</a></li>
+							<li><a href="{{ path('albums_category', {cat: 2}) }}">Soirées</a></li>
+							<li><a href="{{ path('albums_category', {cat: 9}) }}">WEI</a></li>
+							<li><a href="{{ path('albums_category', {cat: 6}) }}">Voyages</a></li>
+							<li><a href="{{ path('albums_category', {cat: 7}) }}">Campagne BDE</a></li>
+							<li><a href="{{ path('albums_category', {cat: 8}) }}">Théâtre</a></li>
+							<li><a href="{{ path('albums_category', {cat: 10}) }}">RDD</a></li>
+							<li><a href="{{ path('albums_category', {cat: 12}) }}">Conférences</a></li>
+							<li><a href="{{ path('albums_category', {cat: 19}) }}">Stand photo</a></li>
+							<li><a href="{{ path('albums_category', {cat: 16}) }}">Ecole</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Vidéos</a></li>
+					<li class="dropdown">
+						<a href="#">L'association</a>
+						<ul>
+							<li class="first-child"><a href="{{ path('quiesteps') }}">Qui est EPS ?</a></li>
+							<li><a href="{{ path('services') }}">Ses services</a></li>
+							<li class="last-child"><a href="{{ path('materiel') }}">Son matériel</a></li>
+						<li><a href="{{ path('members') }}">Ses membres</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#">Contact</a>
+						<ul>
+							<li class="first-child"><a href="{{ path('contact') }}">Nous écrire</a></li>
+							<li><a href="{{ path('join') }}">Nous rejoindre</a></li>
+							<li><a href="{{ path('contact') }}">Emprunter du matériel</a></li>
+							<li class="last-child"><a href="{{ path('contact') }}">Demander une couverture</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Connexion</a></li>
+				</ul>
+
+			<!--<div class="nav">
+			
+				{% if not is_granted('ROLE_USER') %}
+
+				<form class="form-inline navbar-form pull-right" action="{{ path('login_check') }}" method="post">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-user"></i></span>
+						<input type="text" class="input-small" placeholder="Nom d'utilisateur" name="_username">
+					</div>
+					
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-lock"></i></span>
+						<input type="password" class="input-small" placeholder="Mot de Passe" name="_password">
+					</div>
+					
+					<label class="checkbox"><input type="checkbox" name="_remember_me"> Se souvenir</label>
+					<button type="submit" class="btn">Ok</button>
+					<a href="{{ path('register') }}" class="btn"><i class="icon-edit"></i> S'inscrire</a>
+				</form>
+				{% endif %}
+			
+				{% if is_granted('ROLE_USER') %}
+				
+				<ul class="nav pull-right" style="font-size: 12px;">
+					{% if is_granted('ROLE_REPORTER') %}
+
+					<li><a href="{{ path('reporter') }}" style="color: green;">Espace Reporter</a></li>
+					{% endif %}
+
+					{% if is_granted('ROLE_MAJ') %}
+
+					<li><a href="#" style="color: orange;">Espace MàJ</a></li>
+
+					{% endif %}{% if is_granted('ROLE_BUREAU') %}
+
+					<li><a href="{{ path('admin') }}" style="color: red;">Espace Admin</a></li>
+					{% endif %}
+
+					<li><a href="{{ path('logout') }}">Déconnexion</a></li>
+				</ul>
+				<p class="navbar-text pull-right">Connecté en tant que <a href="{{ path('user') }}">{{ app.user.username }} ({{ app.user.firstname }} {{ app.user.lastname }})</a>.</p>
+				
+				{% endif %}
+			</div>
+			</div>-->
+			</div>
+		</div>
+			
+		{% endblock %}
+		</header>
+		
+		
+		{% block slider %}
+		{% endblock %}
+
+		{% block body %}
+
+		<div id="content">
+			{% block leftmenu %}
+			{% endblock %}
+			{% block content %}
+			
+			<p style="text-align:center;font-size: 20px;margin-top: 50px;"><em>More to come...</em></p>
+			
+			{% endblock %}
+		</div>
+		{% endblock %}
+		
+		<footer class="footer">
+			<div class="container">
+			<p class="pull-right"><a href="#">Retour en Haut</a></p>
+			
+			<p><br />© Copyright Efrei Picture Studio 2008-2012. Tous droits réservés.<br />
+				<a href="{{ path('services') }}">Services</a> | 
+				<a href="{{ path('materiel') }}">Matériel</a> |
+				<a href="#">Membres</a> |
+				<a href="{{ path('contact') }}">Nous écrire</a> |
+				<a href="{{ path('join') }}">Nous rejoindre</a> |
+				<a href="#">Crédits</a>
+			</p>
+			
+			<p><br />
+			<a href="http://www.efrei.fr" target="_blank"><img src="{{ asset('img/efrei.png') }}" alt="Efrei"></a><br />
+			</p>
+			
+			<p><br />Design &amp; Code par <a href="http://alf0.net" target="_blank">Alexis Fouché</a> (Promotion 2015)</p>.
+		</div>
+		</footer>
+	
+	{% block javascripts %}
+
+		
+		<script type="text/javascript" src="{{ asset('js/jquery.nivo.slider.pack.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/underscore.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery.fileupload.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/FileUploader.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
+		<!--[if lt IE9]>
+			<script src="{{ asset('scripts/html5shiv.js') }}"></script>
+		<![endif]-->
+	{% endblock %}
+	</body>
+</html>
