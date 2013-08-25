@@ -2,11 +2,15 @@
 app/bootstrap*
 
 # Symfony directories
+bin
 vendor/*
 */logs/*
 */cache/*
 web/uploads/*
 web/bundles/*
+web/data/*
+web/miniatures/*
+web/html5lightbox
 
 # Configuration files
 app/config/parameters.ini
