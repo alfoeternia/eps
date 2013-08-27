@@ -1,39 +1,4 @@
-# # Login/logout
-# login:
-#     pattern:   /login
-#     defaults:  { _controller: EpsUserBundle:Login:login }
-#login_check:
-#    pattern:   /login_check
-# logout:
-#     pattern:   /logout
-
-# # Registration
-#register:
-#   pattern:  /register
-#     defaults: { _controller: EpsUserBundle:Register:step1 }
-
-# register_sso:
-#     pattern:  /register/sso
-#     defaults: { _controller: EpsUserBundle:Register:step2 }
-
-# register_sso2:
-#     pattern:  /register/ssocheck
-#     defaults: { _controller: EpsUserBundle:Register:step2check }
-
-# register_step3:
-#     pattern:  /register/step3
-#     defaults: { _controller: EpsUserBundle:Register:step3 }
-
 # Members
 members:
    pattern:  /members
    defaults: { _controller: EpsUserBundle:List:index }
-
-# # User Edit
-# user:
-#     pattern:  /user
-#     defaults: { _controller: EpsUserBundle:Edit:index }
-
-# user_edit:
-#     pattern:  /user/edit
-#     defaults: { _controller: EpsUserBundle:Edit:edit }

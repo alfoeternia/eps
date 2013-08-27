@@ -12,7 +12,6 @@
         {% stylesheets combine=true
             '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
             '%kernel.root_dir%/../web/css/nivo-slider.css'
-            '%kernel.root_dir%/../web/css/dot-luv/jquery-ui-1.9.2.custom.css'
             '%kernel.root_dir%/../web/css/style.css'
             filter='lessphp,cssrewrite'
         %}
@@ -97,52 +96,6 @@
 					
 					{% endif %}
 				</ul>
-
-			<!--<div class="nav">
-			
-				{% if not is_granted('ROLE_USER') %}
-
-				<form class="form-inline navbar-form pull-right" action="{{ path('fos_user_security_login') }}" method="post">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-user"></i></span>
-						<input type="text" class="input-small" placeholder="Nom d'utilisateur" name="_username">
-					</div>
-					
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-lock"></i></span>
-						<input type="password" class="input-small" placeholder="Mot de Passe" name="_password">
-					</div>
-					
-					<label class="checkbox"><input type="checkbox" name="_remember_me"> Se souvenir</label>
-					<button type="submit" class="btn">Ok</button>
-					<a href="{{ path('fos_user_registration_register') }}" class="btn"><i class="icon-edit"></i> S'inscrire</a>
-				</form>
-				{% endif %}
-			
-				{% if is_granted('ROLE_USER') %}
-				
-				<ul class="nav pull-right" style="font-size: 12px;">
-					{% if is_granted('ROLE_REPORTER') %}
-
-					<li><a href="{{ path('reporter') }}" style="color: green;">Espace Reporter</a></li>
-					{% endif %}
-
-					{% if is_granted('ROLE_MAJ') %}
-
-					<li><a href="#" style="color: orange;">Espace MàJ</a></li>
-
-					{% endif %}{% if is_granted('ROLE_BUREAU') %}
-
-					<li><a href="{{ path('admin') }}" style="color: red;">Espace Admin</a></li>
-					{% endif %}
-
-					<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
-				</ul>
-				<p class="navbar-text pull-right">Connecté en tant que <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }} ({{ app.user.firstname }} {{ app.user.lastname }})</a>.</p>
-				
-				{% endif %}
-			</div>
-			</div>-->
 			</div>
 		</div>
 			

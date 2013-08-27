@@ -13,9 +13,7 @@ class RegistrationFormType extends BaseType
 
         $builder->add('firstname', 'text', array('label' => 'Prénom :'));
         $builder->add('lastname', 'text', array('label' => 'Nom :'));
-        // $builder->add('country', 'country', array('label' => 'form.country', 'translation_domain' => 'FOSUserBundle'));
-        // $builder->add('captcha', 'captcha', array('label' => 'form.captcha', 'translation_domain' => 'FOSUserBundle'));
-        // $builder->add('termsAccepted', 'checkbox', array('label' => 'form.terms', 'translation_domain' => 'FOSUserBundle', 'required'  => true));
+        //TODO: Add captcha
     }
 
     public function getName()

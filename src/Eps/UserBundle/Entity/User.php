@@ -68,7 +68,7 @@ class User extends BaseUser
     {
         parent::__construct();
 		$this->setPromo('0000');
-        //$this->addRole('ROLE_USER');
+        $this->addRole('ROLE_USER');
     }
 	
     /**

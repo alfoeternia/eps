@@ -30,11 +30,11 @@ security:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
             logout: true
-#            remember_me:
-#                key:      "EPSestPARTOUT0123456789"
-#                lifetime: 3600
-#                path:     /
-#                domain:   ~
+            remember_me:
+               key:      "EPSestPARTOUT0123456789"
+               lifetime: 3600
+               path:     /
+               domain:   ~
 
     access_control:
         - { path: ^/admin,      roles: ROLE_BUREAU                  }
@@ -42,23 +42,3 @@ security:
         - { path: ^/reporter,   roles: ROLE_REPORTER                }
         - { path: ^/user,       roles: ROLE_USER                    }
         - { path: ^/login,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        #login:
-        #    pattern:  ^/demo/secured/login$
-        #    security: false
-
-        #secured_area:
-        #    pattern:    ^/demo/secured/
-        #    form_login:
-        #        check_path: /demo/secured/login_check
-        #        login_path: /demo/secured/login
-        #    logout:
-        #        path:   /demo/secured/logout
-        #        target: /demo/
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
-
-    #access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
