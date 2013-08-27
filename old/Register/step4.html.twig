@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>Inscription</h2>
+
+	<ul class="progress-tracker">
+		<li class="number done">1</li>
+		<li class="text done">Informations</li>
+		
+		<li class="number done">2</li>
+		<li class="text done">Liaison avec le SSO</li>
+		
+		<li class="number done">3</li>
+		<li class="text done">Saisie des données personelles</li>
+		
+		<li class="number active">4</li>
+		<li class="text active">Récapitulatif</li>
+	</ul>
+	
+	<p>Merci d'avoir complété votre inscription sur <strong>EFREI Picture Studio</strong>.<br />
+	<em>A titre informatif, votre identifiant vous a été envoyé par mail.</em>
+
+	<blockquote class="pull-right">
+		<p><strong>Vous pouvez maintenant vous connecter !</strong><br />
+		<a class="btn btn-large btn-info" href="{{ path('login') }}">Connexion &gt;</a></p>
+	</blockquote>
+	
+	</form>
+	
+	<p style="clear: right;"> </p>
+	
+{% endblock %}

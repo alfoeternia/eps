@@ -1,0 +1,12 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_profile_edit">
+    {{ form_widget(form) }}
+
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'profile.edit.submit'|trans }}">{{ 'profile.edit.submit'|trans }}</button>
+      </div>
+    </div>
+</form>

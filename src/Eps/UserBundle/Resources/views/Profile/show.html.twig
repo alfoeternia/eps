@@ -1,0 +1,14 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<h2>{{ 'layout.profile'|trans }}</h2>
+
+{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+
+
+<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">{{ 'layout.editProfile'|trans }}</a>
+<a href="{{ path('fos_user_change_password') }}" class="btn btn-primary">{{ 'layout.changePassword'|trans }}</a>
+
+{% endblock fos_user_content %}

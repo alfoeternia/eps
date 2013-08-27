@@ -1,0 +1,53 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<h2>{{ 'layout.login'|trans }}</h2>
+
+{% if error %}
+    <div class="alert alert-error">{{ error|trans }}</div>
+{% endif %}
+
+<form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="POST">
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+  <fieldset>
+    <div id="info">
+    	<p><br /></p>
+    </div>
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label" for="username">{{ 'security.login.username'|trans }}</label>
+      <div class="controls">
+        <input type="text" id="username" name="_username" placeholder="" class="input-xlarge"  required="required">
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="password">{{ 'security.login.password'|trans }}</label>
+      <div class="controls">
+        <input type="password" id="password" name="_password" placeholder="" class="input-xlarge"  required="required">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- Remember me -->
+      <label class="control-label" for="remember_me">Se souvenir ?</label>
+      <div class="controls">
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+      </div>
+    </div>
+ 
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}">{{ 'security.login.submit'|trans }}</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<p><a href="{{ path('fos_user_resetting_request') }}">{{ 'layout.passwordLost'|trans }}</a></p>
+{% endblock fos_user_content %}

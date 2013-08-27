@@ -1,0 +1,26 @@
+{% form_theme signup _self %}
+{% block form_row %}
+    {% spaceless %}
+        <div class="control-group{% if errors|length > 0 %} error{% endif %}">
+            {{ form_label(form, '', { 'label_attr': {'class': 'control-label'} }) }}
+            <div class="controls">
+                {{ form_widget(form) }}
+                {% if form.vars.help is defined %}
+                    <span class="help-block">{{ form.vars.help }}</span>
+                {% endif %}
+            </div>
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+{% block form_errors  %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <div class="controls">
+                {% for error in errors %}
+                    <span class="help-block">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

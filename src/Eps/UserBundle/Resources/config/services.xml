@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="eps_user.registration.form.type" class="Eps\UserBundle\Form\Type\RegistrationFormType">
+            <tag name="form.type" alias="eps_user_registration" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+
+        <service id="eps_user.profile.form.type" class="Eps\UserBundle\Form\Type\ProfileFormType">
+            <tag name="form.type" alias="eps_user_profile" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+
+    </services>
+</container>
