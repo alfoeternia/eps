@@ -1,4 +1,3 @@
-eps
+Efrei Picture Studio v2.0
 ===
 
-Efrei Picture Sudio
