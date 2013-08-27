@@ -33,15 +33,6 @@ body {
 	margin-right: auto;
 }
 
-header {
-	/*width: 980px;
-	height: 100px;
-	margin-top: 50px;
-	margin-left: auto;
-	margin-right: auto;
-	background: url('../img/logo-small.png') no-repeat;*/
-}
-
 hr {
 	background: none;
 	border: none;
@@ -656,4 +647,31 @@ h2 {
 
 .datepicker {
 	font-size: 10px;
+}
+
+/**
+ * Button styles
+ */
+label {
+	font-size: 13px;
+}
+
+.btn-primary {
+	background-color: #7495C2;
+	*background-color: #28518F;
+	background-image: -moz-linear-gradient(top, #7495C2, #28518F);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7495C2), to(#28518F));
+	background-image: -webkit-linear-gradient(top, #7495C2, #28518F);
+	background-image: -o-linear-gradient(top, #7495C2, #28518F);
+	background-image: linear-gradient(to bottom, #7495C2, #28518F);
+	background-repeat: repeat-x;
+	border-color: #28518F #28518F #002a80;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7495C2', endColorstr='#ff28518F', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-primary:hover {
+	background-color: #28518F;
+	*background-color: #003bb3;
 }

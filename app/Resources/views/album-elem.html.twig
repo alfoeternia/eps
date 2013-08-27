@@ -15,7 +15,7 @@
 				<p style="float:left; width: 180px;"><i class="icon-user"></i>
 				Auteur{% if album.reporters|length > 1%}s{% endif%} : 
 				{% for reporter in album.reporters %}
-					<strong>{{ reporter.pseudo }}</strong>
+					<strong>{{ reporter.username }}</strong>
 					{% if not loop.last %},{% endif %}
 				{% endfor %}
 				</p>

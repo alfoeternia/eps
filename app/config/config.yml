@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -20,11 +20,15 @@ framework:
     session:         ~
     fragments:       ~
     http_method_override: true
+    validation: { enable_annotations: true }
 
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+        resources:
+            - "::forms.html.twig"
 
 # Assetic Configuration
 assetic:
@@ -59,8 +63,28 @@ doctrine:
 swiftmailer:
     transport:  sendmail
 
+# FOS User Bundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Eps\UserBundle\Entity\User
+    from_email:
+        address:        alfo.agonia@gmail.com
+        sender_name:    Efrei Picture Studio (EPS)
+    profile:
+        form:
+            type: eps_user_profile
+    registration:
+        form:
+            type: eps_user_registration
+        confirmation:
+            enabled:    true
+
+#services Configuration
 services:
     twig.extension.intl:
        class: Twig_Extensions_Extension_Intl
        tags:
            - { name: twig.extension }
+
+#validation:      { enabled: true,  enable_annotations: false }

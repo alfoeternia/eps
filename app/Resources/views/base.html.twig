@@ -5,16 +5,15 @@
 		<title>{% block title %}EPS &ndash; EFREI Picture Studio{% endblock %}</title>
 		
 		<script type="text/javascript" src="{{ asset('js/jquery-1.8.3.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+		
 
 		{% block stylesheets %}
 
         {% stylesheets combine=true
             '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
-            '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
-            '%kernel.root_dir%/../web/css/style.css'
             '%kernel.root_dir%/../web/css/nivo-slider.css'
             '%kernel.root_dir%/../web/css/dot-luv/jquery-ui-1.9.2.custom.css'
+            '%kernel.root_dir%/../web/css/style.css'
             filter='lessphp,cssrewrite'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
@@ -72,14 +71,38 @@
 							<li class="last-child"><a href="{{ path('contact') }}">Demander une couverture</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Connexion</a></li>
+
+					{% if not is_granted('ROLE_USER') %}
+
+					<li class="dropdown">
+						<a href="{{ path('fos_user_security_login') }}">Connexion</a>
+						<ul>
+							<li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-edit"></i> Inscription</a></li>
+						</ul>
+					</li>
+
+					{% endif %}
+
+					{% if is_granted('ROLE_USER') %}
+
+					<li class="dropdown">
+						<a href="{{ path('fos_user_profile_show') }}">Mon compte</a>
+ 						({{ app.user.username }})
+						<ul>
+							<li class="first-child"><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+							<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+						</ul>
+
+					</li>
+					
+					{% endif %}
 				</ul>
 
 			<!--<div class="nav">
 			
 				{% if not is_granted('ROLE_USER') %}
 
-				<form class="form-inline navbar-form pull-right" action="{{ path('login_check') }}" method="post">
+				<form class="form-inline navbar-form pull-right" action="{{ path('fos_user_security_login') }}" method="post">
 					<div class="input-prepend">
 						<span class="add-on"><i class="icon-user"></i></span>
 						<input type="text" class="input-small" placeholder="Nom d'utilisateur" name="_username">
@@ -92,7 +115,7 @@
 					
 					<label class="checkbox"><input type="checkbox" name="_remember_me"> Se souvenir</label>
 					<button type="submit" class="btn">Ok</button>
-					<a href="{{ path('register') }}" class="btn"><i class="icon-edit"></i> S'inscrire</a>
+					<a href="{{ path('fos_user_registration_register') }}" class="btn"><i class="icon-edit"></i> S'inscrire</a>
 				</form>
 				{% endif %}
 			
@@ -113,9 +136,9 @@
 					<li><a href="{{ path('admin') }}" style="color: red;">Espace Admin</a></li>
 					{% endif %}
 
-					<li><a href="{{ path('logout') }}">Déconnexion</a></li>
+					<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
 				</ul>
-				<p class="navbar-text pull-right">Connecté en tant que <a href="{{ path('user') }}">{{ app.user.username }} ({{ app.user.firstname }} {{ app.user.lastname }})</a>.</p>
+				<p class="navbar-text pull-right">Connecté en tant que <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }} ({{ app.user.firstname }} {{ app.user.lastname }})</a>.</p>
 				
 				{% endif %}
 			</div>
@@ -166,7 +189,7 @@
 	
 	{% block javascripts %}
 
-		
+		<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/jquery.nivo.slider.pack.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/underscore.min.js') }}"></script>
