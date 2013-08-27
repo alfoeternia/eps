@@ -1,3 +1,3 @@
-EpsMajBundle_homepage:
+maj:
     pattern:  /hello/{name}
     defaults: { _controller: EpsMajBundle:Default:index }
