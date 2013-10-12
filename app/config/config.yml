@@ -76,9 +76,21 @@ fos_user:
         confirmation:
             enabled:    true
 
-#services Configuration
+# Services Configuration
 services:
     twig.extension.intl:
        class: Twig_Extensions_Extension_Intl
        tags:
            - { name: twig.extension }
+
+# OneUp Uploader Configuration
+oneup_uploader:
+    mappings:
+        reporter: 
+            frontend: dropzone
+            allowed_extensions:    ['jpg', 'jpeg']
+            allowed_mimetypes:     ['image/jpg', 'image/jpeg']
+            namer: upload.custom_namer
+            #storage:
+            #    type: filesystem
+            #    directory: %kernel.root_dir%/../web/test2

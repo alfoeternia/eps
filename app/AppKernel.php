@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new FOS\UserBundle\FOSUserBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Eps\HomepageBundle\EpsHomepageBundle(),
             new Eps\PhotoBundle\EpsPhotoBundle(),
             new Eps\UserBundle\EpsUserBundle(),

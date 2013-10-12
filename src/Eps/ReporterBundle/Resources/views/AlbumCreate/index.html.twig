@@ -91,7 +91,7 @@
 			<div class="controls">
 				<select name="reporters[]" size="15" class="span5" multiple> 
 					{% for reporter in reporters %}
-					<option value="{{ reporter.id }}">{{ reporter.pseudo }} ({{ reporter.firstname }} {{ reporter.lastname }})</option>
+					<option value="{{ reporter.id }}">{{ reporter.username }} ({{ reporter.firstname }} {{ reporter.lastname }})</option>
 					{% endfor %}
 				</select>
 			</div>

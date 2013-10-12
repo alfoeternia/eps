@@ -37,8 +37,9 @@ security:
                domain:   ~
 
     access_control:
-        - { path: ^/admin,      roles: ROLE_BUREAU                  }
-        - { path: ^/maj,        roles: ROLE_MAJ                     }
-        - { path: ^/reporter,   roles: ROLE_REPORTER                }
-        - { path: ^/user,       roles: ROLE_USER                    }
-        - { path: ^/login,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin,                  roles: ROLE_BUREAU                  }
+        - { path: ^/maj,                    roles: ROLE_MAJ                     }
+        - { path: ^/reporter,               roles: ROLE_REPORTER                }
+        - { path: ^/_uploader/reporter,     roles: ROLE_REPORTER                }
+        - { path: ^/user,                   roles: ROLE_USER                    }
+        - { path: ^/login,                  roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -3,6 +3,16 @@
 
 {% block fos_user_content %}
 <h2>{{ 'layout.register'|trans }}</h2>
+<hr />
+
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>Information</h4>
+  <p><br /></p>
+  <p><em>Suite aux divers changements apportés par l'Efrei à son SI nous ne pouvons plus nous baser sur vos identifiants Campus comme source sûre.</em><br />
+   En attendant le déploiement d'un SSO (système d'authentification centralisé) vous devrez vous inscrire en <strong>précisant une adresse email</strong> terminant par <em>@efrei.fr</em> ou <em>@efrei.net</em>.<br />
+  	Pour les élèves de l'Esigetel, vous pouvez préciser un mail se terminant par <em>@esigetel.fr</em>.</p>
+</div>
 
 {% include "FOSUserBundle:Registration:register_content.html.twig" %}
 {% endblock fos_user_content %}

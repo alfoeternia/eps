@@ -4,6 +4,7 @@
 
 {% block fos_user_content %}
 <h2>{{ 'title.registration.confirmed'|trans }}</h2>
+<hr />
 
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
     {% if app.session is not empty %}

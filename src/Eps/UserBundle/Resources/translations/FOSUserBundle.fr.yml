@@ -26,6 +26,8 @@ profile:
     show:
         username: Nom d'utilisateur
         email: Adresse e-mail
+        firstname: Prénom
+        lastname: Nom
     edit:
         submit: Mettre à jour
     flash:
@@ -83,6 +85,11 @@ layout:
     login: Connexion
     register: Inscription
     logged_in_as: Connecté en tant que %username%
+    resetting: Réinitialisation du mot de passe
+    passwordLost: Mot de passe oublié ?
+    profile: Mon compte
+    editProfile: Editer mon profil
+    changePassword: Changer mon mot de passe
 
 # Form field labels
 form:

@@ -70,7 +70,7 @@ class AlbumCreateController extends Controller
     	$categories = $em->getRepository('EpsPhotoBundle:Category')->findAll();
     	$query = $em->getRepository('EpsUserBundle:User')
                     ->createQueryBuilder('u')
-                    ->orderBy('u.pseudo', 'ASC')
+                    ->orderBy('u.username', 'ASC')
                     ->getQuery();
         $users = $query->getResult();
         $reporters = array();
