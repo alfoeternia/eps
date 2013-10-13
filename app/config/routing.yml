@@ -1,8 +1,4 @@
 # EPS Routes
-EpsMajBundle:
-    resource: "@EpsMajBundle/Resources/config/routing.yml"
-    prefix:   /
-
 EpsReporterBundle:
     resource: "@EpsReporterBundle/Resources/config/routing.yml"
     prefix:   /

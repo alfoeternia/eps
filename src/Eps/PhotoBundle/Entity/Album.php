@@ -61,11 +61,11 @@ class Album
     private $video_id;
 
     /**
-     * @var smallint $status
+     * @var boolean $published
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="published", type="boolean")
      */
-    private $status;
+    private $published;
 
     /**
      * @var smallint $access
@@ -299,30 +299,10 @@ class Album
         return $this->category;
     }
 
-    /**
-     * Set status
-     *
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string 
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
     public function __construct()
     {
         $this->thumb = '../no_thumb.png';
-        $this->status = 'creation';
+        $this->published = false;
         $this->reporters = new \Doctrine\Common\Collections\ArrayCollection();
         $this->visit_count = 0;
         $this->like_count = 0;
@@ -337,5 +317,38 @@ class Album
     public function addUser(\Eps\UserBundle\Entity\User $reporters)
     {
         $this->reporters[] = $reporters;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     * @return Album
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean 
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Remove reporters
+     *
+     * @param \Eps\UserBundle\Entity\User $reporters
+     */
+    public function removeReporter(\Eps\UserBundle\Entity\User $reporters)
+    {
+        $this->reporters->removeElement($reporters);
     }
 }

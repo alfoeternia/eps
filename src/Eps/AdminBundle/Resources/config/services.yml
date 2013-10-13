@@ -1,7 +1,0 @@
-parameters:
-#    eps_admin.example.class: Eps\AdminBundle\Example
-
-services:
-#    eps_admin.example:
-#        class: %eps_admin.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

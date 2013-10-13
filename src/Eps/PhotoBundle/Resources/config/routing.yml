@@ -19,7 +19,3 @@ albums_year_category:
 album_view:
     pattern:  /view/{id}
     defaults: { _controller: EpsPhotoBundle:View:index }
-
-test_upload:
-    pattern:  /test_upload
-    defaults: { _controller: EpsPhotoBundle:Default:test }
