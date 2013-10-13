@@ -1,0 +1,30 @@
+admin_user:
+    pattern:  /
+    defaults: { _controller: "EpsUserBundle:User:index" }
+
+admin_user_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EpsUserBundle:User:show" }
+
+admin_user_new:
+    pattern:  /new
+    defaults: { _controller: "EpsUserBundle:User:new" }
+
+admin_user_create:
+    pattern:  /create
+    defaults: { _controller: "EpsUserBundle:User:create" }
+    requirements: { _method: post }
+
+admin_user_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EpsUserBundle:User:edit" }
+
+admin_user_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EpsUserBundle:User:update" }
+    requirements: { _method: post|put }
+
+admin_user_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EpsUserBundle:User:delete" }
+    requirements: { _method: post|delete }
