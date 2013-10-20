@@ -1,8 +1,6 @@
 <?php
 
 namespace Eps\HomepageBundle\Controller;
-//namespace Eps\PhotoBundle\Entity\Album;
-//namespace Eps\UserBundle\Entity\Member;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -15,6 +13,7 @@ class DefaultController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$query = $em->getRepository('EpsPhotoBundle:Album')
 					->createQueryBuilder('a')
+					->where('a.published = 1')
 					->orderBy('a.id', 'DESC')
 					->setMaxResults(10)
 					->join('a.category', 'c')
@@ -24,6 +23,16 @@ class DefaultController extends Controller
 					->getQuery();
         $albums = $query->getResult();
 
-        return $this->render('EpsHomepageBundle:Default:index.html.twig', array('albums' => $albums));
+        $query = $em->getRepository('EpsUserBundle:User')
+					->createQueryBuilder('u')
+					->orderBy('u.lastLogin', 'DESC')
+					->setMaxResults(10)
+					->getQuery();
+        $users = $query->getResult();
+
+        return $this->render('EpsHomepageBundle:Default:index.html.twig', 
+        	array(	'albums' => $albums,
+        			'users' => $users
+        			));
     }
 }

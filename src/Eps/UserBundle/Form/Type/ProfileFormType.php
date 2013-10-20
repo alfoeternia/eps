@@ -13,6 +13,7 @@ class ProfileFormType extends BaseType
 
         $builder->add('firstname', 'text', array('label' => 'Prénom :'));
         $builder->add('lastname', 'text', array('label' => 'Nom :'));
+        $builder->add('file');
     }
 
     public function getName()

@@ -10,6 +10,7 @@ web/uploads/*
 web/bundles/*
 web/data/*
 web/miniatures/*
+web/originals/*
 web/html5lightbox
 
 # Configuration files

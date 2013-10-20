@@ -2,14 +2,17 @@
 
 namespace Eps\UserBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Eps\UserBundle\Entity\User
  *
  * @ORM\Table()
  * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
@@ -63,6 +66,13 @@ class User extends BaseUser
      * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
      */
     protected $mobile;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    protected $file;
+
+    protected $temp;
 
 	public function __construct()
     {
@@ -219,6 +229,107 @@ class User extends BaseUser
     public function getMobile()
     {
         return $this->mobile;
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        // check if we have an old image path
+        if (is_file($this->getAbsolutePath())) {
+            // store the old name to delete after the update
+            $this->temp = $this->getAbsolutePath();
+        }
+
+        $this->upload();
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
+
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->id.'.jpg'
+        );
+
+        $this->setFile(null);
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function storeFilenameForRemove()
+    {
+        $this->temp = $this->getAbsolutePath();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if (isset($this->temp)) {
+            unlink($this->temp);
+        }
+    }
+
+    public function getProfilePicture()
+    {
+        if(is_file($this->getAbsolutePath()))
+            return $this->getWebPath();
+        else return 'img/default-user-icon-profile.png';
+    }
+
+    public function getAbsolutePath()
+    {
+        return $this->getUploadRootDir().'/'.$this->id.'.jpg';
+    }
+
+    public function getWebPath()
+    {
+        return $this->getUploadDir().'/'.$this->id.'.jpg';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/user_profile_img';
     }
 
 }

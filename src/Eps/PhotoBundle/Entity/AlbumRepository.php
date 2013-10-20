@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class AlbumRepository extends EntityRepository
 {
-	public function findAllByYearAndCategoryC($year, $cat, $start = 0, $limit = 50)
+	public function findAllByYearAndCategoryC($year, $cat, $start = 0, $limit = 50, $only_published = true)
 	{
 		$emConfig = $this->getEntityManager()->getConfiguration();
 		$emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
@@ -24,6 +24,9 @@ class AlbumRepository extends EntityRepository
 		if($cat  != 'all' 	&& $cat  != NULL) { $query->andWhere('a.category = :cat'); $parameters['cat'] = $cat; }
 
 		$query->setParameters($parameters);
+
+		if($only_published)
+			$query->andWhere('a.published = 1');
 					
 		$query = $query->orderBy('a.id', 'DESC')
 					->setMaxResults($limit)

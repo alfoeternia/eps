@@ -25,7 +25,7 @@ class UploadListener
         $album_year = $request->get('album_year');
 
         // Folder variables
-        $root_dir = $this->container->get('kernel')->getRootDir() . '/../web/uploads/reporter/';
+        $root_dir = $this->container->get('kernel')->getRootDir() . '/../web/';
         $originals_dir = $root_dir.'originals/'.$album_year.'/'.$album_id;
         $data_dir = $root_dir.'data/'.$album_year.'/'.$album_id;
         $miniatures_dir = $root_dir.'miniatures/'.$album_id;

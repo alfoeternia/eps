@@ -2,3 +2,7 @@
 members:
    pattern:  /members
    defaults: { _controller: EpsUserBundle:List:index }
+
+user_show:
+   pattern: /user/{id}
+   defaults: { _controller: EpsUserBundle:List:show }

@@ -43,13 +43,13 @@ hr {
 }
 
 #content {
-	width: 920px;
+	width: 925px;
 	margin-top: 5px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 18px;
-	padding-left: 25px;
-	padding-right: 40px;
+	padding-left: 30px;
+	padding-right: 45px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
@@ -59,8 +59,8 @@ hr {
 }
 
 #content-with-left-menu {
-	width: 680px;
-	margin-left: 270px; 
+	width: 700px;
+	margin-left: 250px; 
 }
 
 .footer {
@@ -465,6 +465,10 @@ h2 {
 	float: left;
 }
 
+.album-box-thumb img {
+	max-height: 80px;
+}
+
 .album-box-thumb-admin {
 	width: 60px;
 }
@@ -477,7 +481,7 @@ h2 {
 .album-box-date {
 	float: right;
 	font-style: italic;
-	margin-top: -15px;
+	margin-top: -60px;
 }
 
 .album-desc {
@@ -520,6 +524,8 @@ h2 {
 
 .html5lightbox > a {
 	text-decoration: none;
+	width: 200px;
+	text-align: center;
 }
 
 .pagination {

@@ -343,6 +343,16 @@ class Album
     }
 
     /**
+     * Get published
+     *
+     * @return boolean 
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
      * Remove reporters
      *
      * @param \Eps\UserBundle\Entity\User $reporters

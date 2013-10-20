@@ -1,9 +1,22 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-
-    <p>{{ 'profile.show.firstname'|trans }}: {{ user.firstname }}</p>
-    <p>{{ 'profile.show.lastname'|trans }}: {{ user.lastname }}</p>
+<div class="fos_user_user_show container">
+  <div class="row">
+    <div style="float: left;margin-left: 20px;">
+      <img src="{{ asset(user.getProfilePicture) }}" alt="" class="img-polaroid"  style="max-width: 200px; max-height: 200px;">
+    </div>
+    <div style="float: left;margin-left: 20px;">
+      <blockquote>
+        <p>{{ user.firstname }} {{ user.lastname }}</p>
+        <big>&#147; <cite>{{ user.username }}</cite> &#148;</big>
+      </blockquote>
+      <p>
+        <i class="icon-envelope"></i> {{ user.email }}<br>
+        <i class="icon-bookmark"></i> <strong><em>Promotion :</em></strong> {{ user.promo }}<br>
+        <i class="icon-list-alt"></i> <strong><em>Description :</em></strong> {{ user.description }}
+      </p>
+    </div>
+ 
+  </div>
 </div>
+<p><br /></p>

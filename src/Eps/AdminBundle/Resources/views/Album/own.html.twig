@@ -3,7 +3,7 @@
 
 {% block content %}
 
-	<h2>Albums de <em><strong>{{ app.user.username }}</strong> ({{ app.user.firstname }} {{ app.user.lastname }})</em></h2>
+	<h2>Albums de <em><strong>{{ app.user.pseudo }}</strong> ({{ app.user.firstname }} {{ app.user.lastname }})</em></h2>
 
 	{% if albums|length > 0 %}
 
@@ -27,7 +27,7 @@
 	 			<p style="float:left; width: 180px;"><i class="icon-user"></i>
 				Auteur{% if album.reporters|length > 1%}s{% endif%} : 
 				{% for reporter in album.reporters %}
-					<strong>{{ reporter.username }}</strong>
+					<strong>{{ reporter.pseudo }}</strong>
 					{% if not loop.last %},{% endif %}
 				{% endfor %}
 				</p>

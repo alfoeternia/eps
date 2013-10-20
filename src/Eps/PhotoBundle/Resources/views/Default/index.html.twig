@@ -4,7 +4,7 @@
 {% block content %}
 
 	<h2>Albums</h2>
-	<ul class="nav nav-list well" style="width: 230px;float: left;">
+	<ul class="nav nav-list well" style="width: 200px;float: left;">
 		<li class="nav-header">Catégories</li>
 		{% for category in categories %}
 			{% if currentcat == category.id %}
@@ -34,7 +34,7 @@
 		{% endfor %}
 	</ul>
 
-	<div id="content-with-left-menu" style="margin-top: -70px;">
+	<div id="content-with-left-menu" style="margin-top: -55px;">
 		{% include "::album-list.html.twig" %}
 	</div>
 

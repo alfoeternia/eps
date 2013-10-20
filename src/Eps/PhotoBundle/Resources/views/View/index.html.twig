@@ -16,7 +16,7 @@
 					<i class="icon-user"></i>
 					Auteur{% if album.reporters|length > 1%}s{% endif%} : 
 					{% for reporter in album.reporters %}
-						<strong>{{ reporter.username }}</strong>
+						<strong><a href="{{ path('user_show', {id: reporter.id }) }}">{{ reporter.username }}</a></strong>
 						{% if not loop.last %},{% endif %}
 					{% endfor %}
 				</p>
@@ -58,14 +58,26 @@
 	<script type="text/javascript" src="{{ asset('html5lightbox/html5lightbox.js') }}"></script>
 	{% endblock %}
 
+	{% if not album.isPublished %}
+	<p> </p>
+	<div class="alert alert-info">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<h4>Information :</h4>
+		<p><br />
+		Cet album n'est pas encore publié. Seuls les reporters peuvent le voir !</p>
+	</div>
+	{% endif %}
+
 	<div class="html5lightbox">
 		{% for image in images %}
 		<a href="{{ asset('data/' ~ album.date|date('Y') ~ '/' ~ album.id ~ '/' ~ image) }}" 
-		class="html5lightbox" data-group="{{ album.id }}">
+		class="html5lightbox span4" data-group="{{ album.id }}">
 			<img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ image) }}" alt="" class="img-polaroid" 
-				style="max-height : 133px; margin: 10px;"/>
+				style="max-height: 133px; margin: 10px;"/>
 		</a>
 		{% endfor %}		
 	</div>
+
+	<p style="clear:both;"> </p>
 	
 {% endblock %}

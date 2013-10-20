@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+	<h2>L'équipe EPS</h2>
+
+	<hr />
+
+		<h3>Bureau</h3>
+
+		{% for member in members %}
+			{# if member.rank.id < 5 #}
+			<div class="member-list-item">
+				<img src="{{ asset('img/reporters/' ~ member.id ~ '.jpg') }}" alt="" />
+				<p><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></p>
+				<p><em>{{ member.description }}</em></p>
+			</div>
+			{# endif #}
+		{% endfor %}
+
+
+
+	
+
+
+	
+
+	<p style="clear: both;"></p>
+
+{% endblock %}

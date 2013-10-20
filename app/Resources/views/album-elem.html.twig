@@ -12,26 +12,26 @@
 
 			<div class="album-box-text">
 				<h5><a href="{{ path('album_view', {'id': album.id}) }}">{{ album.name }}</a></h5>
-				<p style="float:left; width: 180px;"><i class="icon-user"></i>
+				<p style="float:left; width: 230px;"><i class="icon-user"></i>
 				Auteur{% if album.reporters|length > 1%}s{% endif%} : 
 				{% for reporter in album.reporters %}
-					<strong>{{ reporter.username }}</strong>
+					<a href="{{ path('user_show', {id: reporter.id}) }}">{{ reporter.username }}</a>
 					{% if not loop.last %},{% endif %}
 				{% endfor %}
 				</p>
 
-				<p style="float:left;width: 200px;"><i class="icon-tag" style=""></i>
+				<p style="float:left;width: 180px;"><i class="icon-tag" style=""></i>
 				Catégorie : <strong>{{ album.category.title }}</strong>
 				</p>
 				
-				<p style="float:left;margin-right: 20px;">
+				<p style="float:left;margin-right: 10px;">
 					<i class="icon-eye-open"></i>
 					<strong>{{ album.getVisitCount }}</strong>
 					vue{% if album.getVisitCount|length > 1%}s{% endif%}
 				</p>
 				
 				<p><br /></p>
-				<div class="btn-group">
+				<div style="float:left;" class="btn-group">
 					<a href="{{ path('album_view', {'id': album.id}) }}" class="btn btn-small"><i class="icon-play-circle"></i> Visualiser</a>
 					<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
 					<span class="caret"></span>
@@ -44,6 +44,12 @@
 						<li><a href="#"><i class="icon-pencil"></i> Editer d'album</a></li>
 						<li><a href="#"><i class="icon-trash"></i> Supprimer</a></li>-->
 					</ul>
+				</div>
+
+				<div style="float:left; margin-left: 10px;margin-top: 5px;">
+					<i class="icon-film"></i>
+					<strong>Vidéo associée :</strong>
+					<a href="#">WEI 2013</a>
 				</div>
 				
 				{#  #}
