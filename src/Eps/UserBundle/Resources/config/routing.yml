@@ -6,3 +6,7 @@ members:
 user_show:
    pattern: /user/{id}
    defaults: { _controller: EpsUserBundle:List:show }
+
+EpsUserBundle_admin_user:
+   resource: "@EpsUserBundle/Resources/config/routing/user.yml"
+   prefix:   /admin/user

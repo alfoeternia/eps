@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Création d'un utilisateur</h1>
+
+    <hr />
+
+    {{ form(form) }}
+
+        <a class="btn btn-success" href="{{ path('admin_user') }}">
+            Retour à la liste
+        </a>
+{% endblock %}

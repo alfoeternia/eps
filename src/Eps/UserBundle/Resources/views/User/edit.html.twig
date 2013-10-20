@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Edition d'un utilisateur</h1>
+
+    <hr />
+
+    {{ form(edit_form) }}
+
+        <a  class="btn btn-success" href="{{ path('admin_user') }}">
+            Retour à la liste
+        </a>
+    	
+    	{{ form_start(delete_form) }}
+
+		    {{ form_row(delete_form.submit, { 'attr': {'class': 'btn btn-danger'} }) }}
+		{{ form_end(delete_form) }}
+</ul>
+{% endblock %}
