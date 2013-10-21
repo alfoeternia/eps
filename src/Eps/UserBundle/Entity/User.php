@@ -75,6 +75,13 @@ class User extends BaseUser
     protected $rank;
 
     /**
+     * @var datetime $lastActivity
+     *
+     * @ORM\Column(name="last_activity", type="datetime")
+     */
+    private $lastActivity;
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     protected $file;
@@ -257,6 +264,26 @@ class User extends BaseUser
     public function getRank()
     {
         return $this->rank;
+    }
+
+    /**
+     * Set lastActivity
+     *
+     * @param datetime $lastActivity
+     */
+    public function setLastActivity($lastActivity)
+    {
+        $this->lastActivity = $lastActivity;
+    }
+
+    /**
+     * Get lastActivity
+     *
+     * @return datetime 
+     */
+    public function getLastActivity()
+    {
+        return $this->lastActivity;
     }
 
     /**

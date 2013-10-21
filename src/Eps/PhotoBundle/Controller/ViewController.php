@@ -9,7 +9,7 @@ class ViewController extends Controller
     
     public function indexAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 		
 		$album = $em->getRepository('EpsPhotoBundle:Album')->find($id);
 

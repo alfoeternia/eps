@@ -11,7 +11,7 @@ class StaticController extends Controller
     
     public function indexAction()
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
 		$pages = $em->getRepository('EpsStaticPagesBundle:StaticPage')->findAll();
         return $this->render('EpsAdminBundle:Static:index.html.twig', array('pages' => $pages));
     }
@@ -23,7 +23,7 @@ class StaticController extends Controller
     			$page = new StaticPage();
     			$page->setTitle($this->getRequest()->get('title'));
 
-    			$em = $this->getDoctrine()->getEntityManager();
+    			$em = $this->getDoctrine()->getManager();
             	$em->persist($page);
             	$em->flush();
     		}
@@ -34,7 +34,7 @@ class StaticController extends Controller
 
     public function editAction($id)
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
 		
 		$page = $em->getRepository('EpsStaticPagesBundle:StaticPage')->find($id);
 		if($page == NULL) return $this->redirect($this->generateUrl('admin_static'));
@@ -55,7 +55,7 @@ class StaticController extends Controller
 
     public function deleteAction($id)
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
 		
 		$page = $em->getRepository('EpsStaticPagesBundle:StaticPage')->find($id);
 		if($page != NULL) {

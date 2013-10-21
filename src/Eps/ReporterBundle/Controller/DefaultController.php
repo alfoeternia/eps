@@ -17,7 +17,7 @@ class DefaultController extends Controller
 
     public function albumsViewAction($page = null)
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
         $query = $em->getRepository('EpsPhotoBundle:Album')
                     ->createQueryBuilder('a')
                     ->orderBy('a.id', 'DESC')

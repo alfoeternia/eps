@@ -1,6 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @EpsUserBundle/Resources/config/services.xml }
+
 
 framework:
     #esi:             ~
@@ -32,7 +34,7 @@ twig:
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
-    use_controller: true
+    use_controller: false
     bundles:        [ ]
     filters:
         lessphp:
@@ -54,6 +56,17 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        metadata_cache_driver: apc
+        query_cache_driver:
+            type: memcache
+            host: localhost
+            port: 11211
+            instance_class: Memcache
+        result_cache_driver:
+            type: memcache
+            host: localhost
+            port: 11211
+            instance_class: Memcache
 
 # Swiftmailer Configuration
 swiftmailer:

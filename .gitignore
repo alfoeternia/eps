@@ -12,6 +12,7 @@ web/data/*
 web/miniatures/*
 web/originals/*
 web/html5lightbox
+web/*/compiled
 
 # Configuration files
 app/config/parameters.ini

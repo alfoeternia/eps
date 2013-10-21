@@ -16,5 +16,11 @@
             <argument>%fos_user.model.user.class%</argument>
         </service>
 
+        <service id="eps_user.activity_listener" class="Eps\UserBundle\Listener\Activity">
+            <tag name="kernel.event_listener" event="kernel.controller" method="onCoreController" />
+            <argument type="service" id="service_container" />
+            <argument type="service" id="doctrine"/>
+        </service>
+
     </services>
 </container>

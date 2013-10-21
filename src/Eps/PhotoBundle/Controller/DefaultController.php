@@ -12,7 +12,7 @@ class DefaultController extends Controller
     
     public function indexAction($year = 'all', $cat = 'all')
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $albums = $em->getRepository('EpsPhotoBundle:Album')->findAllByYearAndCategoryC($year, $cat);
         $categories = $em->getRepository('EpsPhotoBundle:Category')->findAll();
 		$years = $em->getRepository('EpsPhotoBundle:Album')->findYears();

@@ -255,11 +255,6 @@ class Album
      */
     public function addReporter($reporter)
     {
-        /*if(!($reporter instanceof Eps\UserBundle\Entity\User))
-        {
-            $em = $this->getDoctrine()->getEntityManager();
-            $reporter = $em->getRepository('EpsUserBundle:User')->findOneById($reporter);
-        }*/
         $this->reporters[] = $reporter;
     }
 
@@ -280,11 +275,6 @@ class Album
      */
     public function setCategory($category)
     {
-        /*if(!($category instanceof \Eps\PhotoBundle\Entity\category))
-        {
-            $em = $this->getDoctrine()->getEntityManager();
-            $category = $em->getRepository('EpsPhotoBundle:Category')->findOneById($category);
-        }*/
         $this->category = $category;
     }
 

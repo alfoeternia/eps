@@ -14,7 +14,7 @@ class AlbumController extends Controller
     
     public function indexAction($page = null)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $query = $em->getRepository('EpsPhotoBundle:Album')
                     ->createQueryBuilder('a')
                     ->orderBy('a.id', 'DESC')
@@ -44,7 +44,7 @@ class AlbumController extends Controller
 
     public function newAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $error = null;
 
         $request = $this->getRequest();
@@ -121,7 +121,7 @@ class AlbumController extends Controller
         $error = null;
        
         if ($request->getMethod() == 'POST') {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $album = $em->getRepository('EpsPhotoBundle:Album')->findOneById($id);
             $album->setThumb($request->get('thumb'));
             
@@ -156,7 +156,7 @@ class AlbumController extends Controller
         $error = null;
        
         if ($request->getMethod() == 'POST') {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $album = $em->getRepository('EpsPhotoBundle:Album')->findOneById($id);
             $album->setThumb($request->get('thumb'));
             
@@ -184,7 +184,7 @@ class AlbumController extends Controller
 
     public function ownAction($page = null)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $query = $em->getRepository('EpsPhotoBundle:Album')
                     ->createQueryBuilder('a')
                     ->orderBy('a.id', 'DESC')
@@ -221,7 +221,7 @@ class AlbumController extends Controller
     			$page = new StaticPage();
     			$page->setTitle($this->getRequest()->get('title'));
 
-    			$em = $this->getDoctrine()->getEntityManager();
+    			$em = $this->getDoctrine()->getManager();
             	$em->persist($page);
             	$em->flush();
     		}
@@ -232,7 +232,7 @@ class AlbumController extends Controller
 
     public function editAction($id)
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
 		
 		$page = $em->getRepository('EpsStaticPagesBundle:StaticPage')->find($id);
 		if($page == NULL) return $this->redirect($this->generateUrl('admin_static'));
@@ -253,7 +253,7 @@ class AlbumController extends Controller
 
     public function deleteAction($id)
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
 		
 		$page = $em->getRepository('EpsStaticPagesBundle:StaticPage')->find($id);
 		if($page != NULL) {

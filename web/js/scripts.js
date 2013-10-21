@@ -17,7 +17,9 @@ $(document).ready(function(){
 /*----------------------------------*/
 /*		    Slider
 /*----------------------------------*/
-$('#slider').nivoSlider({
+$(document).ready(function(){
+
+	$('#slider').nivoSlider({
 		effect: "random",
 		slices: 15,
 		boxCols: 8,
@@ -45,3 +47,4 @@ $('#slider').nivoSlider({
 			});
 		}
 	});
+});

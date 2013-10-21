@@ -10,7 +10,7 @@ class DefaultController extends Controller
     
     public function indexAction($id)
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
 		$page = $em->getRepository('EpsStaticPagesBundle:StaticPage')->find($id);
 
 		if($page == NULL) {

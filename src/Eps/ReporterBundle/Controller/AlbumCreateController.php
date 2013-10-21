@@ -11,7 +11,7 @@ class AlbumCreateController extends Controller
     
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $error = null;
 
     	$request = $this->getRequest();
