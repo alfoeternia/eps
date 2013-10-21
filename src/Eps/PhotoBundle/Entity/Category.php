@@ -112,4 +112,9 @@ class Category
     {
         return $this->image;
     }
+
+    public function __toString()
+    {
+        return '('.$this->id.') '.$this->title;
+    }
 }

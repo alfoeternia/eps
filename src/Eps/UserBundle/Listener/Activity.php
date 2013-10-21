@@ -34,7 +34,6 @@ class Activity
 
         if($user instanceof User)
         {
-            //here we can update the user as necessary
             $user->setLastActivity(new DateTime());
  
             $this->em->persist($user);

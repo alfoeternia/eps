@@ -1,7 +1,0 @@
-parameters:
-#    eps_reporter.example.class: Eps\ReporterBundle\Example
-
-services:
-#    eps_reporter.example:
-#        class: %eps_reporter.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

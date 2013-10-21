@@ -387,4 +387,8 @@ class User extends BaseUser
         return 'uploads/user_profile_img';
     }
 
+    public function __toString()
+    {
+        return $this->id.' - '.$this->username.' ('.$this->firstname.' '.$this->lastname.')';
+    }
 }

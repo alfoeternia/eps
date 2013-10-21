@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Album</h1>
+
+    <hr />
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Thumb</th>
+                <td>{{ entity.thumb }}</td>
+            </tr>
+            <tr>
+                <th>Published</th>
+                <td>{{ entity.published }}</td>
+            </tr>
+            <tr>
+                <th>Access</th>
+                <td>{{ entity.access }}</td>
+            </tr>
+            <tr>
+                <th>Visit_count</th>
+                <td>{{ entity.visitcount }}</td>
+            </tr>
+            <tr>
+                <th>Like_count</th>
+                <td>{{ entity.likecount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_album') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_album_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

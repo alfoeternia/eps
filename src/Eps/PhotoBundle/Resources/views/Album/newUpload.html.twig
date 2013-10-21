@@ -457,7 +457,7 @@
 <script type="text/javascript">
 var myDropzone = Dropzone.options.dropzone = {
   url: "{{ oneup_uploader_endpoint('reporter') }}",
-  paramName: "file", // The name that will be used to transfer the file
+  paramName: "file",
   maxFilesize: 32,
   parallelUploads: 3,
   acceptedFiles: "image/jpeg,image/jpg",
@@ -467,9 +467,9 @@ var myDropzone = Dropzone.options.dropzone = {
   		formData.append("album_id", {{ album_id }}); 
   		formData.append("album_year", {{ album_year }});
   	});
+    ;
   }
 };
-
 </script>
 
 
@@ -479,7 +479,7 @@ var myDropzone = Dropzone.options.dropzone = {
 
 <blockquote class="pull-right">
     <p><strong>Encore un effort !</strong><br />
-    <a class="btn btn-large btn-success" href="{{ path('admin_album_new_thumb', {year: album_year, id: album_id}) }}">Suivant &gt;</a></p>
+    <a class="btn btn-large btn-success" id="submit" href="{{ path('admin_album_new_thumb', {year: album_year, id: album_id}) }}">Suivant &gt;</a></p>
 </blockquote>
 
 <p style="clear:both;"> </p>

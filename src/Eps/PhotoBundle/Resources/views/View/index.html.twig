@@ -16,8 +16,7 @@
 					<i class="icon-user"></i>
 					Auteur{% if album.reporters|length > 1%}s{% endif%} : 
 					{% for reporter in album.reporters %}
-						<strong><a href="{{ path('user_show', {id: reporter.id }) }}">{{ reporter.username }}</a></strong>
-						{% if not loop.last %},{% endif %}
+						<strong><a href="{{ path('user_show', {id: reporter.id }) }}">{{ reporter.username }}</a></strong>{% if not loop.last %},{% endif %}
 					{% endfor %}
 				</p>
 
@@ -60,7 +59,7 @@
 
 	{% if not album.isPublished %}
 	<p> </p>
-	<div class="alert alert-info">
+	<div class="alert alert-warning">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<h4>Information :</h4>
 		<p><br />

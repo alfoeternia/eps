@@ -1,0 +1,50 @@
+admin_album:
+    pattern:  /
+    defaults: { _controller: "EpsPhotoBundle:Album:index" }
+
+admin_album_paginated:
+    pattern: /page/{page}
+    defaults: { _controller: EpsPhotoBundle:Album:index }
+
+admin_album_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EpsPhotoBundle:Album:show" }
+
+admin_album_new:
+    pattern:  /new
+    defaults: { _controller: "EpsPhotoBundle:Album:new" }
+
+admin_album_new_upload:
+    pattern: /new/upload/{year}/{id}
+    defaults: { _controller: EpsPhotoBundle:Album:newUpload }
+
+admin_album_new_thumb:
+    pattern: /new/thumb/{year}/{id}
+    defaults: { _controller: EpsPhotoBundle:Album:newThumb }
+
+admin_album_new_finish:
+    pattern: /new/finish/{year}/{id}
+    defaults: { _controller: EpsPhotoBundle:Album:newFinish }
+
+admin_album_create:
+    pattern:  /create
+    defaults: { _controller: "EpsPhotoBundle:Album:create" }
+    requirements: { _method: post }
+
+admin_album_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EpsPhotoBundle:Album:edit" }
+
+admin_album_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EpsPhotoBundle:Album:update" }
+    requirements: { _method: post|put }
+
+admin_album_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EpsPhotoBundle:Album:delete" }
+    requirements: { _method: post|delete }
+
+admin_album_publish:
+    pattern:  /{id}/publish
+    defaults: { _controller: "EpsPhotoBundle:Album:publish" }

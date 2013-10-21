@@ -1,0 +1,87 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Gestion des albums</h1>
+
+    <hr />
+
+     <a class="btn btn-success" href="{{ path('admin_album_new') }}">Créer un album</a>
+
+
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Miniature</th>
+                <th>Titre</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for album in pagerfanta.currentPageResults %}
+            <tr
+            {% if album.access == "ROLE_REPORTER" %}
+                style="background-color: #FFCCCC;"
+            {% elseif album.access == "ROLE_USER" %}
+                style="background-color: #FFEAEA;"
+            {% endif %}
+            >
+                <td style="vertical-align:middle;">{{ album.id }}</td>
+                <td style="vertical-align:middle;">
+                    <div class="album-box-thumb-admin">
+                    <img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ album.thumb) }}" class="img-polaroid" alt="" />
+                    </div>
+                </td>
+                <td>
+                    <h5 style="margin: 1px;"><strong><a href="#">{{ album.name }}</a></strong></h5>
+                    <span style="float: right; margin-top: -25px;margin-right: 25px;"><em>{{ album.date|date('Y-m-d') }}</span>
+                    <p style="float:left; width: 180px;"><i class="icon-user"></i>
+                    Auteur{% if album.reporters|length > 1%}s{% endif%} : 
+                    {% for reporter in album.reporters %}
+                        <a href="{{ path('admin_user_show', {id: reporter.id}) }}">{{ reporter.username }}</a>{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                    </p>
+
+                    <p style="float:left;width: 200px;"><i class="icon-tag" style=""></i>
+                    Catégorie : <strong>{{ album.category.title }}</strong>
+                    </p>
+                    
+                    <p style="float:left;margin-right: 20px;">
+                        <i class="icon-eye-open"></i>
+                        <strong>{{ album.getVisitCount }}</strong>
+                        vue{% if album.getVisitCount|length > 1%}s{% endif%}
+                    </p>
+                </td>
+
+                <td style="vertical-align:middle;">
+                    {% if album.published == true %}
+                        <p style="color: green;">Publié</p>
+                    {% else %}
+                        <p style="color: red;">Non publié</p>
+                    {% endif %}
+
+                    {% if album.published == true %}
+                         <a class="btn btn-mini btn-inverse" href="{{ path('admin_album_publish', {'id': album.id}) }}"><i class="icon-remove" style=""></i> Dé-publier</a>
+                    {% else %}
+                         <a class="btn btn-mini btn-success" href="{{ path('admin_album_publish', {'id': album.id}) }}"><i class="icon-ok" style=""></i> Publier</a>
+                    {% endif %}
+                    
+                </td>
+                <td style="text-align: center;vertical-align:middle;">
+                    
+                    <a class="btn btn-mini btn-warning" href="{{ path('admin_album_edit', {'id': album.id}) }}"><i class="icon-edit" style=""></i> Modifier</a>
+
+                    <p style="height: 3px;font-size: 3px;"></p>
+                    
+                    <a class="btn btn-mini btn-info" href="{{ path('admin_album_delete', {'id': album.id}) }}"><i class="icon-th-large" style=""></i> Editer miniature</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+     {{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated', {'routeName': 'admin_album_paginated'}) }}
+    {% endblock %}

@@ -19,3 +19,7 @@ albums_year_category:
 album_view:
     pattern:  /view/{id}
     defaults: { _controller: EpsPhotoBundle:View:index }
+
+EpsPhotoBundle_admin_album_new:
+    resource: "@EpsPhotoBundle/Resources/config/routing/album.yml"
+    prefix:   /admin/album

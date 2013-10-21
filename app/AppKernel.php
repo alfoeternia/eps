@@ -27,7 +27,6 @@ class AppKernel extends Kernel
             new Eps\UserBundle\EpsUserBundle(),
             new Eps\AdminBundle\EpsAdminBundle(),
             new Eps\StaticPagesBundle\EpsStaticPagesBundle(),
-            new Eps\ReporterBundle\EpsReporterBundle(),
             new Eps\VideoBundle\EpsVideoBundle(),
         );
 

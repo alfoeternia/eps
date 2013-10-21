@@ -38,7 +38,7 @@
 			<th>Date</th>
 		</tr>
 	{% for album in albums %}
-
+		{% if ((album.access != "ROLE_REPORTER") or (is_granted('ROLE_REPORTER'))) and album.published == true %}
  		<tr>
  			<td>{{ album.id }}</td>
  			<td>
@@ -72,6 +72,7 @@
 			</td>
 
  		</tr>
+ 		{% endif %}
  	{% endfor %}
     </table>
 
