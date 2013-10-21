@@ -17,19 +17,6 @@ class DefaultController extends Controller
         $categories = $em->getRepository('EpsPhotoBundle:Category')->findAll();
 		$years = $em->getRepository('EpsPhotoBundle:Album')->findYears();
 
-        /*$albums = array();
-        foreach($albums_temp as $album)
-        {
-            if(     $album->getAccess() == 'IS_AUTHENTICATED_ANONYMOUSLY')
-                { $albums[] = $album; echo 1; }
-            elseif( $album->getAccess() == 'ROLE_USER' &&
-                    $this->get('security.context')->isGranted('ROLE_USER'))
-                $albums[] = $album;
-            elseif($album->getAccess() == 'ROLE_REPORTER' &&
-                    $this->get('security.context')->isGranted('ROLE_REPORTER'))
-                $albums[] = $album;
-        }*/
-
         $adapter = new ArrayAdapter($albums);
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(15);

@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Eps\AdminBundle\EpsAdminBundle(),
             new Eps\StaticPagesBundle\EpsStaticPagesBundle(),
             new Eps\ReporterBundle\EpsReporterBundle(),
+            new Eps\VideoBundle\EpsVideoBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

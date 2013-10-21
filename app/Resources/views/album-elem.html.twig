@@ -46,14 +46,17 @@
 					</ul>
 				</div>
 
+				<p class="album-box-date">{{ album.date | localizeddate('full', 'none', 'fr_FR') | title }}</p>
+
+				{% if album.video is not null %}
 				<div style="float:left; margin-left: 10px;margin-top: 5px;">
 					<i class="icon-film"></i>
 					<strong>Vidéo associée :</strong>
-					<a href="#">WEI 2013</a>
+					<a href="{{ path('video_show', {id: album.video.id}) }}">{{ album.video.name }}</a>
 				</div>
+				{% endif %}
 				
-				{#  #}
-				<p class="album-box-date">{{ album.date | localizeddate('full', 'none', 'fr_FR') | title }}</p>
+				
 								
 			</div>
 			

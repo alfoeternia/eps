@@ -68,6 +68,13 @@ class User extends BaseUser
     protected $mobile;
 
     /**
+     * @var string $rank
+     *
+     * @ORM\Column(name="rank", type="string", length=255, nullable=true)
+     */
+    protected $rank;
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     protected $file;
@@ -79,6 +86,7 @@ class User extends BaseUser
         parent::__construct();
 		$this->setPromo('0000');
         $this->addRole('ROLE_USER');
+        $this->setRank('USER');
     }
 	
     /**
@@ -229,6 +237,26 @@ class User extends BaseUser
     public function getMobile()
     {
         return $this->mobile;
+    }
+
+    /**
+     * Set rank
+     *
+     * @param string $mobile
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+    }
+
+    /**
+     * Get rank
+     *
+     * @return string 
+     */
+    public function getRank()
+    {
+        return $this->rank;
     }
 
     /**

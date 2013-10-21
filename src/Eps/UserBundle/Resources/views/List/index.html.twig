@@ -10,13 +10,71 @@
 		<h3>Bureau</h3>
 
 		{% for member in members %}
-			{# if member.rank.id < 5 #}
+			{% if member.rank == "PRESIDENT" %}
 			<div class="member-list-item">
-				<img src="{{ asset('img/reporters/' ~ member.id ~ '.jpg') }}" alt="" />
-				<p><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></p>
+				<img src="{{ asset(member.getProfilePicture) }}" alt="" />
+				<p><a href="{{ path('user_show', {id: member.id}) }}"><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></a></p>
 				<p><em>{{ member.description }}</em></p>
 			</div>
-			{# endif #}
+			{% endif %}
+		{% endfor %}
+
+		{% for member in members %}
+			{% if member.rank == "VICE-PRESIDENT" %}
+			<div class="member-list-item">
+				<img src="{{ asset(member.getProfilePicture) }}" alt="" />
+				<p><a href="{{ path('user_show', {id: member.id}) }}"><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></a></p>
+				<p><em>{{ member.description }}</em></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+		{% for member in members %}
+			{% if member.rank == "TREASURER" %}
+			<div class="member-list-item">
+				<img src="{{ asset(member.getProfilePicture) }}" alt="" />
+				<p><a href="{{ path('user_show', {id: member.id}) }}"><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></a></p>
+				<p><em>{{ member.description }}</em></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+		{% for member in members %}
+			{% if member.rank == "SECRETARY" %}
+			<div class="member-list-item">
+				<img src="{{ asset(member.getProfilePicture) }}" alt="" />
+				<p><a href="{{ path('user_show', {id: member.id}) }}"><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></a></p>
+				<p><em>{{ member.description }}</em></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+		<p style="clear:both;"></p>
+
+		<h3>Reporters</h3>
+
+		{% for member in members %}
+			{% if member.rank == "REPORTER" %}
+			<div class="member-list-item">
+				<img src="{{ asset(member.getProfilePicture) }}" alt="" />
+				<p><a href="{{ path('user_show', {id: member.id}) }}"><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></a></p>
+				<p><em>{{ member.description }}</em></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+		<p style="clear:both;"></p>
+
+		<h3>Anciens Reporters</h3>
+
+		{% for member in members %}
+			{% if member.rank == "FORMER_REPORTER" %}
+			<div class="member-list-item">
+				<img src="{{ asset(member.getProfilePicture) }}" alt="" />
+				<p><a href="{{ path('user_show', {id: member.id}) }}"><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></p>
+				<p><em>{{ member.description }}</em></a></p>
+			</div>
+			{% endif %}
 		{% endfor %}
 
 

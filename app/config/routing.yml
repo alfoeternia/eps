@@ -1,3 +1,8 @@
+eps_video:
+    resource: "@EpsVideoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 # EPS Routes
 EpsReporterBundle:
     resource: "@EpsReporterBundle/Resources/config/routing.yml"

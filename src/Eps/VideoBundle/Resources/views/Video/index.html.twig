@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Vidéos</h1>
+
+    <hr />
+
+    <p><br /></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th style="width: 200px;">Titre</th>
+                <th>Description</th>
+                <th>Année</th>
+                <th>Dls</th>
+                <th>Accès</th>
+                <th>Source</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities|reverse %}
+            <tr>
+                <td><a href="{{ path('video_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td><em>{{ entity.description }}</em></td>
+                <td>{{ entity.year }}</td>
+                <td>{{ entity.downloadCount }}</td>
+                <td>
+                    {% if entity.access == 'ROLE_REPORTER' %}
+                    <span style="color: #BB1111">Reporters</span>
+                    {% elseif entity.access == 'ROLE_USER' %}
+                    <span style="color: #DDDD11">Privé</span>
+                    {% else %}
+                    <span style="color: #4444BB">Public</span>
+                    {% endif %}
+                </td>
+                <td>{{ entity.source }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    
+
+    {% endblock %}

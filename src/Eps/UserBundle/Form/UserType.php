@@ -28,6 +28,7 @@ class UserType extends AbstractType
             ->add('description')
             ->add('landline')
             ->add('mobile')
+            ->add('rank')
         ;
     }
     

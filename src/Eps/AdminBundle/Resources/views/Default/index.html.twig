@@ -3,7 +3,9 @@
 
 {% block content %}
 
-	<h2>Administration</h2>
+	<h1>Administration</h1>
+
+	<hr />
 
 	<div class="admin-button">
 		<a href="{{ path('admin_album_new') }}">
@@ -20,7 +22,7 @@
 	</div>
 
 	<div class="admin-button">
-		<a href="#">
+		<a href="{{ path('admin_video') }}">
 			<img src="{{ asset('img/admin/videos.png') }}" alt="" />
 			<p>Gestion des Vidéos</p>
 		</a>

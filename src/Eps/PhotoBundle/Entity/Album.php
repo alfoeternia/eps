@@ -54,11 +54,10 @@ class Album
     private $thumb;
 
     /**
-     * @var integer $video_id
-     *
-     * @ORM\Column(name="video_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Eps\VideoBundle\Entity\Video")
+     * @ORM\JoinColumn(name="video_id", referencedColumnName="id")
      */
-    private $video_id;
+    private $video;
 
     /**
      * @var boolean $published
@@ -68,7 +67,7 @@ class Album
     private $published;
 
     /**
-     * @var smallint $access
+     * @var string $access
      *
      * @ORM\Column(name="access", type="string", length=255)
      */
@@ -160,23 +159,23 @@ class Album
     }
 
     /**
-     * Set video_id
+     * Set video
      *
-     * @param integer $videoId
+     * @param Eps\VideoBundle\Entity\Video $video
      */
-    public function setVideoId($videoId)
+    public function setVideo($video)
     {
-        $this->video_id = $videoId;
+        $this->video = $video;
     }
 
     /**
-     * Get video_id
+     * Get video
      *
-     * @return integer 
+     * @return Eps\VideoBundle\Entity\Video 
      */
-    public function getVideoId()
+    public function getVideo()
     {
-        return $this->video_id;
+        return $this->video;
     }
 
     /**

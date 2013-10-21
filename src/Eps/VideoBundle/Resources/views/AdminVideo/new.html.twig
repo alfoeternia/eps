@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Ajout d'une vidéo</h1>
+
+    <hr />
+
+    {{ form(form) }}
+
+    <a class="btn btn-success" href="{{ path('admin_video') }}">
+        Retour à la liste
+    </a>
+{% endblock %}
