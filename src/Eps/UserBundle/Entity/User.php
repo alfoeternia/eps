@@ -75,7 +75,7 @@ class User extends BaseUser
     protected $rank;
 
     /**
-     * @var datetime $lastActivity
+     * @var \DateTime $lastActivity
      *
      * @ORM\Column(name="last_activity", type="datetime")
      */
@@ -269,7 +269,7 @@ class User extends BaseUser
     /**
      * Set lastActivity
      *
-     * @param datetime $lastActivity
+     * @param \DateTime $lastActivity
      */
     public function setLastActivity($lastActivity)
     {
@@ -279,11 +279,16 @@ class User extends BaseUser
     /**
      * Get lastActivity
      *
-     * @return datetime 
+     * @return \DateTime 
      */
     public function getLastActivity()
     {
         return $this->lastActivity;
+    }
+
+    public function getLastActivityText()
+    {
+	return $this->lastActivity->format('Ymd His');
     }
 
     /**

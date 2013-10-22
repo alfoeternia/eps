@@ -11,7 +11,7 @@
 			{% for user in users %}
 			<li><a href="#">{{ user.username }}</a>
 				<small><em>(<script>
-			document.write(moment("{{ user.lastActivity|date('Ymd His') }}", "YYYYMMDD HHmmss").fromNow());
+			document.write(moment("{{ user.getLastActivityText }}", "YYYYMMDD HHmmss").fromNow());
 		</script></em>)</small></li>
 			{% endfor %}
 		</ul>
