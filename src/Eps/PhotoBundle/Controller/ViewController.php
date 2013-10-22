@@ -28,7 +28,7 @@ class ViewController extends Controller
 		}
 
 
-		$path = $this->get('kernel')->getRootDir() . '/../web/miniatures/' . $id;
+		$path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $id;
 		$images = glob($path . "/*.jpg");
 		$images = array_map('basename', $images);
 		

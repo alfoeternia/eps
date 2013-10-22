@@ -35,7 +35,7 @@
 		{{ form_row(form.name) }}
 		{{ form_row(form.date) }}
 		{{ form_row(form.access) }}
-		{% if is_granted('ROLE_REPORTER') %}
+		{% if is_granted('ROLE_MAJ') %}
 			{{ form_row(form.published) }}
 		{% else %}
 			{{ form_row(form.published, {'label': 'Publié ? (Désactivé)', 'attr': {'disabled':''}}) }}

@@ -37,6 +37,10 @@ security:
                domain:   ~
 
     access_control:
-        - { path: ^/admin,                  roles: ROLE_BUREAU                  }
+        - { path: ^/admin/album/new,        roles: ROLE_REPORTER                }
+        - { path: ^/admin/album/create,     roles: ROLE_REPORTER                }
+        - { path: ^/admin/album,            roles: ROLE_MAJ                     }
+        - { path: ^/admin/,                 roles: ROLE_BUREAU                  }
+        - { path: ^/admin,                  roles: ROLE_REPORTER                }
         - { path: ^/_uploader/reporter,     roles: ROLE_REPORTER                }
         - { path: ^/login,                  roles: IS_AUTHENTICATED_ANONYMOUSLY }

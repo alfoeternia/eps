@@ -6,13 +6,13 @@ bin
 vendor/*
 */logs/*
 */cache/*
-web/uploads/*
-web/bundles/*
-web/data/*
-web/miniatures/*
-web/originals/*
-web/html5lightbox
-web/*/compiled
+www/uploads/*
+www/bundles/*
+www/data/*
+www/miniatures/*
+www/originals/*
+www/html5lightbox
+www/*/compiled
 
 # Configuration files
 app/config/parameters.ini

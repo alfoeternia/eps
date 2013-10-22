@@ -116,7 +116,7 @@ class AlbumController extends Controller
 
     public function newThumbAction($year, $id)
     {
-        $path = $this->get('kernel')->getRootDir() . '/../web/miniatures/' . $id;
+        $path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $id;
         $images = glob($path . "/*.jpg");
         $images = array_map('basename', $images);
         $request = $this->getRequest();
@@ -151,7 +151,7 @@ class AlbumController extends Controller
 
     public function newFinishAction($year, $id)
     {
-        $path = $this->get('kernel')->getRootDir() . '/../web/miniatures/' . $id;
+        $path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $id;
         $images = glob($path . "/*.jpg");
         $images = array_map('basename', $images);
         $request = $this->getRequest();
@@ -308,7 +308,7 @@ class AlbumController extends Controller
                 throw $this->createNotFoundException('Unable to find Album entity.');
             }
 
-            $root_dir = $this->get('kernel')->getRootDir() . '/../web/';
+            $root_dir = $this->get('kernel')->getRootDir() . '/../www/';
             $originals_dir = $root_dir.'originals/'.$entity->getDate()->format('Y').'/'.$entity->getId();
             $data_dir = $root_dir.'data/'.$entity->getDate()->format('Y').'/'.$entity->getId();
             $miniatures_dir = $root_dir.'miniatures/'.$entity->getId();

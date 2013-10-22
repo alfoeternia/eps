@@ -34,6 +34,7 @@ twig:
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
+    read_from: "%kernel.root_dir%/../www"
     use_controller: false
     bundles:        [ ]
     filters:

@@ -28,7 +28,12 @@
 </div>
 <p style="clear:both;"><br /></p>
 
+{% if 'ROLE_REPORTER' in user.roles %}
 <h3>Ses albums</h3>
+
+{% if albums|length == 0 %}
+<p style="text-align:center;"><em>Aucun album à afficher.</em></p>
+{% else %}
 
 <table class="table table-striped table-condensed">
 		<tr>
@@ -75,5 +80,7 @@
  		{% endif %}
  	{% endfor %}
     </table>
+{% endif %}
+{% endif %}
 
 {% endblock %}

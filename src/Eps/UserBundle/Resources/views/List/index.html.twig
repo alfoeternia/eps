@@ -51,6 +51,20 @@
 
 		<p style="clear:both;"></p>
 
+		<h3>Parrain</h3>
+
+		{% for member in members %}
+			{% if member.rank == "GODFATHER" %}
+			<div class="member-list-item">
+				<img src="{{ asset(member.getProfilePicture) }}" alt="" />
+				<p><a href="{{ path('user_show', {id: member.id}) }}"><strong>{{ member.firstname }} {{ member.lastname }}</strong> <em>({{ member.username }})</em></a></p>
+				<p><em>{{ member.description }}</em></p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+		<p style="clear:both;"></p>
+
 		<h3>Reporters</h3>
 
 		{% for member in members %}

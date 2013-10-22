@@ -155,12 +155,12 @@ class UserController extends Controller
         ));
 
         $form->remove('lastLogin');
-        $form->remove('enabled');
+        //$form->remove('enabled');
         $form->remove('expired');
         $form->remove('landline');
         $form->remove('mobile');
         $form->remove('roles');
-        $form->remove('locked');
+        //$form->remove('locked');
         $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'class: btn btn-info')));
 
         return $form;

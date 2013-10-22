@@ -379,7 +379,7 @@ class User extends BaseUser
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../www/'.$this->getUploadDir();
     }
 
     protected function getUploadDir()

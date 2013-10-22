@@ -17,9 +17,9 @@ class UserType extends AbstractType
         $builder
             ->add('username')
             ->add('email')
-            ->add('enabled')
+            ->add('enabled', null, array('required' => false))
             ->add('lastLogin')
-            ->add('locked')
+            ->add('locked', null, array('required' => false))
             ->add('expired')
             ->add('roles')
             ->add('firstname')
@@ -28,7 +28,6 @@ class UserType extends AbstractType
             ->add('description')
             ->add('landline')
             ->add('mobile')
-            ->add('rank')
         ;
     }
     

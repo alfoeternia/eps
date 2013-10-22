@@ -8,30 +8,33 @@
 	<hr />
 
 	<div class="admin-button">
+		<a href="https://drive.google.com/folderview?id=0B1XxKG-yPV1NcU1SSko3ZmduaE0&usp=sharing">
+			<img src="{{ asset('img/admin/google-drive.png') }}" alt="" />
+			<p>Google Drive</p>
+		</a>
+	</div>
+
+	<div class="admin-button">
 		<a href="{{ path('admin_album_new') }}">
 			<img src="{{ asset('img/admin/album-add.png') }}" alt="" />
 			<p>Ajouter un Album</p>
 		</a>
 	</div>
 	
+	{% if is_granted('ROLE_MAJ') %}
 	<div class="admin-button">
 		<a href="{{ path('admin_album') }}">
 			<img src="{{ asset('img/admin/albums.png') }}" alt="" />
 			<p>Gestion des Albums</p>
 		</a>
 	</div>
+	{% endif %}
 
+	{% if is_granted('ROLE_BUREAU') %}
 	<div class="admin-button">
 		<a href="{{ path('admin_video') }}">
 			<img src="{{ asset('img/admin/videos.png') }}" alt="" />
 			<p>Gestion des Vidéos</p>
-		</a>
-	</div>
-
-	<div class="admin-button">
-		<a href="https://drive.google.com/folderview?id=0B1XxKG-yPV1NcU1SSko3ZmduaE0&usp=sharing">
-			<img src="{{ asset('img/admin/google-drive.png') }}" alt="" />
-			<p>Google Drive</p>
 		</a>
 	</div>
 
@@ -48,6 +51,8 @@
 			<p>Gestion des Utilisateurs</p>
 		</a>
 	</div>
+
+	{% endif %}
 
 	<p style="clear: both;"></p>
 
