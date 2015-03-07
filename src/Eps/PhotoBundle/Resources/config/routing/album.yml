@@ -2,6 +2,35 @@ admin_album:
     pattern:  /
     defaults: { _controller: "EpsPhotoBundle:Album:index" }
 
+admin_carousel:
+    pattern:  /carousel/
+    defaults: { _controller: "EpsPhotoBundle:Album:carousel" }
+
+admin_carousel_edit:
+    pattern:  /carousel/{id}/edit
+    defaults: { _controller: "EpsPhotoBundle:Album:carouselEdit" }
+
+admin_carousel_update:
+    pattern:  /carousel/{id}/update
+    defaults: { _controller: "EpsPhotoBundle:Album:carouselUpdate" }
+    requirements: { _method: post|put }
+
+admin_carousel_new:
+    pattern:  /carousel/new
+    defaults: { _controller: "EpsPhotoBundle:Album:carouselNew" }
+
+admin_carousel_create:
+    pattern:  /carousel/create
+    defaults: { _controller: "EpsPhotoBundle:Album:carouselCreate" }
+
+admin_carousel_upload:
+    pattern:  /carousel/{id}/upload
+    defaults: { _controller: "EpsPhotoBundle:Album:carouselUpload" }
+
+admin_carousel_delete:
+    pattern:  /carousel/{id}/delete
+    defaults: { _controller: "EpsPhotoBundle:Album:carouselDelete" }
+
 admin_album_paginated:
     pattern: /page/{page}
     defaults: { _controller: EpsPhotoBundle:Album:index }
@@ -34,6 +63,15 @@ admin_album_create:
 admin_album_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "EpsPhotoBundle:Album:edit" }
+
+admin_album_add_upload:
+    pattern:  /{id}/upload
+    defaults: { _controller: "EpsPhotoBundle:Album:addUpload" }
+
+admin_album_remove_upload:
+    pattern:  /{id}/uploadEdit
+    defaults: { _controller: "EpsPhotoBundle:Album:removeUpload" }
+    requirements: { _method: post|put }
 
 admin_album_update:
     pattern:  /{id}/update

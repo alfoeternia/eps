@@ -20,6 +20,10 @@ album_view:
     pattern:  /view/{id}
     defaults: { _controller: EpsPhotoBundle:View:index }
 
+album_download:
+    pattern:  /download/{id}
+    defaults: { _controller: EpsPhotoBundle:View:download }
+
 EpsPhotoBundle_admin_album_new:
     resource: "@EpsPhotoBundle/Resources/config/routing/album.yml"
     prefix:   /admin/album

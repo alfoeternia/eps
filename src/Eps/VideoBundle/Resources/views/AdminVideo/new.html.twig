@@ -5,9 +5,56 @@
 
     <hr />
 
-    {{ form(form) }}
+    <ul class="progress-tracker">
+		<li class="number active">1</li>
+		<li class="text active">Informations</li>
+		
+		<li class="number">2</li>
+		<li class="text">Upload de la vidéo</li>
+		
+		<li class="number">3</li>
+		<li class="text">Sélection de la miniature</li>
+		
+		<li class="number">4</li>
+		<li class="text">Récapitulatif</li>
+	</ul>
 
-    <a class="btn btn-success" href="{{ path('admin_video') }}">
+	{% if error is defined and error != null %}
+	<div class="alert alert-error">
+		{{ error|raw }}<br />
+	</div>
+	{% endif %}
+
+    {% form_theme form '::forms.html.twig' %}
+
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+    <div class="form-elem">
+		<div class="form-elem-title">Informations de base</div>
+
+		{{ form_row(form.name) }}
+		{{ form_row(form.description) }}
+		{{ form_row(form.year) }}
+		{{ form_row(form.access) }}
+		{{ form_row(form.download_count) }}
+    </div>
+
+    <div class="form-elem">
+		<div class="form-elem-title">Reporters</div>
+
+		{{ form_row(form.reporters, {attr: {'size' : 15, 'class' : 'span5'}})  }}
+    </div>
+
+	<blockquote class="pull-right">
+		<p><strong>C'est parti !</strong><br />
+		<button class="btn btn-large btn-success" id="_submit" name="_submit" type="submit">Suivant &gt;</button></p>
+	</blockquote>
+    {{ form_end(form) }}
+
+    <p style="clear: both;"></p>
+    
+
+    <a class="btn btn-info" href="{{ path('admin_album') }}">
         Retour à la liste
     </a>
 {% endblock %}

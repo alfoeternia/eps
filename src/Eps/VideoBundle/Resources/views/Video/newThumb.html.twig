@@ -1,0 +1,110 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+<h2>Ajout d'un album</h2>
+
+<hr />
+
+<ul class="progress-tracker">
+  <li class="number done">1</li>
+  <li class="text done">Informations</li>
+
+  <li class="number done">2</li>
+  <li class="text done">Upload des photos</li>
+
+  <li class="number active">3</li>
+  <li class="text active">Sélection de la miniature</li>
+
+  <li class="number">4</li>
+  <li class="text">Récapitulatif</li>
+</ul>
+
+<style>
+.input_hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+.selected {
+  background-color: #99dd99;
+}
+
+#thumbs label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+#thumbs label:hover {
+  background-color: #efefef;
+}
+
+#thumbs label img {
+  padding: 3px;
+
+}
+
+
+
+</style>
+
+{% if error is defined and error != null %}
+<div class="alert alert-error">
+  {{ error|raw }}<br />
+</div>
+{% endif %}
+
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>Information :</h4>
+  <p><br />
+    Sélectionnez la miniature de l'album en cliquant simplement dessus.</p>
+</div>
+
+<form action="{{ path('admin_album_new_thumb', {year: album_year, id: album_id}) }}" method="POST">
+<div id="thumbs">
+    {% for image in images %}
+
+    <input type="radio" name="thumb" id="thumb-{{ loop.index }}" value="{{ image }}" />
+    <label for=thumb-{{ loop.index }}>
+        <img src="{{ asset('miniatures/' ~ album_id ~ '/' ~ image) }}" alt="{{ image }}"  class="img-polaroid" 
+  style="max-height : 125px; margin: 10px;" />
+    </label>
+
+    {% endfor %}
+    
+
+</div>
+
+
+<script type="text/javascript">
+$('#thumbs input:radio').addClass('input_hidden');
+$('#thumbs label').click(function() {
+  $(this).addClass('selected').siblings().removeClass('selected');
+});
+
+</script>
+
+
+
+
+
+
+    <blockquote class="pull-right">
+        <p><strong>C'est presque terminé !</strong><br />
+        <button class="btn btn-large btn-success" type="submit">Suivant &gt;</button></p>
+    </blockquote>
+</form>
+    
+<p style="clear: both;"></p>
+
+
+
+
+
+
+
+
+{% endblock %}

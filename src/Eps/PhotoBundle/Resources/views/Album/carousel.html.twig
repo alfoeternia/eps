@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Gestion du carousel</h1>
+
+    <hr />
+	<a class="btn btn-success" href="{{ path('admin_carousel_new') }}">Ajouter une photo</a>
+	<hr />
+	{% for slider in sliders %}
+		<div class="carousel-button">
+			<a href="{{ path('admin_carousel_edit', {'id': slider.id}) }}">
+				<img src="{{ asset('img/slider/' ~ slider.photo) }}" alt="" />
+				<p>Modifier la photo de l'album : {{ slider.album.name }} réalisé par : {{ slider.user.username }} {% if slider.actif == true %}
+				<span class="label label-success">Actif</span>
+			{% else %}
+				<span class="label label-warning">Inactif</span>
+			{% endif %}</p>
+			</a>
+			
+		</div>
+	
+	{% endfor %}
+
+	<p style="clear: both;"></p>
+{% endblock %}

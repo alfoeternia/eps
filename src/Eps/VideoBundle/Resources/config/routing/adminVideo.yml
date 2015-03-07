@@ -1,0 +1,46 @@
+admin_video:
+    pattern:  /
+    defaults: { _controller: "EpsVideoBundle:AdminVideo:index" }
+
+admin_video_paginated:
+    pattern: /page/{page}
+    defaults: { _controller: EpsVideoBundle:AdminVideo:index }
+
+admin_video_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EpsVideoBundle:AdminVideo:show" }
+
+admin_video_new:
+    pattern:  /new
+    defaults: { _controller: "EpsVideoBundle:AdminVideo:new" }
+
+admin_video_new_upload:
+    pattern: /new/upload/{year}/{id}
+    defaults: { _controller: EpsVideoBundle:AdminVideo:newUpload }
+
+admin_video_new_thumb:
+    pattern: /new/thumb/{year}/{id}
+    defaults: { _controller: EpsVideoBundle:AdminVideo:newThumb }
+
+admin_video_new_finish:
+    pattern: /new/finish/{year}/{id}
+    defaults: { _controller: EpsVideoBundle:AdminVideo:newFinish }
+
+admin_video_create:
+    pattern:  /create
+    defaults: { _controller: "EpsVideoBundle:AdminVideo:create" }
+    requirements: { _method: post }
+
+admin_video_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EpsVideoBundle:AdminVideo:edit" }
+
+admin_video_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EpsVideoBundle:AdminVideo:update" }
+    requirements: { _method: post|put }
+
+admin_video_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EpsVideoBundle:AdminVideo:delete" }
+    requirements: { _method: post|delete }

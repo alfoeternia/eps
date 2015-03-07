@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Edition d'un album</h1>
+
+    <hr />
+
+    {% form_theme edit_form '::forms.html.twig' %}
+
+    {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+    <div class="form-elem">
+		<div class="form-elem-title">Informations de base</div>
+
+		{{ form_row(edit_form.name) }}
+		{{ form_row(edit_form.date) }}
+		{{ form_row(edit_form.access) }}
+		{{ form_row(edit_form.published) }}
+		{{ form_row(edit_form.category) }}
+		{{ form_row(edit_form.visit_count) }}
+		{{ form_row(edit_form.like_count) }}
+    </div>
+
+    <div class="form-elem">
+		<div class="form-elem-title">Reporters</div>
+
+		{{ form_row(edit_form.reporters, {attr: {'size' : 15, 'class' : 'span5'}})  }}
+    </div>
+
+    <div class="form-elem">
+		<div class="form-elem-title">Vidéo associée</div>
+
+		{{ form_row(edit_form.video, {attr: {'size' : 15, 'class' : 'span5'}})  }}
+    </div>
+
+     <div class="form-elem">
+		<div class="form-elem-title">Enregistrement</div>
+	    <div class="control-group">
+			<!-- Button -->
+			<div class="controls">
+				<button class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Rechercher">Enregistrer</button>
+			</div>
+		</div>
+	</div>
+    {{ form_end(edit_form) }}
+
+
+    <a class="btn btn-success" href="{{ path('admin_album') }}">
+        Retour à la liste
+    </a>
+
+    {{ form_start(delete_form) }}
+		{{ form_row(delete_form.submit, { 'attr': {'class': 'btn btn-danger'} }) }}
+	{{ form_end(delete_form) }}
+</ul>
+{% endblock %}

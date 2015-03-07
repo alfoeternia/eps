@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block content -%}
-    <h1>Vidéo</h1>
+    <h1>Album</h1>
 
     <hr />
 
@@ -12,36 +12,48 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
+                <th>Name</th>
                 <td>{{ entity.name }}</td>
             </tr>
             <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Année</th>
-                <td>{{ entity.year }}</td>
+                <th>Thumb</th>
+                <td>{{ entity.thumb }}</td>
             </tr>
             <tr>
-                <th>Téléchargements</th>
-                <td>{{ entity.downloadCount }}</td>
+                <th>Published</th>
+                <td>{{ entity.published }}</td>
             </tr>
             <tr>
-                <th>Accès</th>
+                <th>Access</th>
                 <td>{{ entity.access }}</td>
             </tr>
             <tr>
-                <th>Url</th>
-                <td>{{ entity.url }}</td>
+                <th>Visit_count</th>
+                <td>{{ entity.visitcount }}</td>
             </tr>
             <tr>
-                <th>Source</th>
-                <td>{{ entity.source }}</td>
+                <th>Like_count</th>
+                <td>{{ entity.likecount }}</td>
             </tr>
         </tbody>
     </table>
 
 
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_album') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_album_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

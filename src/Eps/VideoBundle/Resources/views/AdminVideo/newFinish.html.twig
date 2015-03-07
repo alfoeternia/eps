@@ -1,0 +1,56 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+<h2>Ajout d'une vidéo</h2>
+
+<hr />
+
+<ul class="progress-tracker">
+  <li class="number done">1</li>
+  <li class="text done">Informations</li>
+
+  <li class="number done">2</li>
+  <li class="text done">Upload des photos</li>
+
+  <li class="number done">3</li>
+  <li class="text done">Sélection de la miniature</li>
+
+  <li class="number active">4</li>
+  <li class="text active">Récapitulatif</li>
+</ul>
+
+
+
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>Information :</h4>
+  <p><br />
+    <strong>Bravo ! Votre vidéo a été publié.</strong><br /><br />
+
+    Vous pouvez prévisualiser votre vidéo ici : <a href="{{ path('video_show', {'id': video_id}) }}" >Vidéo n°{{ video_id }}</a>.</p>
+</div>
+
+
+
+
+
+
+
+    <blockquote class="pull-right">
+        <p><strong>C'est terminé !</strong><br />
+        <a class="btn btn-large btn-success" href="{{ path('admin') }}">Accueil de l'administration</a></p>
+    </blockquote>
+</form>
+    
+<p style="clear: both;"></p>
+
+
+
+
+
+
+
+
+{% endblock %}

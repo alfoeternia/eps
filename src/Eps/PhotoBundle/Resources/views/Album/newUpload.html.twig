@@ -459,8 +459,8 @@ var myDropzone = Dropzone.options.dropzone = {
   url: "{{ oneup_uploader_endpoint('reporter') }}",
   paramName: "file",
   maxFilesize: 32,
-  parallelUploads: 3,
-  acceptedFiles: "image/jpeg,image/jpg",
+  parallelUploads: 1,
+  acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
   autoProcessQueue: true,
   init: function() {
   	this.on("sending", function(file, xhr, formData) { 

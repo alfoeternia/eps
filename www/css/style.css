@@ -1,8 +1,8 @@
-/*
+﻿/*
  * EFREI Picture Studio
  * Style CSS
  *
- * @author Alexis Fouché
+ * @author Alexis FouchÃ©
  *
  */
 
@@ -624,6 +624,35 @@ h2 {
 	float: left;
 }
 
+.carousel-button {
+	margin-bottom: 5px;
+	padding: 8px;
+	height: 210px;
+	width: 420px;
+	border: 1px solid #e7e7e7;
+	border-left:3px solid #c3c3c3;
+	border-right:3px solid #c3c3c3;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+
+	background: #ebebeb;	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ebebeb));
+	background: -webkit-linear-gradient(top, #fff, #ebebeb);
+	background: -moz-linear-gradient(top, #fff, #ebebeb);
+	background: -o-linear-gradient(top, #fff, #ebebeb);
+	background: -ms-linear-gradient(top, #fff, #ebebeb);
+	background: linear-gradient(top, #fff, #ebebeb);
+
+
+	text-align: center;
+	font-size: 14px;
+	margin: 10px;
+	float: left;
+}
+
 .form-elem {
 	position: relative;
 	margin: 15px 0;
@@ -665,16 +694,10 @@ label {
 .btn-primary {
 	background-color: #7495C2;
 	*background-color: #28518F;
-	background-image: -moz-linear-gradient(top, #7495C2, #28518F);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7495C2), to(#28518F));
-	background-image: -webkit-linear-gradient(top, #7495C2, #28518F);
-	background-image: -o-linear-gradient(top, #7495C2, #28518F);
-	background-image: linear-gradient(to bottom, #7495C2, #28518F);
 	background-repeat: repeat-x;
 	border-color: #28518F #28518F #002a80;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7495C2', endColorstr='#ff28518F', GradientType=0);
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	background-image: linear-gradient(to bottom, #7495C2, #28518F);
 }
 
 .btn-primary:hover {

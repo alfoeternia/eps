@@ -14,6 +14,11 @@ group:
 # Security
 "Bad credentials": Nom d'utilisateur ou mot de passe incorrect
 
+title:
+    registration:
+         checkEmail: Un e-mail a été envoyé
+         confirmed : Compte activé
+
 security:
     login:
         username: "Nom d'utilisateur :"

@@ -15,16 +15,18 @@ class VideoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('year')
-            ->add('downloadCount')
+            ->add('name', null, array('label' => 'Titre'))
+            ->add('description', null, array('label' => 'Description'))
+            ->add('year', null, array('label' => 'Année'))
+			->add('download_count', null, array('label' => 'Nombre de téléchargement'))
             ->add('access', 'choice', array(
+                    'label' => 'Accès',
                     'choices'   => array(
                         'ROLE_REPORTER' => 'Privée - interne à EPS',
                         'ROLE_USER' => 'Privée',
                         'IS_AUTHENTICATED_ANONYMOUSLY' => 'Publique')))
-            ->add('url')
+            ->add('url', null, array('label' => 'Url ou nom du fichier sur le ftp'))
+            ->add('thumb', null, array('label' => 'Miniature'))
             ->add('source', 'choice', array(
                     'choices'   => array(
                         'LOCAL' => 'Vidéo locale (FTP)',

@@ -69,6 +69,13 @@ class Video
      * @ORM\Column(name="source", type="string", length=255)
      */
     private $source;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="thumb", type="string", length=255)
+     */
+    private $thumb;
 
     /**
      * @ORM\ManyToMany(targetEntity="Eps\UserBundle\Entity\User")
@@ -81,6 +88,9 @@ class Video
         $this->access = 'ROLE_REPORTER';
         $this->reporters = new \Doctrine\Common\Collections\ArrayCollection();
         $this->year = date("Y");
+		$this->source = 'LOCAL';
+		$this->url = '';
+        $this->thumb = '';
     }
 
 
@@ -253,6 +263,29 @@ class Video
     public function getSource()
     {
         return $this->source;
+    }
+	
+	/**
+     * Set thumb
+     *
+     * @param string $thumb
+     * @return Video
+     */
+    public function setThumb($thumb)
+    {
+        $this->thumb = $thumb;
+    
+        return $this;
+    }
+
+    /**
+     * Get thumb
+     *
+     * @return string 
+     */
+    public function getThumb()
+    {
+        return $this->thumb;
     }
 
     /**

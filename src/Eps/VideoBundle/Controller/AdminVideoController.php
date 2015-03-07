@@ -24,7 +24,7 @@ class AdminVideoController extends Controller
      * @Method("GET")
      * @Template("EpsVideoBundle:AdminVideo:index.html.twig")
      */
-    public function indexAction()
+    public function indexAction($page = null)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -51,14 +51,17 @@ class AdminVideoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('admin_video_show', array('id' => $entity->getId())));
+			
+			return $this->redirect($this->generateUrl('admin_video_new_upload', 
+                            array(  'id' => $entity->getId(),
+                                    'year' => $entity->getYear()
+                                 )));
         }
 
-        return array(
+        return $this->render('EpsVideoBundle:AdminVideo:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
@@ -75,7 +78,10 @@ class AdminVideoController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+		
+        $form->remove('url');
+        $form->remove('source');
+        $form->remove('thumb');
 
         return $form;
     }
@@ -92,12 +98,44 @@ class AdminVideoController extends Controller
         $entity = new Video();
         $form   = $this->createCreateForm($entity);
 
-        return array(
+        return $this->render('EpsVideoBundle:AdminVideo:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
+    }
+	
+	public function newThumbAction($year, $id)
+    {
+        $request = $this->getRequest();
+        $error = null;
+
+        return $this->render('EpsVideoBundle:AdminVideo:newThumb.html.twig',
+                        array(  'video_id' => $id,
+                                'video_year' => $year,
+                                'error' => $error));
     }
 
+	public function newFinishAction($year, $id)
+    {
+        $error = null;
+        return $this->render('EpsVideoBundle:AdminVideo:newFinish.html.twig',
+                        array(  'video_id' => $id,
+                                'video_year' => $year,
+                                'error' => $error));
+    }
+
+    /**
+     * Displays a dropzone for uploading images
+     *
+     */
+    public function newUploadAction($year, $id)
+    {
+        return $this->render('EpsVideoBundle:AdminVideo:newUpload.html.twig',
+                        array(  'video_id' => $id,
+                                'video_year' => $year));
+    }
+	
+	
     /**
      * Finds and displays a Video entity.
      *
@@ -242,5 +280,37 @@ class AdminVideoController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+	
+	 public function ownAction($page = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('EpsPhotoBundle:Album')
+                    ->createQueryBuilder('a')
+                    ->orderBy('a.id', 'DESC')
+                    ->join('a.category', 'c')
+                    ->join('a.reporters', 'r')
+                    ->addSelect('c')
+                    ->addSelect('r')
+                    ->where('r = :reporter')
+                    ->getQuery();
+        $query->setParameters(array('reporter' => $this->get('security.context')->getToken()->getUser()));
+        $albums = $query->getResult();
+
+        $adapter = new ArrayAdapter($albums);
+
+        $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(10);
+
+        if( !$page ) $page = 1;
+
+        try {
+            $pagerfanta->setCurrentPage($page);
+        } catch (NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('EpsAdminBundle:Album:own.html.twig', array( 'albums' => $albums,
+                                                                            'pagerfanta' => $pagerfanta));
     }
 }

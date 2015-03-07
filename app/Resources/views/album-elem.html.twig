@@ -1,7 +1,9 @@
 		<li class="album-box album-box-{% if loop.index is even %}even{% else %}odd{% endif %} {% if album.access == "ROLE_REPORTER" %}album-box-admin{% endif %}">
 
 			<div class="album-box-thumb">
+				<a href="{{ path('album_view', {'id': album.id}) }}">
 				<img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ album.thumb) }}" class="img-polaroid" alt="" />
+				</a>
 			</div>
 
 			{% if album.access == 'ROLE_USER' and not is_granted('ROLE_USER') %}
@@ -30,23 +32,31 @@
 					vue{% if album.getVisitCount|length > 1%}s{% endif%}
 				</p>
 				
-				<p><br /></p>
-				<div style="float:left;" class="btn-group">
+				<p><br /><br /></p>
+				<div style="float:left;margin-top:-10px" class="btn-group" >
 					<a href="{{ path('album_view', {'id': album.id}) }}" class="btn btn-small"><i class="icon-play-circle"></i> Visualiser</a>
 					<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
 					<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-download"></i> Télécharger</a></li>
+						<li><a href="{{ path('album_download', {'id': album.id}) }}" data-toggle="modal"><i class="icon-download"></i> Télécharger</a></li>
 						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-envelope"></i> Envoyer à un ami</a></li>
-						<!--<li class="divider"></li>
-						<li><a href="#"><i class="icon-folder-open"></i> Rendre public</a></li>
-						<li><a href="#"><i class="icon-pencil"></i> Editer d'album</a></li>
-						<li><a href="#"><i class="icon-trash"></i> Supprimer</a></li>-->
+						
+	{% if is_granted('ROLE_MAJ') %}
+						<li class="divider"></li>
+					{% if album.published == true %}
+						<li><a href="{{ path('admin_album_publish', {'id': album.id}) }}"><i class="icon-folder-open"></i> Dé-publier</a></li>
+                    {% else %}
+						<li><a href="{{ path('admin_album_publish', {'id': album.id}) }}"><i class="icon-folder-open"></i> Rendre public</a></li>
+                    {% endif %}
+						<li><a href="{{ path('admin_album_edit', {'id': album.id}) }}"><i class="icon-trash"></i> Editer/Supprimer d'album</a></li>
+						<li><a href="{{ path('admin_album_add_upload', {'id': album.id}) }}"><i class="icon-pencil"></i> Ajouter des Photos</a></li>
+						
+	{% endif %}
 					</ul>
 				</div>
-
-				<p class="album-box-date">{{ album.date | localizeddate('full', 'none', 'fr_FR') | title }}</p>
+	
+				<p class="album-box-date" style="margin-top:-80px">{{ album.date | localizeddate('full', 'none', 'en') | title }}</p>
 
 				{% if album.video is not null %}
 				<div style="float:left; margin-left: 10px;margin-top: 5px;">
