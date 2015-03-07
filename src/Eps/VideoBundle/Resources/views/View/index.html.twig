@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+
+<h2><strong>Vidéo : </strong> {{ entity.name }}</h2>
+
+	<hr />
+
+	<div class="album-desc" style="height:80px">
+				<p>
+					<strong><a href="{{ asset('data/' ~ entity.year ~ '/' ~ entity.url) }}" download="{{ entity.url }}">Télécharger la vidéo</a></strong>
+
+				</p>
+				<p>
+					<i class="icon-user"></i>
+					Reportaire{% if entity.reporters|length > 1%}s{% endif%} : 
+					{% for reporter in entity.reporters %}
+						<strong><a href="{{ path('user_show', {id: reporter.id }) }}">{{ reporter.username }}</a></strong>{% if not loop.last %},{% endif %}
+					{% endfor %}
+				</p>
+				
+				<p style="float:left;margin-right: 20px;">
+					<i class="icon-download-alt"></i>
+					<strong>{{ entity.downloadCount }}</strong>
+					téléchargement{% if entity.downloadCount|length > 1%}s{% endif%}
+				</p>
+				
+				
+
+				<p class="album-box-date" style="float:right;margin-top: -60px;">{{ entity.year|title }}</p>
+	</div>
+
+	<video src="{{ asset('data/' ~ entity.year ~ '/' ~ entity.url) }}" width="100%" controls="controls" 
+	
+	{% if entity.thumb != '' %}
+	poster="{{ asset('miniaturesVideo/' ~ entity.id ~ '/' ~ entity.thumb) }}"
+			{% endif %}
+			>{{ entity.name }}</video>
+
+
+	<p style="clear:both;"> </p>
+	
+
+{% endblock %}

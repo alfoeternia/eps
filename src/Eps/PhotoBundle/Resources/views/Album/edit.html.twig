@@ -32,6 +32,67 @@
 
 		{{ form_row(edit_form.video, {attr: {'size' : 15, 'class' : 'span5'}})  }}
     </div>
+	
+	
+	<style>
+.input_hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+.selected {
+  background-color: #99dd99;
+}
+
+#thumbs label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+#thumbs label:hover {
+  background-color: #efefef;
+}
+
+#thumbs label img {
+  padding: 3px;
+
+}
+
+
+
+</style>
+	
+     <div class="form-elem">
+		<div class="form-elem-title">Miniatures</div>
+	<div id="thumbs">
+		{% for image in images %}
+
+		<input type="radio" name="thumb" id="thumb-{{ loop.index }}" value="{{ image }}" />
+		<label for=thumb-{{ loop.index }}>
+			<img src="{{ asset('miniatures/' ~ album_id ~ '/' ~ image) }}" alt="{{ image }}" 
+{% if thumb == image %}
+	class="img-polaroid selected" 
+	{% else %}
+	class="img-polaroid"
+	{% endif %}
+	  style="max-height : 125px; margin: 10px;" />
+		</label>
+
+		{% endfor %}
+		
+
+	</div>
+   </div>
+
+	<script type="text/javascript">
+	$('#thumbs input:radio').addClass('input_hidden');
+	$('#thumbs label').click(function() {
+	  $(this).addClass('selected').siblings().removeClass('selected');
+	});
+
+	</script>
+
 
      <div class="form-elem">
 		<div class="form-elem-title">Enregistrement</div>

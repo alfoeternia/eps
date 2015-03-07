@@ -16,7 +16,7 @@
 
     	<service
             id="upload.album_id_listener"
-            class="Eps\AdminBundle\EventListener\AlbumIdValidationListener"
+            class="Eps\AdminBundle\EventListener\AlbumVideoIdValidationListener"
         >
             <tag name="kernel.event_listener" event="oneup_uploader.validation" method="onValidate" />
         </service>

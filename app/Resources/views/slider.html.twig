@@ -1,21 +1,17 @@
 		<div class="main-slider">
 			<div id="slider" class="nivoSlider">
-				<img src="{{ asset('img/slide1.jpg') }}" alt="" title="#htmlcaption">
-				<img src="{{ asset('img/slide2.jpg') }}" alt="" title="#htmlcaption1">
-				<img src="{{ asset('img/slide3.jpg') }}" alt="" title="#htmlcaption2">
+			{% for slider in sliders %}
+				<img src="{{ asset('img/slider/' ~ slider.photo) }}" alt="" title="#htmlcaption{{ slider.id }}">
+			{% endfor %}
 			</div>
+			{% for slider in sliders %}
+				<div id="htmlcaption{{ slider.id }}" class="nivo-html-caption">
+					<span>{{ slider.album.name }}, <em>par {{ slider.user.username }}</em></span>
+				</div>
+			{% endfor %}
+			
 
-			<div id="htmlcaption" class="nivo-html-caption">
-				<span>Soirée d'intégration - Boite (2), <em>par Amélie</em></span>
-			</div>
-
-			<div id="htmlcaption1" class="nivo-html-caption">
-				<span>Soirée d'intégration - Boite (1), <em>par Alfo</em></span>
-			</div>
-
-			<div id="htmlcaption2" class="nivo-html-caption">
-				<span>Soirée d'intégration - Bus, <em>par Alfo</em></span>
-			</div>
+		
 
 			<div id="preloader"></div>
 		</div>

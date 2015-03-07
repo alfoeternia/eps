@@ -1,5 +1,5 @@
 admin:
-    pattern:  /admin
+    pattern:  /admininistration
     defaults: { _controller: EpsAdminBundle:Default:index }
 
 

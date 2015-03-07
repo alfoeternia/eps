@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Edition d'une photo du carousel</h1>
+
+    <hr />
+	<ul class="progress-tracker">
+    <li class="number active">1</li>
+    <li class="text active">Informations</li>
+    
+    <li class="number">2</li>
+    <li class="text">Upload de la photo</li>
+    
+  </ul>
+     <div class="form-elem">
+		<div class="form-elem-title">Enregistrement</div>
+	    <div class="control-group">
+    {% form_theme edit_form '::forms.html.twig' %}
+
+    {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+		{{ form_row(edit_form.actif) }}
+		{{ form_row(edit_form.album, {attr: {'size' : 15, 'class' : 'span5'}}) }}
+		{{ form_row(edit_form.user, {attr: {'size' : 15, 'class' : 'span5'}}) }}
+			<!-- Button -->
+			<div class="controls">
+				<button class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Rechercher">Enregistrer</button>
+			</div>
+		</div>
+	</div>
+    {{ form_end(edit_form) }}
+
+
+    <a class="btn btn-success" href="{{ path('admin_carousel') }}">
+        Retour à la liste
+    </a>
+	<a class="btn btn-danger" href="{{ path('admin_carousel_delete', {'id': entity.id}) }}">
+        Supprimer
+    </a>
+</ul>
+{% endblock %}

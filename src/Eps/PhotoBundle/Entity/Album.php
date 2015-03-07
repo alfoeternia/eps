@@ -350,4 +350,9 @@ class Album
     {
         $this->reporters->removeElement($reporters);
     }
+	
+	public function __toString()
+    {
+        return $this->id.' - '.$this->name;
+    }
 }

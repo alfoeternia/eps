@@ -9,7 +9,9 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
 
 use Eps\PhotoBundle\Entity\Album;
+use Eps\StaticPagesBundle\Entity\SliderPhoto;
 use Eps\PhotoBundle\Form\AlbumType;
+use Eps\PhotoBundle\Form\SliderPhotoType;
 
 /**
  * Album controller.
@@ -18,6 +20,197 @@ use Eps\PhotoBundle\Form\AlbumType;
 class AlbumController extends Controller
 {
 
+/**
+     * Admin carousel
+     *
+     */
+    public function carouselAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+		
+		$query = $em->getRepository('EpsStaticPagesBundle:SliderPhoto')
+					->createQueryBuilder('s')
+					->orderBy('s.id', 'ASC')
+					->getQuery();
+        $sliders = $query->getResult();
+
+        return $this->render('EpsPhotoBundle:Album:carousel.html.twig', 
+        	array(	'sliders' => $sliders
+        			));
+    }
+	
+	/**
+     * Creates a new Album entity.
+     *
+     */
+    public function carouselCreateAction(Request $request)
+    {
+        $entity = new SliderPhoto();
+        $form = $this->carouselCreateCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+            return $this->redirect($this->generateUrl('admin_carousel_upload', 
+                            array(  'id' => $entity->getId()
+                                 )));
+        }
+
+        return $this->render('EpsPhotoBundle:Album:carouselNew.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+    }
+	
+	    /**
+    * Creates a form to create a SliderPhoto entity.
+    *
+    * @param Album $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function carouselCreateCreateForm(SliderPhoto $entity)
+    {
+        $form = $this->createForm(new SliderPhotoType(), $entity, array(
+            'action' => $this->generateUrl('admin_carousel_create'),
+            'method' => 'POST',
+        ));
+
+        //$form->add('submit', 'submit', array('label' => 'Créer'));
+
+        $form->remove('thumb');
+
+        return $form;
+    }
+
+    /**
+     * Displays a form to create a new SliderPhoto entity.
+     *
+     */
+    public function carouselNewAction()
+    {
+        $entity = new SliderPhoto();
+        $form   = $this->carouselCreateCreateForm($entity);
+
+        return $this->render('EpsPhotoBundle:Album:carouselNew.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+    }
+	
+	/**
+     * Displays a form to edit an existing SliderPhoto entity.
+     *
+     */
+    public function carouselEditAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('EpsStaticPagesBundle:SliderPhoto')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find SliderPhoto entity.');
+        }
+
+        $editForm = $this->createEditCarouselForm($entity);
+		
+		
+        $request = $this->getRequest();
+
+        return $this->render('EpsPhotoBundle:Album:carouselEdit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+								'sliderPhoto_id' => $entity->getId(),
+        ));
+    }
+	
+	/**
+    * Creates a form to edit a SliderPhoto entity.
+    *
+    * @param SliderPhoto $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditCarouselForm(SliderPhoto $entity)
+    {
+        $form = $this->createForm(new SliderPhotoType(), $entity, array(
+            'action' => $this->generateUrl('admin_carousel_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        //$form->add('submit', 'submit', array('label' => 'Mettre à jour'));
+
+
+        return $form;
+    }
+	
+    /**
+     * Edits an existing SliderPhoto entity.
+     *
+     */
+    public function carouselUpdateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('EpsStaticPagesBundle:SliderPhoto')->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find SliderPhoto entity.');
+        }
+
+        $editForm = $this->createEditCarouselForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+			$em->flush();
+			
+			return $this->redirect($this->generateUrl('admin_carousel_upload', 
+                            array(  'id' => $entity->getId()
+                                 )));
+        }
+
+        return $this->render('EpsPhotoBundle:Album:carouselEdit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+        ));
+    }
+	
+	/**
+     * Displays a dropzone for uploading images
+     *
+     */
+    public function carouselUploadAction($id)
+    {
+        return $this->render('EpsPhotoBundle:Album:carouselUpload.html.twig',
+                        array(  'sliderPhoto_id' => $id));
+    }
+	
+	/**
+     * Deletes a SliderPhoto entity.
+     *
+     */
+    public function carouselDeleteAction(Request $request, $id)
+    {
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('EpsStaticPagesBundle:SliderPhoto')->find($id);
+
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find SliderPhoto entity.');
+		}
+
+		$em->remove($entity);
+		$em->flush();
+
+        return $this->redirect($this->generateUrl('admin_carousel'));
+    }
+	
+	
+	
+	
+	
+	
+	
     /**
      * Lists all Album entities.
      *
@@ -117,8 +310,13 @@ class AlbumController extends Controller
     public function newThumbAction($year, $id)
     {
         $path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $id;
-        $images = glob($path . "/*.jpg");
-        $images = array_map('basename', $images);
+        $images = glob("$path/*.{png,jpg,jpeg,gif,PNG,JPG,JPEG,GIF}",GLOB_BRACE);
+		
+        
+		if(!empty($images))
+		{
+			$images = array_map('basename', $images);
+		}
         $request = $this->getRequest();
         $error = null;
        
@@ -152,8 +350,11 @@ class AlbumController extends Controller
     public function newFinishAction($year, $id)
     {
         $path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $id;
-        $images = glob($path . "/*.jpg");
-        $images = array_map('basename', $images);
+        $images = glob("$path/*.{png,jpg,jpeg,gif,PNG,JPG,JPEG,GIF}",GLOB_BRACE);
+		if(!empty($images))
+		{
+			$images = array_map('basename', $images);
+		}
         $request = $this->getRequest();
         $error = null;
        
@@ -232,11 +433,26 @@ class AlbumController extends Controller
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+		
+		$path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $id;
+        $images = glob("$path/*.{png,jpg,jpeg,gif,PNG,JPG,JPEG,GIF}",GLOB_BRACE);
+		
+        
+		if(!empty($images))
+		{
+			$images = array_map('basename', $images);
+		}
+		
+        $request = $this->getRequest();
 
         return $this->render('EpsPhotoBundle:Album:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+                                'images' => $images,
+								'album_id' => $entity->getId(),
+                                'album_year' => $entity->getDate()->format("Y"),
+								'thumb' => $entity->getThumb(),
         ));
     }
 
@@ -269,7 +485,6 @@ class AlbumController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EpsPhotoBundle:Album')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Album entity.');
         }
@@ -279,9 +494,12 @@ class AlbumController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+			if($request->get('thumb')) {
+				$entity->setThumb($request->get('thumb'));
+			}
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_album_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_album'));
         }
 
         return $this->render('EpsPhotoBundle:Album:edit.html.twig', array(
@@ -289,6 +507,24 @@ class AlbumController extends Controller
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+	
+	/**
+     * Displays a dropzone for uploading images
+     *
+     */
+    public function addUploadAction($id)
+    {
+	$em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('EpsPhotoBundle:Album')->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Album entity.');
+        }
+
+        return $this->render('EpsPhotoBundle:Album:addUpload.html.twig',
+                        array(  'album_id' => $id,
+                                'album_year' => $entity->getDate()->format("Y")));
     }
 
     /**

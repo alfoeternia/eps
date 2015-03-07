@@ -1,0 +1,53 @@
+		<li class="album-box album-box-{% if loop.index is even %}even{% else %}odd{% endif %} {% if video.access == "ROLE_REPORTER" %}album-box-admin{% endif %}">
+
+			<div class="album-box-thumb">
+			{% if video.thumb != '' %}
+				<img src="{{ asset('miniaturesVideo/' ~ video.id ~ '/miniature/' ~ video.thumb) }}" class="img-polaroid" alt="" />
+			{% else %}
+				<img src="{{ asset('img/logo-small.png') }}" class="img-polaroid" alt="" />
+			{% endif %}
+			
+			</div>
+
+			{% if video.access == 'ROLE_USER' and not is_granted('ROLE_USER') %}
+			<div class="album-locked"></div>
+			{% elseif video.access == 'ROLE_USER' %}
+			<div class="album-unlocked"></div>
+			{% endif %}
+
+			<div class="album-box-text">
+				<h5><a href="{{ path('video_show', {'id': video.id}) }}">{{ video.name }}</a></h5>
+				
+
+				
+				<p style="float:left;margin-right: 10px;">
+					<i class="icon-download-alt"></i>
+					<strong>{{ video.getDownloadCount }}</strong>
+					téléchargement{% if video.getDownloadCount|length > 1%}s{% endif%}
+				</p>
+				
+				<p><br /></p>
+				<div style="float:left;" class="btn-group">
+					<a href="{{ path('video_show', {'id': video.id}) }}" class="btn btn-small"><i class="icon-play-circle"></i> Visualiser</a>
+					<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-download"></i> Télécharger</a></li>
+						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-envelope"></i> Envoyer à un ami</a></li>
+						<!--<li class="divider"></li>
+						<li><a href="#"><i class="icon-folder-open"></i> Rendre public</a></li>
+						<li><a href="#"><i class="icon-pencil"></i> Editer d'album</a></li>
+						<li><a href="#"><i class="icon-trash"></i> Supprimer</a></li>-->
+					</ul>
+				</div>
+
+				<p class="album-box-date">{{ video.year }}</p>
+
+				
+				
+				
+								
+			</div>
+			
+		</li>

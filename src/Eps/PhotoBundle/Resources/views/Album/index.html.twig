@@ -31,11 +31,13 @@
                 <td style="vertical-align:middle;">{{ album.id }}</td>
                 <td style="vertical-align:middle;">
                     <div class="album-box-thumb-admin">
+					<a href="{{ path('album_view', {'id': album.id}) }}">
                     <img src="{{ asset('miniatures/' ~ album.id ~ '/' ~ album.thumb) }}" class="img-polaroid" alt="" />
+					</a>
                     </div>
                 </td>
                 <td>
-                    <h5 style="margin: 1px;"><strong><a href="#">{{ album.name }}</a></strong></h5>
+                    <h5 style="margin: 1px;"><strong><a href="{{ path('album_view', {'id': album.id}) }}">{{ album.name }}</a></strong></h5>
                     <span style="float: right; margin-top: -25px;margin-right: 25px;"><em>{{ album.date|date('Y-m-d') }}</span>
                     <p style="float:left; width: 180px;"><i class="icon-user"></i>
                     Auteur{% if album.reporters|length > 1%}s{% endif%} : 
@@ -75,7 +77,7 @@
 
                     <p style="height: 3px;font-size: 3px;"></p>
                     
-                    <a class="btn btn-mini btn-info" href="{{ path('admin_album_delete', {'id': album.id}) }}"><i class="icon-th-large" style=""></i> Editer miniature</a>
+                    <a class="btn btn-mini btn-info" href="{{ path('admin_album_add_upload', {'id': album.id}) }}"><i class="icon-th-large" style=""></i> Ajouter des photos</a>
 
                 </td>
             </tr>

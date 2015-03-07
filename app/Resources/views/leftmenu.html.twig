@@ -9,7 +9,7 @@
 		<h4>Derniers connectés</h4>
 		<ul>
 			{% for user in users %}
-			<li><a href="#">{{ user.username }}</a>
+			<li><a href="{{ path('user_show', {id: user.id}) }}">{{ user.username }}</a>
 				<small><em>(<script>
 			document.write(moment("{{ user.getLastActivityText }}", "YYYYMMDD HHmmss").fromNow());
 		</script></em>)</small></li>

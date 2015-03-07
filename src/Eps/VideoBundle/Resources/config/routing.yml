@@ -1,0 +1,15 @@
+videos:
+    pattern:  /videos
+    defaults: { _controller: EpsVideoBundle:Default:index }
+
+videos_year:
+    pattern:  /videos/year/{year}
+    defaults: { _controller: EpsVideoBundle:Default:index }
+
+video_show:
+    pattern:  /video/{id}
+    defaults: { _controller: EpsVideoBundle:Video:index }
+
+EpsVideoBundle_admin_video_new:
+    resource: "@EpsVideoBundle/Resources/config/routing/adminVideo.yml"
+    prefix:   /admin/video

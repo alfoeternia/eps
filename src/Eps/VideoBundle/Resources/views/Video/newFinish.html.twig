@@ -1,0 +1,58 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content %}
+
+<h2>Ajout d'un album</h2>
+
+<hr />
+
+<ul class="progress-tracker">
+  <li class="number done">1</li>
+  <li class="text done">Informations</li>
+
+  <li class="number done">2</li>
+  <li class="text done">Upload des photos</li>
+
+  <li class="number done">3</li>
+  <li class="text done">Sélection de la miniature</li>
+
+  <li class="number active">4</li>
+  <li class="text active">Récapitulatif</li>
+</ul>
+
+
+
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>Information :</h4>
+  <p><br />
+    <strong>Bravo ! Votre album a été soumis à la validation par le bureau.</strong><br /><br />
+
+    Vous devez maintenant attendre la validation finale par le bureau afin de vérifier que son contenu est publiable. Vous recevrez un mail dès que votre album sera publié.<br /><br />
+
+    En attendant, vous pouvez prévisualiser votre album ici : <a href="{{ path('album_view', {'id': album_id}) }}" >Album n°{{ album_id }}</a>.</p>
+</div>
+
+
+
+
+
+
+
+    <blockquote class="pull-right">
+        <p><strong>C'est terminé !</strong><br />
+        <a class="btn btn-large btn-success" href="{{ path('admin') }}">Accueil de l'administration</a></p>
+    </blockquote>
+</form>
+    
+<p style="clear: both;"></p>
+
+
+
+
+
+
+
+
+{% endblock %}

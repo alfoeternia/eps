@@ -13,8 +13,7 @@ EpsUserBundle:
     prefix:   /
 
 EpsVideoBundle:
-    resource: "@EpsVideoBundle/Controller/"
-    type:     annotation
+    resource: "@EpsVideoBundle/Resources/config/routing.yml"
     prefix:   /
 
 EpsPhotoBundle:

@@ -57,17 +57,6 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
-        metadata_cache_driver: apc
-        query_cache_driver:
-            type: memcache
-            host: localhost
-            port: 11211
-            instance_class: Memcache
-        result_cache_driver:
-            type: memcache
-            host: localhost
-            port: 11211
-            instance_class: Memcache
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -102,8 +91,24 @@ oneup_uploader:
     mappings:
         reporter: 
             frontend: dropzone
-            allowed_extensions:    ['jpg', 'jpeg']
-            allowed_mimetypes:     ['image/jpg', 'image/jpeg']
+            allowed_extensions:    ['jpg', 'jpeg','png', 'gif', 'JPG', 'JPEG', 'PNG', 'GIF']
+            allowed_mimetypes:     ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+            namer: upload.custom_namer
+            #storage:
+            #    type: filesystem
+            #    directory: %kernel.root_dir%/../web/test2
+        video: 
+            frontend: dropzone
+            allowed_extensions:    ['mp4', 'mpeg', 'mpg', 'avi', 'MP4', 'MPEG', 'MPG', 'AVI']
+            allowed_mimetypes:     ['video/mp4', 'video/mpeg', 'video/mpg', 'video/avi']
+            namer: upload.custom_namer
+            #storage:
+            #    type: filesystem
+            #    directory: %kernel.root_dir%/../web/test2
+        slider: 
+            frontend: dropzone
+            allowed_extensions:    ['jpg', 'jpeg','png', 'gif', 'JPG', 'JPEG', 'PNG', 'GIF']
+            allowed_mimetypes:     ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
             namer: upload.custom_namer
             #storage:
             #    type: filesystem

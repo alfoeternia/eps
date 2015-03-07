@@ -12,4 +12,42 @@ use Doctrine\ORM\EntityRepository;
  */
 class VideoRepository extends EntityRepository
 {
+	public function findAllByYear($year, $start = 0, $limit = 50, $only_published = true)
+	{
+		$emConfig = $this->getEntityManager()->getConfiguration();
+		$emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+
+		$query = $this->createQueryBuilder('v');
+
+		$parameters = array();
+		if($year != 'all' 	&& $year != NULL) { $query->where('v.year = :year'); $parameters['year'] = $year; }
+
+		$query->setParameters($parameters);
+
+		//if($only_published)
+			//$query->andWhere('v.published = 1');
+					
+		$query = $query->orderBy('v.id', 'DESC')
+					->setMaxResults($limit)
+					->join('v.reporters', 'r')
+					->addSelect('r')
+					->getQuery();
+        return $query->getResult();
+	}
+
+	public function findYears()
+	{
+		$emConfig = $this->getEntityManager()->getConfiguration();
+		$emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+
+		$qb = $this->createQueryBuilder('v');
+		$qb->select('DISTINCT v.year AS years')->orderBy('years', 'DESC');
+
+		$results = $qb->getQuery()->getResult();
+		$years = array();
+		if($results != NULL)
+			foreach($results as $result)
+				$years[] = $result['years'];
+		return $years;
+	}
 }

@@ -17,23 +17,7 @@ use Eps\VideoBundle\Form\VideoType;
 class VideoController extends Controller
 {
 
-    /**
-     * Lists all Video entities.
-     *
-     * @Route("/videos", name="videos")
-     * @Method("GET")
-     * @Template("EpsVideoBundle:Video:index.html.twig")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('EpsVideoBundle:Video')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );
-    }
 
     /**
      * Finds and displays a Video entity.
@@ -42,18 +26,29 @@ class VideoController extends Controller
      * @Method("GET")
      * @Template("EpsVideoBundle:Video:show.html.twig")
      */
-    public function showAction($id)
+    public function indexAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+	
+	$em = $this->getDoctrine()->getManager();
+		
+		$video = $em->getRepository('EpsVideoBundle:Video')->find($id);
 
-        $entity = $em->getRepository('EpsVideoBundle:Video')->find($id);
+		if(	($video->getAccess() == "ROLE_USER" && !$this->get('security.context')->isGranted('ROLE_USER')) ||
+			($video->getAccess() == "ROLE_REPORTER" && !$this->get('security.context')->isGranted('ROLE_REPORTER')))
+			return $this->render('EpsVideoBundle:View:forbidden.html.twig');
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Video entity.');
-        }
 
-        return array(
-            'entity'      => $entity
-        );
+		$session = $this->getRequest()->getSession();
+		if(!$session->get('video_'.$id)) {
+			$video->setDownloadCount($video->getDownloadCount()+1);
+			$em->flush();
+			$session->set('video_'.$id, true);
+		}
+
+		
+		return $this->render('EpsVideoBundle:View:index.html.twig', 
+			array(	'entity' => $video,
+				));
+				
     }
 }
