@@ -36,7 +36,7 @@ http://localhost/EPSV2/www/app_dev.php
 Et normalement c'est fini!!
 
 
-## Instalation Linux ou Mac
+## Installation Linux ou Mac
 
 Tu as un Linux, donc tu sais faire, ou alors tu t'inspirse du dessus, pareil pour mac.
 
