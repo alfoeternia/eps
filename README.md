@@ -1,7 +1,7 @@
 Efrei Picture Studio v2.0
 ===
 
-## Instalation Windows
+## Installation Windows
 
 On commence par installer [wamp](http://wampserver.com), ou un truc du genre.
 
