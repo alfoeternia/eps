@@ -20,3 +20,6 @@ app/config/parameters.yml
 app/config/parameters.yml.prod
 
 *~
+
+# IntelliJ
+.idea
