@@ -16,11 +16,7 @@ class AlbumType extends AbstractType
     {
         $builder
             ->add('name', null, array('label' => 'Titre'))
-            ->add('date', 'date', array(
-                    'input'  => 'datetime',
-                    'widget' => 'single_text',
-                    'format' => 'd/M/y'
-                ))
+            ->add('date', 'date')
             ->add('thumb', null, array('label' => 'Miniature'))
             ->add('published', null, array('required' => false, 'label' => 'Publié ?'))
             ->add('access', 'choice', array(
