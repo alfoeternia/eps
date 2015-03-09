@@ -21,8 +21,16 @@ class UserType extends AbstractType
             ->add('lastLogin', null, array('label' => 'Dernière connexion'))
             ->add('locked', null, array('required' => false, 'label' => 'Bloqué'))
             ->add('expired', null, array('label' => 'Expiré'))
-            ->add('roles', null, array('label' => 'Rôle'))
-            ->add('rank', null, array('label' => 'Rang'))
+            ->add('roles', null,  array('label' => 'Rôle'))
+
+            ->add('rank', 'choice', array('label' => 'Rang','choices' =>
+                                                                     array('FORMER_REPORTER' => 'Ancien Reporter',
+                                                                     'GODFATHER' => 'Parrain',
+                                                                     'REPORTER' => 'Reporter',
+                                                                     'TREASURER' => 'Trésorier',
+                                                                     'PRESIDENT' => 'Président',
+                                                                     'SECRETARY' => 'Secrétaire',
+                                                                     'USER' => 'Utilisateur')))
             ->add('firstname', null, array('label' => 'Prénom'))
             ->add('lastname', null, array('label' => 'Nom'))
             ->add('promo', null, array('label' => 'Promo'))

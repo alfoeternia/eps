@@ -75,7 +75,7 @@ class UserController extends Controller
         $form->remove('locked');
         //$form->remove('roles');
 
-        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'class: btn btn-info')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'class: btn btn-info')));
 
         return $form;
     }
@@ -161,7 +161,7 @@ class UserController extends Controller
         $form->remove('mobile');
         //$form->remove('roles');
         //$form->remove('locked');
-        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'class: btn btn-info')));
+        $form->add('submit', 'submit', array('label' => 'Valider', 'attr' => array('class' => 'class: btn btn-info')));
 
         return $form;
     }
@@ -186,7 +186,7 @@ class UserController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_user_show', array('id' =>$id)));
         }
 
         return $this->render('EpsUserBundle:User:edit.html.twig', array(
@@ -231,7 +231,7 @@ class UserController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_user_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer'))
             ->getForm()
         ;
     }

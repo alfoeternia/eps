@@ -32,7 +32,11 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ entity.roles }}</td>
+                <td>
+		        {% for role in entity.roles %}
+                    - {{ role }} -
+                {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Id</th>
