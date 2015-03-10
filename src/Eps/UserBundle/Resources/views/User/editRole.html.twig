@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Edition d'un utilisateur</h1>
+
+      </ul>
+         <div class="form-elem">
+    		<div class="form-elem-title">Attribution du rôle</div>
+    	    <div class="control-group">
+
+
+    			<!-- Button -->
+    			<table class="table">
+        <thead>
+    			<tr>
+    			    <td>
+    			    <a class="btn btn-info" href="{{ path('admin_user_update_role', { 'id': entity.id }) }}">Aucun</a>
+    			    </td>
+    			    <td>
+    			    <a class="btn btn-primary btn-info" href="{{ path('admin_user_update_role', { 'id': entity.id , 'role': "ROLE_REPORTER" }) }}">Reporter</a>
+    			    </td>
+                    <td>
+    			    <a class="btn btn-warning" href="{{ path('admin_user_update_role', { 'id': entity.id , 'role': "ROLE_MAJ" }) }}">Responsable Maj</a>
+    			    </td>
+                    <td>
+    			    <a class="btn btn-danger" href="{{ path('admin_user_update_role', { 'id': entity.id , 'role': "ROLE_BUREAU" }) }}">Bureau</a>
+    			    </td>
+               </tr>
+        </thead>
+               </table>
+    		</div>
+    	</div>
+
+
+        <a class="btn btn-success" href="{{ path('admin_user') }}">
+            Retour à la liste
+        </a>
+    </ul>
+{% endblock %}

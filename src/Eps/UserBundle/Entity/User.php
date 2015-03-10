@@ -126,6 +126,15 @@ class User extends BaseUser
         return $this->firstname;
     }
 
+     public function setRole($role)
+    {
+        $this->roles = array();
+        if($role) {
+            $this->addRole($role);
+        }
+        return $this;
+    }
+
     /**
      * Set lastname
      *

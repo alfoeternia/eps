@@ -98,9 +98,9 @@
 
 						<ul>
 							<li class="first-child"><a href="{{ path('fos_user_profile_show') }}">Profil <em><small>({{ app.user.username }})</small></em></a></li>
-
+{% if is_granted('ROLE_REPORTER') %}
 							<li><a href="{{ path('admin') }}">Admin</a></li>
-
+{% endif %}
 							<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
 						</ul>
 

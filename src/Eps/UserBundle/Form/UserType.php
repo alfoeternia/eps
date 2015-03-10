@@ -21,7 +21,13 @@ class UserType extends AbstractType
             ->add('lastLogin', null, array('label' => 'Dernière connexion'))
             ->add('locked', null, array('required' => false, 'label' => 'Bloqué'))
             ->add('expired', null, array('label' => 'Expiré'))
-            ->add('roles', null,  array('label' => 'Rôle'))
+            ->add('roles', 'collection',  array('allow_add' => true,
+            'allow_delete' => true,'required' => false,'label' => 'Rôle',
+                                                                             'type' => 'choice',
+                                                                             'options' => array(
+                                                                       'choices'  => array('ROLE_REPORTER' => 'Reporter',
+            'ROLE_BUREAU' => 'Bureau',
+            'ROLE_MAJ' => 'Respo Maj'))))
 
             ->add('rank', 'choice', array('label' => 'Rang','choices' =>
                                                                      array('FORMER_REPORTER' => 'Ancien Reporter',

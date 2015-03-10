@@ -214,9 +214,8 @@ table.dataTable th:active {
                 </td>
                 
                 <td>
-                    <a class="btn btn-small btn-info" href="{{ path('admin_user_show', { 'id': entity.id }) }}">Voir</a>
+                    <a class="btn btn-small btn-info" href="{{ path('admin_user_edit_role', { 'id': entity.id }) }}">Rôle</a>
                     <a class="btn btn-small btn-warning" href="{{ path('admin_user_edit', { 'id': entity.id }) }}">Editer</a>
-                </ul>
                 </td>
             </tr>
         {% endfor %}
