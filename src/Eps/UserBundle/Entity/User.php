@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Eps\UserBundle\Entity\User
  *
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Eps\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
@@ -124,6 +124,15 @@ class User extends BaseUser
     public function getFirstname()
     {
         return $this->firstname;
+    }
+
+     public function setRole($role)
+    {
+        $this->roles = array();
+        if($role) {
+            $this->addRole($role);
+        }
+        return $this;
     }
 
     /**

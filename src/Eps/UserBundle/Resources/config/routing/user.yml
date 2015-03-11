@@ -24,6 +24,14 @@ admin_user_update:
     defaults: { _controller: "EpsUserBundle:User:update" }
     requirements: { _method: post|put }
 
+admin_user_edit_role:
+    pattern:  /{id}/editRole
+    defaults: { _controller: "EpsUserBundle:User:editRole" }
+
+admin_user_update_role:
+    pattern:  /{id}/updateRole/{role}
+    defaults: { _controller: "EpsUserBundle:User:updateRole", role: null }
+
 admin_user_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "EpsUserBundle:User:delete" }

@@ -32,7 +32,17 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ entity.roles }}</td>
+                <td>
+		        {% if "ROLE_BUREAU" in entity.roles %}
+                                    <strong><span style="color: #BB1111">Bureau</span></strong>
+                                    {% elseif "ROLE_MAJ" in entity.roles %}
+                                    <strong><span style="color: #44BB44">Resp. MàJ</span></strong>
+                                    {% elseif "ROLE_REPORTER" in entity.roles %}
+                                    <strong><span style="color: #4444BB">Reporter</span></strong>
+                                    {% else %}
+                                    Visiteur
+                                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Id</th>
@@ -68,6 +78,7 @@
         <a class="btn btn-success" href="{{ path('admin_user') }}">
             Retour à la liste
         </a>
+        <a class="btn btn-info" href="{{ path('admin_user_edit_role', { 'id': entity.id }) }}">Rôle</a>
         <a class="btn btn-warning" href="{{ path('admin_user_edit', { 'id': entity.id }) }}">
             Editer
         </a>
