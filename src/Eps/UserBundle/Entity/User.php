@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Eps\UserBundle\Entity\User
  *
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Eps\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser

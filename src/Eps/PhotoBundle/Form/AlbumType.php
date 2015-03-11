@@ -5,6 +5,8 @@ namespace Eps\PhotoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Eps\UserBundle\Entity\UserRepository;
+use Eps\VideoBundle\Entity\VideoRepository;
 
 class AlbumType extends AbstractType
 {
@@ -28,8 +30,19 @@ class AlbumType extends AbstractType
             ->add('visit_count', null, array('label' => 'Visites'))
             ->add('like_count', null, array('label' => 'Likes'))
             ->add('category', null, array('label' => 'Catégorie'))
-            ->add('reporters')
-            ->add('video', null, array('required' => false, 'label' => 'Vidéo'))
+            ->add('reporters', 'entity', array(
+                                            'multiple' => true,
+                                            'class' => 'Eps\\UserBundle\\Entity\\User',
+                                            'query_builder' => function(UserRepository $repository) {
+                                                return $repository->getReporters();
+                                            },))
+
+            ->add('video', 'entity', array('required' => false,
+                                            'label' => 'Vidéo',
+                                            'class' => 'Eps\\VideoBundle\\Entity\\Video',
+                                            'query_builder' => function(VideoRepository $repository) {
+                                                return $repository->getAllForForm();
+                                            },))
         ;
     }
     

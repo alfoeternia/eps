@@ -50,4 +50,12 @@ class VideoRepository extends EntityRepository
 				$years[] = $result['years'];
 		return $years;
 	}
+
+	public function getAllForForm ()
+    {
+
+        $qb = $this->createQueryBuilder('v');
+        $qb->orderBy('v.id', 'DESC');
+        return $qb;
+    }
 }

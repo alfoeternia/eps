@@ -24,4 +24,21 @@ class UserRepository extends EntityRepository
 				$years[] = $result['years'];
 		return $years;*/
 	}
+
+	public function getReporters ()
+    {
+
+        $qb = $this->createQueryBuilder('u');
+        $qb->where($qb->expr()->orX(
+        $qb->expr()->like('u.roles', '?1'),
+        $qb->expr()->like('u.roles', '?2'),
+        $qb->expr()->like('u.roles', '?3')))
+        ->setParameters(array(
+        1 => '%"ROLE_BUREAU"%',
+        2 => '%"ROLE_REPORTER"%',
+        3 => '%"ROLE_MAJ"%'))
+        ->orderBy('u.id', 'DESC');
+
+        return $qb;
+    }
 }
