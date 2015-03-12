@@ -5,6 +5,8 @@ namespace Eps\PhotoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Eps\UserBundle\Entity\UserRepository;
+use Eps\PhotoBundle\Entity\AlbumRepository;
 
 class SliderPhotoType extends AbstractType
 {
@@ -16,8 +18,16 @@ class SliderPhotoType extends AbstractType
     {
         $builder
             ->add('actif', null, array('required' => false, 'label' => 'Actif ?'))
-            ->add('album', null, array('required' => true, 'label' => 'Album'))
-            ->add('user', null, array('required' => true, 'label' => 'Reporter'))
+            ->add('album', 'entity', array('required' => true, 'label' => 'Album',
+            'class' => 'Eps\\PhotoBundle\\Entity\\Album',
+            'query_builder' => function(AlbumRepository $repository) {
+                return $repository->getAllForForm();
+            },))
+            ->add('user', 'entity', array('required' => true,
+            'class' => 'Eps\\UserBundle\\Entity\\User',
+            'query_builder' => function(UserRepository $repository) {
+            return $repository->getReporters();
+            },))
         ;
     }
     
