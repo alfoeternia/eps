@@ -18,12 +18,14 @@ class SliderPhotoType extends AbstractType
     {
         $builder
             ->add('actif', null, array('required' => false, 'label' => 'Actif ?'))
-            ->add('album', 'entity', array('required' => true, 'label' => 'Album',
+            ->add('album', 'entity', array('required' => true,
+            'label' => 'Album',
             'class' => 'Eps\\PhotoBundle\\Entity\\Album',
             'query_builder' => function(AlbumRepository $repository) {
                 return $repository->getAllForForm();
             },))
             ->add('user', 'entity', array('required' => true,
+            'label' => 'Reporter'
             'class' => 'Eps\\UserBundle\\Entity\\User',
             'query_builder' => function(UserRepository $repository) {
             return $repository->getReporters();
