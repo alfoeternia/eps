@@ -25,7 +25,7 @@ class SliderPhotoType extends AbstractType
                 return $repository->getAllForForm();
             },))
             ->add('user', 'entity', array('required' => true,
-            'label' => 'Reporter'
+            'label' => 'Reporter',
             'class' => 'Eps\\UserBundle\\Entity\\User',
             'query_builder' => function(UserRepository $repository) {
             return $repository->getReporters();
