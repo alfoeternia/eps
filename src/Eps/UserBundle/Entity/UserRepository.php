@@ -30,15 +30,20 @@ class UserRepository extends EntityRepository
 
         $qb = $this->createQueryBuilder('u');
         $qb->where($qb->expr()->orX(
-        $qb->expr()->like('u.roles', '?1'),
-        $qb->expr()->like('u.roles', '?2'),
-        $qb->expr()->like('u.roles', '?3')))
+        $qb->expr()->eq('u.rank', '?1'),
+        $qb->expr()->eq('u.rank', '?2'),
+        $qb->expr()->eq('u.rank', '?3'),
+        $qb->expr()->eq('u.rank', '?5'),
+        $qb->expr()->eq('u.rank', '?6')))
         ->setParameters(array(
-        1 => '%"ROLE_BUREAU"%',
-        2 => '%"ROLE_REPORTER"%',
-        3 => '%"ROLE_MAJ"%'))
+        1 => 'TREASURER',
+        2 => 'GODFATHER',
+        3 => 'REPORTER',
+        5 => 'PRESIDENT',
+        6 => 'SECRETARY'))
         ->orderBy('u.id', 'DESC');
 
         return $qb;
+
     }
 }
