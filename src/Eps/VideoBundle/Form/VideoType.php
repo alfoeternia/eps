@@ -5,6 +5,7 @@ namespace Eps\VideoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Eps\UserBundle\Entity\UserRepository;
 
 class VideoType extends AbstractType
 {
@@ -32,7 +33,12 @@ class VideoType extends AbstractType
                         'LOCAL' => 'Vidéo locale (FTP)',
                         'YOUTUBE' => 'Youtube',
                         'VIMEO' => 'Vimeo')))
-            ->add('reporters')
+            ->add('reporters', 'entity', array(
+                    'multiple' => true,
+                    'class' => 'Eps\\UserBundle\\Entity\\User',
+                    'query_builder' => function(UserRepository $repository) {
+                        return $repository->getReporters();
+                    },))
         ;
     }
     

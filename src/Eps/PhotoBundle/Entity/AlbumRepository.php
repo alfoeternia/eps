@@ -53,4 +53,12 @@ class AlbumRepository extends EntityRepository
 				$years[] = $result['years'];
 		return $years;
 	}
+
+	public function getAllForForm ()
+    {
+
+        $qb = $this->createQueryBuilder('a');
+        $qb->orderBy('a.id', 'DESC');
+        return $qb;
+    }
 }
