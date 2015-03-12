@@ -45,7 +45,11 @@
 					<li class="active">
 						<a href="{{ path('homepage') }}">Accueil</a>
 					</li>
-
+					{% if is_granted('ROLE_REPORTER') %}
+                    <li>
+                    						<a href="{{ path('epstv') }}">EPS TV</a>
+                    					</li>
+                    					{% endif %}
 					<li class="dropdown">
 						<a class="dropdown-toogle" href="{{ path('albums') }}">Photos</a>
 						<ul>
