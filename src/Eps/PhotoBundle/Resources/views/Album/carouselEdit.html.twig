@@ -34,8 +34,18 @@
     <a class="btn btn-success" href="{{ path('admin_carousel') }}">
         Retour à la liste
     </a>
-	<a class="btn btn-danger" href="{{ path('admin_carousel_delete', {'id': entity.id}) }}">
-        Supprimer
-    </a>
+            		<button class="btn btn-danger" onclick="myFunction()">
+                            Supprimer
+                        </button>
+            		<script  type="text/javascript">
+                    function myFunction() {
+                        var r = confirm("Êtes-vous sûr de vouloir supprimer la photo du carousel?");
+                        if (r == true) {
+
+                         var href="{{ path('admin_carousel_delete', {'id': entity.id}) }}";
+                         window.location = href;
+                        }
+                    }
+                    </script>
 </ul>
 {% endblock %}

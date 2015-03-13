@@ -83,8 +83,17 @@
             Editer
         </a>
         <p><br /></p>
-    {{ form_start(delete_form) }}
+    		<button class="btn btn-danger" onclick="myFunction()">
+                    Supprimer
+                </button>
+    		<script  type="text/javascript">
+            function myFunction() {
+                var r = confirm("Êtes-vous sûr de vouloir supprimer l'utilisateur?");
+                if (r == true) {
 
-            {{ form_row(delete_form.submit, { 'attr': {'class': 'btn btn-danger'} }) }}
-        {{ form_end(delete_form) }}
+                 var href="{{ path('admin_user_delete', {'id': entity.id}) }}";
+                 window.location = href;
+                }
+            }
+            </script>
 {% endblock %}

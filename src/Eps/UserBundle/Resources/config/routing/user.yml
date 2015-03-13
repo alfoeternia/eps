@@ -35,4 +35,3 @@ admin_user_update_role:
 admin_user_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "EpsUserBundle:User:delete" }
-    requirements: { _method: post|delete }

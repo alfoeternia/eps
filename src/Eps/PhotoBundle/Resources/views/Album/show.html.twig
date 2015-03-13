@@ -53,6 +53,18 @@
             Edit
         </a>
     </li>
-    <li>{{ form(delete_form) }}</li>
+    <li>    		<button class="btn btn-danger" onclick="myFunction()">
+                            Supprimer
+                        </button>
+            		<script  type="text/javascript">
+                    function myFunction() {
+                        var r = confirm("Êtes-vous sûr de vouloir supprimer l'album?");
+                        if (r == true) {
+
+                         var href="{{ path('admin_album_delete', {'id': entity.id}) }}";
+                         window.location = href;
+                        }
+                    }
+                    </script></li>
 </ul>
 {% endblock %}
