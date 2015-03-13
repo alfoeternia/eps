@@ -22,14 +22,14 @@ class UserType extends AbstractType
             ->add('locked', null, array('required' => false, 'label' => 'Bloqué'))
             ->add('expired', null, array('label' => 'Expiré'))
             ->add('roles', 'collection',  array('allow_add' => true,
-            'allow_delete' => true,'required' => false,'label' => 'Rôle',
+            'allow_delete' => true,'required' => false,'label' => 'Accès',
                                                                              'type' => 'choice',
                                                                              'options' => array(
                                                                        'choices'  => array('ROLE_REPORTER' => 'Reporter',
             'ROLE_BUREAU' => 'Bureau',
             'ROLE_MAJ' => 'Respo Maj'))))
 
-            ->add('rank', 'choice', array('label' => 'Rang','choices' =>
+            ->add('rank', 'choice', array('label' => 'Poste (visible dans la page "Ses membres")','choices' =>
                                                                      array('FORMER_REPORTER' => 'Ancien Reporter',
                                                                      'GODFATHER' => 'Parrain',
                                                                      'REPORTER' => 'Reporter',
