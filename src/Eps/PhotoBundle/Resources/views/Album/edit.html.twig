@@ -110,8 +110,18 @@
         Retour à la liste
     </a>
 
-    {{ form_start(delete_form) }}
-		{{ form_row(delete_form.submit, { 'attr': {'class': 'btn btn-danger'} }) }}
-	{{ form_end(delete_form) }}
+        		<button class="btn btn-danger" onclick="myFunction()">
+                        Supprimer
+                    </button>
+        		<script  type="text/javascript">
+                function myFunction() {
+                    var r = confirm("Êtes-vous sûr de vouloir supprimer l'album?");
+                    if (r == true) {
+
+                     var href="{{ path('admin_album_delete', {'id': entity.id}) }}";
+                     window.location = href;
+                    }
+                }
+                </script>
 </ul>
 {% endblock %}

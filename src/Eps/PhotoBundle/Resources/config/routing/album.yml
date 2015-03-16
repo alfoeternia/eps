@@ -81,7 +81,6 @@ admin_album_update:
 admin_album_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "EpsPhotoBundle:Album:delete" }
-    requirements: { _method: post|delete }
 
 admin_album_publish:
     pattern:  /{id}/publish

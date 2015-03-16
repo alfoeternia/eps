@@ -410,11 +410,9 @@ class AlbumController extends Controller
             throw $this->createNotFoundException('Unable to find Album entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('EpsPhotoBundle:Album:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'entity'      => $entity,));
     }
 
     /**
@@ -432,7 +430,6 @@ class AlbumController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 		
 		$path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $id;
         $images = glob("$path/*.{png,jpg,jpeg,gif,PNG,JPG,JPEG,GIF}",GLOB_BRACE);
@@ -448,7 +445,6 @@ class AlbumController extends Controller
         return $this->render('EpsPhotoBundle:Album:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
                                 'images' => $images,
 								'album_id' => $entity->getId(),
                                 'album_year' => $entity->getDate()->format("Y"),
@@ -489,7 +485,6 @@ class AlbumController extends Controller
             throw $this->createNotFoundException('Unable to find Album entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -505,7 +500,6 @@ class AlbumController extends Controller
         return $this->render('EpsPhotoBundle:Album:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 	
@@ -533,52 +527,30 @@ class AlbumController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('EpsPhotoBundle:Album')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('EpsPhotoBundle:Album')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Album entity.');
-            }
-
-            $root_dir = $this->get('kernel')->getRootDir() . '/../www/';
-            $originals_dir = $root_dir.'originals/'.$entity->getDate()->format('Y').'/'.$entity->getId();
-            $data_dir = $root_dir.'data/'.$entity->getDate()->format('Y').'/'.$entity->getId();
-            $miniatures_dir = $root_dir.'miniatures/'.$entity->getId();
-
-            $em->remove($entity);
-            $em->flush();
-
-            // Remove folders if they exists
-            if(is_dir($originals_dir)) $this->rmdir_custom($originals_dir);
-            if(is_dir($data_dir)) $this->rmdir_custom($data_dir);
-            if(is_dir($miniatures_dir)) $this->rmdir_custom($miniatures_dir);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Album entity.');
         }
+
+        $root_dir = $this->get('kernel')->getRootDir() . '/../www/';
+        $originals_dir = $root_dir.'originals/'.$entity->getDate()->format('Y').'/'.$entity->getId();
+        $data_dir = $root_dir.'data/'.$entity->getDate()->format('Y').'/'.$entity->getId();
+        $miniatures_dir = $root_dir.'miniatures/'.$entity->getId();
+
+        $em->remove($entity);
+        $em->flush();
+
+        // Remove folders if they exists
+        if(is_dir($originals_dir)) $this->rmdir_custom($originals_dir);
+        if(is_dir($data_dir)) $this->rmdir_custom($data_dir);
+        if(is_dir($miniatures_dir)) $this->rmdir_custom($miniatures_dir);
 
         return $this->redirect($this->generateUrl('admin_album'));
     }
 
-    /**
-     * Creates a form to delete a Album entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_album_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer'))
-            ->getForm()
-        ;
-    }
-
-    /**
+     /**
      * Publish a Album entity.
      *
      */
