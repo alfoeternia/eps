@@ -16,6 +16,10 @@ class DefaultController extends Controller
 		if($page == NULL) {
 			$page['content'] = "Cette page n'existe pas.";
 		}
+		else if($page->getId() == 1 && $page->getActif() == false) {
+		    $page->setContent("Aucun stream actuellement en cours.");
+		}
+
 
         return $this->render('EpsStaticPagesBundle:Default:index.html.twig', array('page' => $page));
     }
