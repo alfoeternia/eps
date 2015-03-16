@@ -44,6 +44,9 @@ class StaticController extends Controller
     		if($this->getRequest()->get('title') != NULL) {
     			$page->setTitle($this->getRequest()->get('title'));
     			$page->setContent($this->getRequest()->get('content'));
+    			if($id == 1) {
+    			    $page->setActif($this->getRequest()->get('isActif'));
+    			}
             	$em->flush();
     		}
     		return $this->redirect($this->generateUrl('admin_static'));

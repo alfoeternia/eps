@@ -24,7 +24,7 @@
  	{% for page in pages %}
  		<tr>
  			<td>{{ page.id }}</td>
- 			<td>{{ page.title }}</td>
+ 			<td>{{ page.title }} {% if page.id == 1 %}  {% if page.actif == true %} (Actif)  {% else %} (Désactivé){% endif %}{% endif %}</td>
  			<td>
  				<i class="icon-edit" style=""></i>
  				<a href="{{ path('admin_static_edit', {'id': page.id}) }}">Modifier</a>

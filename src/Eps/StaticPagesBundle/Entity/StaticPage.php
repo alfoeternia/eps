@@ -35,6 +35,12 @@ class StaticPage
      */
     private $content;
 
+	/**
+     * @var boolean $actif
+     *
+     * @ORM\Column(name="actif", type="boolean", length=1)
+     */
+    private $actif;
 
     /**
      * Get id
@@ -84,5 +90,25 @@ class StaticPage
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set actif
+     *
+     * @param boolen $actif
+     */
+    public function setActif($actif)
+    {
+        $this->actif = $actif;
+    }
+
+    /**
+     * Get actif
+     *
+     * @return boolen
+     */
+    public function getActif()
+    {
+        return $this->actif;
     }
 }
