@@ -52,8 +52,8 @@
                 </option>
             </constraint>
             <constraint name="Regex">
-                <option name="pattern">/^.+@(efrei|esigetel).(fr|net)$/</option>
-                <option name="message">L'adresse email doit se terminer en @efrei.fr ou @efrei.net ou @esigetel.fr</option>
+                <option name="pattern">/^.+@(efrei|esigetel|efreitech).(fr|net)$/</option>
+                <option name="message">L'adresse email doit se terminer en @efrei.fr ou @efrei.net ou @esigetel.fr ou efreitech.fr</option>
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
