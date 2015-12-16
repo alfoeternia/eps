@@ -3,12 +3,18 @@
 namespace Eps\PhotoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Eps\PhotoBundle\Entity\Album
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Eps\PhotoBundle\Entity\AlbumRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class Album
 {
@@ -18,6 +24,8 @@ class Album
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
+     * @Groups({"list"})
      */
     private $id;
 
@@ -25,12 +33,16 @@ class Album
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
+     * @Groups({"list"})
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @Expose
+     * @Groups({"list"})
      */
     private $category;
 
@@ -38,11 +50,15 @@ class Album
      * @var date $date
      *
      * @ORM\Column(name="date", type="date")
+     * @Expose
+     * @Groups({"list"})
      */
     private $date;
 
     /**
      * @ORM\ManyToMany(targetEntity="Eps\UserBundle\Entity\User")
+     * @Expose
+     * @Groups({"list"})
      */
     private $reporters;
 
@@ -50,12 +66,16 @@ class Album
      * @var string $thumb
      *
      * @ORM\Column(name="thumb", type="string", length=255)
+     * @Expose
+     * @Groups({"list"})
      */
     private $thumb;
 
     /**
      * @ORM\ManyToOne(targetEntity="Eps\VideoBundle\Entity\Video")
      * @ORM\JoinColumn(name="video_id", referencedColumnName="id")
+     * @Expose
+     * @Groups({"list"})
      */
     private $video;
 
@@ -70,6 +90,8 @@ class Album
      * @var string $access
      *
      * @ORM\Column(name="access", type="string", length=255)
+     * @Expose
+     * @Groups({"list"})
      */
     private $access;
 
@@ -77,6 +99,8 @@ class Album
      * @var integer $visit_count
      *
      * @ORM\Column(name="visit_count", type="integer")
+     * @Expose
+     * @Groups({"list"})
      */
     private $visit_count;
 
@@ -84,6 +108,8 @@ class Album
      * @var integer $like_count
      *
      * @ORM\Column(name="like_count", type="integer")
+     * @Expose
+     * @Groups({"list"})
      */
     private $like_count;
 

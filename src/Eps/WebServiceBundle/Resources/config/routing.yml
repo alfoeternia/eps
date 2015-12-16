@@ -1,0 +1,6 @@
+webservice_home:
+    pattern:  /home
+    defaults: { _controller: EpsWebServiceBundle:Default:home }
+    requirements:
+        _method:  GET
+        _format: JSON

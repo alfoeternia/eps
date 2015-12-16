@@ -41,7 +41,8 @@
 	"twitter/bootstrap": "2.3.*",
 	"jquery/jquery": "1.10.*",
 	"leafo/lessphp": "*",
-	"oneup/uploader-bundle": "0.9.*@dev"
+	"oneup/uploader-bundle": "0.9.*@dev",
+        "jms/serializer-bundle": "^1.1"
     },
     "scripts": {
         "post-install-cmd": [

@@ -1,0 +1,7 @@
+parameters:
+#    eps_web_service.example.class: Eps\WebServiceBundle\Example
+
+services:
+#    eps_web_service.example:
+#        class: %eps_web_service.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

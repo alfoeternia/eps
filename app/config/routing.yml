@@ -24,6 +24,10 @@ EpsHomepageBundle:
     resource: "@EpsHomepageBundle/Resources/config/routing.yml"
     prefix:   /
 
+EpsWebServiceBundle:
+    resource: "@EpsWebServiceBundle/Resources/config/routing.yml"
+    prefix:   /webservice/
+
 # FOS User Bundle Routes
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

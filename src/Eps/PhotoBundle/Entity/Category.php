@@ -3,12 +3,18 @@
 namespace Eps\PhotoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Eps\PhotoBundle\Entity\Category
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Eps\PhotoBundle\Entity\CategoryRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class Category
 {
@@ -18,6 +24,8 @@ class Category
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
+     * @Groups({"list"})
      */
     private $id;
 
@@ -25,6 +33,8 @@ class Category
      * @var string $title
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Expose
+     * @Groups({"list"})
      */
     private $title;
 
@@ -32,6 +42,7 @@ class Category
      * @var string $description
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @Expose
      */
     private $description;
 
@@ -39,6 +50,7 @@ class Category
      * @var string $image
      *
      * @ORM\Column(name="image", type="string", length=255)
+     * @Expose
      */
     private $image;
 

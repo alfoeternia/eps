@@ -28,6 +28,8 @@ class AppKernel extends Kernel
             new Eps\AdminBundle\EpsAdminBundle(),
             new Eps\StaticPagesBundle\EpsStaticPagesBundle(),
             new Eps\VideoBundle\EpsVideoBundle(),
+            new Eps\WebServiceBundle\EpsWebServiceBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

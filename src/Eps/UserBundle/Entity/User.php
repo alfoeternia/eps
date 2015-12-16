@@ -6,6 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Eps\UserBundle\Entity\User
@@ -13,6 +17,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Eps\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -22,6 +28,8 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
+     * @Groups({"list"})
      */
     protected $id;
 
@@ -29,6 +37,8 @@ class User extends BaseUser
      * @var string $firstname
      *
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"list"})
      */
     protected $firstname;
 
@@ -36,6 +46,8 @@ class User extends BaseUser
      * @var string $lastname
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"list"})
      */
     protected $lastname;
 
@@ -43,6 +55,8 @@ class User extends BaseUser
      * @var string $promo
      *
      * @ORM\Column(name="promo", type="string", length=4, nullable=true)
+     * @Expose
+     * @Groups({"list"})
      */
     protected $promo;
 
@@ -50,6 +64,7 @@ class User extends BaseUser
      * @var string $description
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @Expose
      */
     protected $description;
 

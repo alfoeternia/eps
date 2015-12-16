@@ -3,12 +3,18 @@
 namespace Eps\VideoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Video
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Eps\VideoBundle\Entity\VideoRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class Video
 {
@@ -18,6 +24,7 @@ class Video
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -25,6 +32,7 @@ class Video
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
      */
     private $name;
 
@@ -32,6 +40,7 @@ class Video
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @Expose
      */
     private $description;
 
@@ -39,6 +48,7 @@ class Video
      * @var string
      *
      * @ORM\Column(name="year", type="string", length=4)
+     * @Expose
      */
     private $year;
 
@@ -46,6 +56,7 @@ class Video
      * @var integer
      *
      * @ORM\Column(name="download_count", type="integer")
+     * @Expose
      */
     private $downloadCount;
 
@@ -53,6 +64,7 @@ class Video
      * @var string
      *
      * @ORM\Column(name="access", type="string", length=255)
+     * @Expose
      */
     private $access;
 
@@ -60,6 +72,7 @@ class Video
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
+     * @Expose
      */
     private $url;
 
@@ -67,6 +80,7 @@ class Video
      * @var string
      *
      * @ORM\Column(name="source", type="string", length=255)
+     * @Expose
      */
     private $source;
 	
@@ -74,6 +88,7 @@ class Video
      * @var string
      *
      * @ORM\Column(name="thumb", type="string", length=255)
+     * @Expose
      */
     private $thumb;
 
