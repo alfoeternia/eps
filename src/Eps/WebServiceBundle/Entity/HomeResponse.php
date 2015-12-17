@@ -20,11 +20,9 @@ class HomeResponse
 
     /**
      * @Expose
-     * @MaxDepth(4)
      * @Groups({"list"})
      */
     private $albums;
-     * @Groups({"list"})
 
     /**
      * Set albums
