@@ -40,6 +40,8 @@ class DefaultController extends Controller
 
         //Just convert array to JSON and return result
         //$jsonEncode = json_encode(array('albums' => $reports));
-        return new Response($reports);
+        $response = new Response($reports);
+        $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
+        return $response;
     }
 }
