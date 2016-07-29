@@ -4,3 +4,9 @@ webservice_home:
     requirements:
         _method:  GET
         _format: JSON
+webservice_slider:
+    pattern:  /slider
+    defaults: { _controller: EpsWebServiceBundle:Default:slider }
+    requirements:
+        _method:  GET
+        _format: JSON

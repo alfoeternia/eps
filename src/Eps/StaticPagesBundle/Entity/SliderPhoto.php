@@ -3,12 +3,18 @@
 namespace Eps\StaticPagesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Eps\StaticPagesBundle\Entity\StaticPage
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Eps\StaticPagesBundle\Entity\SliderPhotoRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class SliderPhoto
 {
@@ -18,18 +24,24 @@ class SliderPhoto
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
+     * @Groups({"list"})
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Eps\PhotoBundle\Entity\Album")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
+     * @Expose
+     * @Groups({"list"})
      */
     private $album;
 	
 	/**
      * @ORM\ManyToOne(targetEntity="Eps\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Expose
+     * @Groups({"list"})
      */
     private $user;
 
@@ -37,6 +49,8 @@ class SliderPhoto
      * @var string $photo
      *
      * @ORM\Column(name="photo", type="string", length=255)
+     * @Expose
+     * @Groups({"list"})
      */
     private $photo;
 
@@ -45,6 +59,8 @@ class SliderPhoto
      * @var boolean $actif
      *
      * @ORM\Column(name="actif", type="boolean", length=1)
+     * @Expose
+     * @Groups({"list"})
      */
     private $actif;
 	
