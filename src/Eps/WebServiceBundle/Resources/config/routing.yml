@@ -10,3 +10,15 @@ webservice_slider:
     requirements:
         _method:  GET
         _format: JSON
+webservice_albums:
+    pattern:  /albums
+    defaults: { _controller: EpsWebServiceBundle:Album:getAlbums }
+    requirements:
+        _method:  GET
+        _format: JSON
+webservice_albums_page_number:
+    pattern:  /albums/{pageNumber}
+    defaults: { _controller: EpsWebServiceBundle:Album:getAlbums }
+    requirements:
+        _method:  GET
+        _format: JSON

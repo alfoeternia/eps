@@ -52,7 +52,7 @@ class DefaultController extends Controller
         $query = $em->getRepository('EpsStaticPagesBundle:SliderPhoto')
                     ->createQueryBuilder('s')
                     ->where('s.actif = 1')
-                    ->orderBy('s.id', 'DESC')
+                    ->orderBy('s.id', 'ASC')
                     ->join('s.album', 'a')
                     ->join('s.user', 'u')
                     ->addSelect('a')

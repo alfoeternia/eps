@@ -8,12 +8,12 @@ use JMS\Serializer\Annotation\Groups;
 
 
 /**
- * HomeResponse
+ * AlbumsResponse
  *
  *
  * @ExclusionPolicy("all")
  */
-class HomeResponse
+class AlbumsResponse
 {
 
     /**
@@ -39,5 +39,30 @@ class HomeResponse
     public function getAlbums()
     {
         return $this->albums;
+    }
+
+    /**
+     * @Expose
+     * @Groups({"list"})
+     */
+    private $pageNumber;
+
+    /**
+     * Set pageNumber
+     *
+     * @param array $pageNumber
+     */
+    public function setPageNumber($pageNumber)
+    {
+        $this->pageNumber = $pageNumber;
+    }
+    /**
+     * Get pageNumber
+     *
+     * @return integer
+     */
+    public function getPageNumber()
+    {
+        return $this->pageNumber;
     }
 }

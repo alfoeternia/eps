@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
@@ -22,6 +23,17 @@ use JMS\Serializer\Annotation\VirtualProperty;
  */
 class User extends BaseUser
 {
+    /**
+     * Permet de récupérer l'username de l'utilisateur pour la serialization (grace aux annotations)
+     *
+     * @VirtualProperty
+     * @SerializedName("username")
+     * @Groups({"list"})
+     */
+    public function serializeUsername(){
+        return $this->getUsername();
+    }
+
     /**
      * @var integer $id
      *
