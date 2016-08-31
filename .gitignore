@@ -16,6 +16,7 @@ www/miniatures/*
 www/originals/*
 www/html5lightbox
 www/*/compiled
+www/img/slider/*
 
 # Configuration files
 app/config/parameters.ini

@@ -38,7 +38,9 @@ Et normalement c'est fini!!
 
 ## Installation Linux ou Mac
 
-Tu as un Linux, donc tu sais faire, ou alors tu t'inspirse du dessus, pareil pour mac.
+La configuration est a peu près identique à Windows, pour Mac [MAMP](https://www.mamp.info/en/) fait très bien l'affaire.
+
+Tu as un Linux, donc tu sais faire, ou alors tu t'inspirse du dessus.
 
 
 
