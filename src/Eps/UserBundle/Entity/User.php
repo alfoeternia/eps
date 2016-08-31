@@ -28,7 +28,7 @@ class User extends BaseUser
      *
      * @VirtualProperty
      * @SerializedName("username")
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     public function serializeUsername(){
         return $this->getUsername();
@@ -41,7 +41,7 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     protected $id;
 
@@ -50,7 +50,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     protected $firstname;
 
@@ -59,7 +59,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     protected $lastname;
 
@@ -68,7 +68,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="promo", type="string", length=4, nullable=true)
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     protected $promo;
 

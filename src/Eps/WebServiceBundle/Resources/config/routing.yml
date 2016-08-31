@@ -22,3 +22,9 @@ webservice_albums_page_number:
     requirements:
         _method:  GET
         _format: JSON
+webservice_album:
+    pattern:  /album/{albumId}/detail
+    defaults: { _controller: EpsWebServiceBundle:Album:getAlbum }
+    requirements:
+        _method:  GET
+        _format: JSON

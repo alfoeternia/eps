@@ -50,7 +50,7 @@ class AlbumsResponse
     /**
      * Set pageNumber
      *
-     * @param array $pageNumber
+     * @param integer $pageNumber
      */
     public function setPageNumber($pageNumber)
     {

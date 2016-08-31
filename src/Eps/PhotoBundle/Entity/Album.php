@@ -25,7 +25,7 @@ class Album
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $id;
 
@@ -34,7 +34,7 @@ class Album
      *
      * @ORM\Column(name="name", type="string", length=255)
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $name;
 
@@ -42,7 +42,7 @@ class Album
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $category;
 
@@ -51,14 +51,14 @@ class Album
      *
      * @ORM\Column(name="date", type="date")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $date;
 
     /**
      * @ORM\ManyToMany(targetEntity="Eps\UserBundle\Entity\User")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $reporters;
 
@@ -67,7 +67,7 @@ class Album
      *
      * @ORM\Column(name="thumb", type="string", length=255)
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $thumb;
 
@@ -75,7 +75,7 @@ class Album
      * @ORM\ManyToOne(targetEntity="Eps\VideoBundle\Entity\Video")
      * @ORM\JoinColumn(name="video_id", referencedColumnName="id")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $video;
 
@@ -91,7 +91,7 @@ class Album
      *
      * @ORM\Column(name="access", type="string", length=255)
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $access;
 
@@ -100,7 +100,7 @@ class Album
      *
      * @ORM\Column(name="visit_count", type="integer")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $visit_count;
 
@@ -109,9 +109,18 @@ class Album
      *
      * @ORM\Column(name="like_count", type="integer")
      * @Expose
-     * @Groups({"list"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $like_count;
+
+
+    /**
+     * @var array $images
+     *
+     * @Expose
+     * @Groups({"detailAlbum"})
+     */
+    private $images;
 
 
     /**
@@ -380,5 +389,25 @@ class Album
 	public function __toString()
     {
         return $this->id.' - '.$this->name;
+    }
+
+    /**
+     * Set images
+     *
+     * @param array $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * Get images
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

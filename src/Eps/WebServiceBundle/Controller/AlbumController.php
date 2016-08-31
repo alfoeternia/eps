@@ -8,6 +8,7 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
 use JMS\Serializer\SerializationContext;
 use Eps\WebServiceBundle\Entity\AlbumsResponse;
+use Eps\WebServiceBundle\Entity\AlbumResponse;
 
 use Eps\PhotoBundle\Entity\Album;
 
@@ -45,6 +46,33 @@ class AlbumController extends Controller
 
         $serializer = $this->container->get('jms_serializer');
         $reports = $serializer->serialize($entity, 'json', SerializationContext::create()->setGroups(array('list')));
+
+
+        //Just convert array to JSON and return result
+        $response = new Response($reports);
+        $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
+        return $response;
+    }
+
+    public function getAlbumAction($albumId)
+    {
+        $em = $this->getDoctrine()->getManager();
+		$album = $em->getRepository('EpsPhotoBundle:Album')->find($albumId);
+
+        $path = $this->get('kernel')->getRootDir() . '/../www/miniatures/' . $albumId;
+		$images = glob("$path/*.{png,jpg,jpeg,gif,PNG,JPG,JPEG,GIF}",GLOB_BRACE);
+		if(!empty($images))
+		{
+			$images = array_map('basename', $images);
+		}
+        $album->setImages($images);
+
+        $entity = new AlbumResponse();
+        $entity->setAlbum($album);
+
+
+        $serializer = $this->container->get('jms_serializer');
+        $reports = $serializer->serialize($entity, 'json', SerializationContext::create()->setGroups(array('detailAlbum')));
 
 
         //Just convert array to JSON and return result
