@@ -25,7 +25,7 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Groups({"list", "detail"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $id;
 
@@ -34,7 +34,7 @@ class Category
      *
      * @ORM\Column(name="title", type="string", length=255)
      * @Expose
-     * @Groups({"list", "detail"})
+     * @Groups({"list", "detailAlbum"})
      */
     private $title;
 
