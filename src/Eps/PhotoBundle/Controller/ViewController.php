@@ -83,6 +83,7 @@ class ViewController extends Controller
 			// Zip will open and overwrite the file, rather than try to read it.
 			$zip->open($file, ZipArchive::OVERWRITE);
 
+  			set_time_limit(60*5) ;//5 minutes de timeout pour la génération du zip (ça peut parfois être long quand il y a beaucoup de photo)
 			foreach ($images as $f) {
 				$zip->addFile($path. "/" .basename($f), $f); 
 			}
