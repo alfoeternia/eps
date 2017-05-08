@@ -33,7 +33,7 @@
 					<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-download"></i> Télécharger</a></li>
+						<li><a href="{{ path('video_download', {'id': video.id}) }}" data-toggle="modal"><i class="icon-download"></i> Télécharger</a></li>
 						<li><a href="#notImplemented" data-toggle="modal"><i class="icon-envelope"></i> Envoyer à un ami</a></li>
 						<!--<li class="divider"></li>
 						<li><a href="#"><i class="icon-folder-open"></i> Rendre public</a></li>

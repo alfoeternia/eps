@@ -9,6 +9,10 @@ videos_year:
 video_show:
     pattern:  /video/{id}
     defaults: { _controller: EpsVideoBundle:Video:index }
+    
+video_download:
+    pattern:  /video/download/{id}
+    defaults: { _controller: EpsVideoBundle:Video:download }
 
 EpsVideoBundle_admin_video_new:
     resource: "@EpsVideoBundle/Resources/config/routing/adminVideo.yml"
