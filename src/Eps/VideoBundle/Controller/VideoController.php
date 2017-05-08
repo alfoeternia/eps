@@ -72,11 +72,9 @@ class VideoController extends Controller
 		}
 		
 		$session = $this->getRequest()->getSession();
-		if(!$session->get('video_'.$id)) {
-			$video->setDownloadCount($video->getDownloadCount()+1);
-			$em->flush();
-			$session->set('video_'.$id, true);
-		}
+		$video->setDownloadCount($video->getDownloadCount()+1);
+		$em->flush();
+		
 
 		$response = new BinaryFileResponse($file);
 		$response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
