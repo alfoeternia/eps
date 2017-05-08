@@ -8,7 +8,7 @@
 
 	<div class="album-desc" style="height:80px">
 				<p>
-					<strong><a href="{{ asset('data/' ~ entity.year ~ '/' ~ entity.url) }}" download="{{ entity.url }}">Télécharger la vidéo</a></strong>
+					<strong><a href="{{ path('video_download', {'id': entity.id}) }}" download="{{ entity.url }}">Télécharger la vidéo</a></strong>
 
 				</p>
 				<p>
